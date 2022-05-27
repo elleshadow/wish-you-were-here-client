@@ -1,0 +1,35 @@
+name: Feature Request
+description: Request a new feature
+title: "[Feature]: "
+labels: ["feature", "triage", "mvp"]
+assignees:
+  -
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to request a new feature!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: new-feature
+    attributes:
+      label: New feature description?
+      description: Please describe the new feature.
+      value: "As a user, When I visit __, I want to __, so that I can __"
+    validations:
+      required: true
+  - type: textarea
+    id: priority
+    attributes:
+      label: How important is the requested feature?
+      description: Please help us understand how the absence of this feature affects your ability to use the application.
+      value: "Without a dark mode option, I am unable to read the application text."
+    validations:
+      required: true
