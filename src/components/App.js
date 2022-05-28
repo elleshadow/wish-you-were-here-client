@@ -26,7 +26,7 @@ function App() {
         (user.name) ? 
         (
           <section className='welcome'>
-            <h2>{`Welcome, ${user.name}`}</h2>
+            <h2 className='large'>{`Welcome, ${user.name}`}</h2>
           </section>
         ) :
         (
