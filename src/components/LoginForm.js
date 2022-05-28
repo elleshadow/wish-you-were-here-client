@@ -10,7 +10,8 @@ function LoginForm({ login, error }) {
     }
 
     const handleChange = (event) => {
-        setFormDetails({ [event.target.name]: event.target.value });
+        setFormDetails({...formDetails, [event.target.name]: event.target.value });
+        console.log(formDetails)
     }
 
     return (
@@ -26,7 +27,7 @@ function LoginForm({ login, error }) {
                         id='name'
                         placeholder='Name'
                         value={formDetails.name}
-                        onChange={ event => handleChange(event) }
+                        onChange={(event) => {handleChange(event)}}
                     /> 
                 </section>
                 <section className='form-group'>
@@ -37,10 +38,10 @@ function LoginForm({ login, error }) {
                         id='email'
                         placeholder='Email (optional)'
                         value={formDetails.email}
-                        onChange={ event => handleChange(event) }
+                        onChange={(event) => handleChange(event)}
                     />
                 </section>
-                <button className='submit-name-btn' onClick={ event => submitForm(event) }>Submit</button>
+                <button className='submit-name-btn' onClick={event => submitForm(event)}>Submit</button>
             </div>
         </form>
     )
