@@ -21,7 +21,7 @@ function App() {
           </section>
         ) :
         (
-          <LoginForm />
+          <LoginForm login={login} error={error} />
         )
       }
     </main>

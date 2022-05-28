@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/LoginForm.css';
 
-function LoginForm() {
+function LoginForm({ login, error }) {
   return (
     <form>
         <div className='form-inner'>
