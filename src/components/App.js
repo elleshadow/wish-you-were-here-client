@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginForm from './LoginForm';
+import Dashboard from './Dashboard';
 import '../styles/App.css';
 
 function App() {
@@ -23,10 +24,11 @@ function App() {
   }
 
   return (
+    
     <main className='App'>
       <Switch>
         <Route exact path='/' render={() => <LoginForm login={login} error={error} />} />
-        {/* <Route exact path='/dashboard/:id' render={({ match }) => return <></>} */}
+        {/* <Route exact path='/dashboard/:id' render={({ match }) => <></>} */}
       </Switch>
     </main>
   );
