@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import '../styles/App.css';
 
@@ -22,21 +23,40 @@ function App() {
 
   return (
     <main className='App'>
-      {
-        (user.name) ? 
-        (
-          <section className='welcome'>
-            <h2 className='large'>{`Welcome, ${user.name}`}</h2>
-          </section>
-        ) :
-        (
-          <LoginForm login={login} error={error} />
-        )
-      }
+      <Switch>
+        <Route exact path='/' render={() => {
+            if(user.name) {
+                return (
+                    <section className='welcome'>
+                        <h2 className='large'>{`Welcome, ${user.name}`}</h2>
+                    </section>
+                )
+            } else {
+                return <LoginForm login={login} error={error} />
+            }
+        }} />
+      </Switch>
     </main>
   );
 
 }
 
-
  export default App;
+
+//  return (
+//     <main className='App'>
+//       <Switch>
+//         <Route exact path='/' render={() => {
+//             if(user.name) {
+//                 return (
+//                     <section className='welcome'>
+//                         <h2 className='large'>{`Welcome, ${user.name}`}</h2>
+//                     </section>
+//                 )
+//             } else {
+//                 return <LoginForm login={login} error={error} />
+//             }
+//         }} />
+//       </Switch>
+//     </main>
+//   );
