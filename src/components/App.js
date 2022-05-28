@@ -24,33 +24,15 @@ function App() {
   }
 
   return (
-    
     <main className='App'>
-      <Switch>
-        <Route exact path='/' render={() => <LoginForm login={login} error={error} />} />
-        {/* <Route exact path='/dashboard/:id' render={({ match }) => <></>} */}
-      </Switch>
+        <Dashboard userDetails={user}/>
+        <Switch>
+            <Route exact path='/' render={() => <LoginForm login={login} error={error} />} />
+            {/* <Route exact path='/dashboard/:id' render={({ match }) => <></>} */}
+        </Switch>
     </main>
   );
 
 }
 
  export default App;
-
-//  return (
-//     <main className='App'>
-//       <Switch>
-//         <Route exact path='/' render={() => {
-//             if(user.name) {
-//                 return (
-//                     <section className='welcome'>
-//                         <h2 className='large'>{`Welcome, ${user.name}`}</h2>
-//                     </section>
-//                 )
-//             } else {
-//                 return <LoginForm login={login} error={error} />
-//             }
-//         }} />
-//       </Switch>
-//     </main>
-//   );

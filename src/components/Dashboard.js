@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Dashboard.css';
 
-function Dashboard({ login, error }) {
+function Dashboard({ name, email, id }) {
     
     return (
         <section>
@@ -10,4 +10,4 @@ function Dashboard({ login, error }) {
     )
 }
 
-export default LoginForm;
+export default Dashboard;
