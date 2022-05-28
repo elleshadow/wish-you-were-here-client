@@ -27,7 +27,7 @@ function LoginForm({ login, error }) {
                         placeholder='Name'
                         value={formDetails.name}
                         onChange={ event => handleChange(event) }
-                    /> d
+                    /> 
                 </section>
                 <section className='form-group'>
                     <label htmlFor='email'>Email: </label>

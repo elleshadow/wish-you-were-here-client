@@ -14,7 +14,7 @@ function App() {
   return (
     <main className='App'>
       {
-        (!user.name) ? 
+        (user.name) ? 
         (
           <section className='welcome'>
             <h2>{`Welcome, ${user.name}`}</h2>
