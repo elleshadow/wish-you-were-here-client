@@ -7,12 +7,17 @@ function LoginForm({ login, error }) {
     const submitForm = (event) => {
         event.preventDefault();
         login(formDetails);
+        clearInputs();
     }
 
     const handleChange = (event) => {
-        setFormDetails({...formDetails, [event.target.name]: event.target.value });
+        setFormDetails({ ...formDetails, [event.target.name]: event.target.value });
     }
 
+    const clearInputs = () => {
+        setFormDetails({ name: '', email: '' });
+    }
+    
     return (
         <form>
             <div className='form-inner'>
