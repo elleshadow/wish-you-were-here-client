@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/Dashboard.css';
 
-function Dashboard({ name, email, id }) {
+function Dashboard({ userId }) {
     
     return (
         <section>
-
+            <h1 className='large'>{`Hello ${userId}!`}</h1>
         </section>
     )
 }

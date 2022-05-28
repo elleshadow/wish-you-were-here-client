@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/LoginForm.css';
 
-function LoginForm({ login, error }) {
-    const [formDetails, setFormDetails] = useState({ name: '', email: '' })
+function LoginForm({ login, userId, error }) {
+    const [formDetails, setFormDetails] = useState({ name: '', email: '' });
 
     const submitForm = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         login(formDetails);
         clearInputs();
     }
@@ -20,6 +21,7 @@ function LoginForm({ login, error }) {
 
     return (
         <form className='form-container'>
+        {console.log('here', userId)}
             <div className='form-inner'>
                 <h2 className='large'>Login</h2>
                 <section className='form-group medium'>
@@ -45,7 +47,11 @@ function LoginForm({ login, error }) {
                     />
                 </section>
                 {error ? <h3 className='medium'>{error}</h3> : ''}
-                <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                <Link to={`/dashboard/${userId}`}>
+                    <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                    {/* <p className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</p> */}
+                    {/* <p>WOWOWOW</p> */}
+                </Link>
             </div>
         </form>
     )
