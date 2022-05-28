@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import LoginForm from './LoginForm';
 import '../styles/App.css';
 
 function App() {
 
-  const [user, setUser] = useState({name:'', email:''});
+  const [user, setUser] = useState( {name:'', email:''} );
   const [error, setError] = useState('');
 
   const login = (details) => {
@@ -15,8 +16,8 @@ function App() {
       {
         (!user.name) ? 
         (
-          <section>
-            <h2>${`Welcome, ${user.name}`}</h2>
+          <section className='welcome'>
+            <h2>{`Welcome, ${user.name}`}</h2>
           </section>
         ) :
         (
