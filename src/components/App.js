@@ -6,21 +6,17 @@ import Dashboard from './Dashboard';
 import '../styles/App.css';
 
 function App() {
-  const [user, setUser] = useState({ name: '', email: '', id: uuidV4() });
+  const [user, setUser] = useState({ name: '', pronouns: '', email: '', id: uuidV4() });
   const [error, setError] = useState('');
 
-//   useEffect(() => {
-//     console.log(user.id)
-//   });
-
   const login = (details) => {
-    console.log('details', details)
     setError('');
-    if(!details.name) {
+    if(!details.name) { // Needs error handling to be fixed - user should not be able to move to Dashboard w/o a name
         setError('Please input a name.');
     } else {
         setUser({
             'name': details.name,
+            'pronouns': details.pronouns,
             'email': details.email
         });
     }
@@ -34,7 +30,6 @@ function App() {
         </Switch>
     </main>
   );
-
 }
 
  export default App;

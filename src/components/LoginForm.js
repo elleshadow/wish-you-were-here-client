@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import '../styles/LoginForm.css';
 
 function LoginForm({ login, userId, error }) {
-    const [formDetails, setFormDetails] = useState({ name: '', email: '' });
+    const [formDetails, setFormDetails] = useState({ name: '', email: '', pronouns: '' });
 
     const submitForm = (event) => {
-        // event.preventDefault();
         login(formDetails);
         clearInputs();
     }
@@ -16,12 +15,11 @@ function LoginForm({ login, userId, error }) {
     }
 
     const clearInputs = () => {
-        setFormDetails({ name: '', email: '' });
+        setFormDetails({ name: '', email: '', pronouns: '' });
     }
 
     return (
         <form className='form-container'>
-        {console.log('here', userId)}
             <div className='form-inner'>
                 <h2 className='large'>Login</h2>
                 <section className='form-group medium'>
@@ -32,6 +30,17 @@ function LoginForm({ login, userId, error }) {
                         name='name'
                         placeholder='Name'
                         value={formDetails.name}
+                        onChange={(event) => {handleChange(event)}}
+                    /> 
+                </section>
+                <section className='form-group medium'>
+                    <label htmlFor='name'>Pronouns: </label>
+                    <input 
+                        className='input-login'
+                        type='text'
+                        name='pronouns'
+                        placeholder='Pronouns (optional)'
+                        value={formDetails.pronouns}
                         onChange={(event) => {handleChange(event)}}
                     /> 
                 </section>
