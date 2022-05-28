@@ -28,7 +28,6 @@ function LoginForm({ login, error }) {
                         className='input-login'
                         type='text'
                         name='name'
-                        id='name'
                         placeholder='Name'
                         value={formDetails.name}
                         onChange={(event) => {handleChange(event)}}
@@ -40,7 +39,6 @@ function LoginForm({ login, error }) {
                         className='input-login'
                         type='email'
                         name='email'
-                        id='email'
                         placeholder='Email (optional)'
                         value={formDetails.email}
                         onChange={(event) => handleChange(event)}

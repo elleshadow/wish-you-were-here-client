@@ -5,7 +5,7 @@ import '../styles/App.css';
 
 function App() {
 
-  const [user, setUser] = useState({ name: '', email: '' });
+  const [user, setUser] = useState({ name: '', email: '', id: '' });
   const [error, setError] = useState('');
 
   const login = (details) => {
@@ -16,7 +16,8 @@ function App() {
     } else {
         setUser({
             'name': details.name,
-            'email': details.email
+            'email': details.email,
+            'id': Date.now()
         });
     }
   }
@@ -24,17 +25,8 @@ function App() {
   return (
     <main className='App'>
       <Switch>
-        <Route exact path='/' render={() => {
-            if(user.name) {
-                return (
-                    <section className='welcome'>
-                        <h2 className='large'>{`Welcome, ${user.name}`}</h2>
-                    </section>
-                )
-            } else {
-                return <LoginForm login={login} error={error} />
-            }
-        }} />
+        <Route exact path='/' render={() => <LoginForm login={login} error={error} />} />
+        {/* <Route exact path='/dashboard/:id' render={({ match }) => return <></>} */}
       </Switch>
     </main>
   );
