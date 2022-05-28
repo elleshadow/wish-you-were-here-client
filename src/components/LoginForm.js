@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/LoginForm.css';
 
-function LoginForm({ login, error }) {
-    const [formDetails, setFormDetails] = useState({ name: '', email: '' })
+function LoginForm({ login, userId, error }) {
+    const [formDetails, setFormDetails] = useState({ name: '', email: '', pronouns: '' });
 
     const submitForm = (event) => {
-        event.preventDefault();
         login(formDetails);
         clearInputs();
     }
@@ -15,7 +15,7 @@ function LoginForm({ login, error }) {
     }
 
     const clearInputs = () => {
-        setFormDetails({ name: '', email: '' });
+        setFormDetails({ name: '', email: '', pronouns: '' });
     }
 
     return (
@@ -28,9 +28,19 @@ function LoginForm({ login, error }) {
                         className='input-login'
                         type='text'
                         name='name'
-                        id='name'
                         placeholder='Name'
                         value={formDetails.name}
+                        onChange={(event) => {handleChange(event)}}
+                    /> 
+                </section>
+                <section className='form-group medium'>
+                    <label htmlFor='name'>Pronouns: </label>
+                    <input 
+                        className='input-login'
+                        type='text'
+                        name='pronouns'
+                        placeholder='Pronouns (optional)'
+                        value={formDetails.pronouns}
                         onChange={(event) => {handleChange(event)}}
                     /> 
                 </section>
@@ -40,14 +50,15 @@ function LoginForm({ login, error }) {
                         className='input-login'
                         type='email'
                         name='email'
-                        id='email'
                         placeholder='Email (optional)'
                         value={formDetails.email}
                         onChange={(event) => handleChange(event)}
                     />
                 </section>
                 {error ? <h3 className='medium'>{error}</h3> : ''}
-                <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                <Link to={`/dashboard/${userId}`}>
+                    <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                </Link>
             </div>
         </form>
     )
