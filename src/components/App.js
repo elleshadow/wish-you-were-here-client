@@ -12,6 +12,11 @@ function App() {
     setError('');
     if(!details.name) {
         setError('Please input a name.');
+    } else {
+        setUser({
+            'name': details.name,
+            'email': details.email
+        });
     }
   }
 

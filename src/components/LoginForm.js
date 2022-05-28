@@ -17,12 +17,11 @@ function LoginForm({ login, error }) {
     const clearInputs = () => {
         setFormDetails({ name: '', email: '' });
     }
-    
+
     return (
         <form>
             <div className='form-inner'>
                 <h2>Login</h2>
-                {/* ERROR HANDLE */}
                 <section className='form-group'>
                     <label htmlFor='name'>Name: </label>
                     <input 
@@ -45,6 +44,7 @@ function LoginForm({ login, error }) {
                         onChange={(event) => handleChange(event)}
                     />
                 </section>
+                {error ? <h3>{error}</h3> : ''}
                 <button className='submit-name-btn' onClick={event => submitForm(event)}>Submit</button>
             </div>
         </form>
