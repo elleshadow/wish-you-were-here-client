@@ -1,0 +1,18 @@
+:root {
+    font-size: 62.5%;
+    --primary-color: #362143;
+    --secondary-color: #412750;
+    --button-color: #281722;
+  }
+  
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  } 
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(var(--primary-color), #000000);
+    color: rgb(198, 196, 196);
+  }
