@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { v4 as uuidV4 } from 'uuid'
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import '../styles/App.css';
 
 function App() {
-  const [user, setUser] = useState({ name: '', email: '', id: '1' });
+  const [user, setUser] = useState({ name: '', email: '', id: uuidV4() });
   const [error, setError] = useState('');
 
 //   useEffect(() => {
@@ -29,7 +30,7 @@ function App() {
     <main className='App'>
         <Switch>
             <Route exact path='/' render={() => <LoginForm login={login} userId={user.id} error={error} />} />
-            <Route exact path='/dashboard/:id' render={({ match }) => <Dashboard userId={Number(match.params.id)}/>} />
+            <Route exact path='/dashboard/:id' render={({ match }) => <Dashboard userId={match.params.id}/>} />
         </Switch>
     </main>
   );

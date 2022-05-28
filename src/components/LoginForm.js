@@ -49,8 +49,6 @@ function LoginForm({ login, userId, error }) {
                 {error ? <h3 className='medium'>{error}</h3> : ''}
                 <Link to={`/dashboard/${userId}`}>
                     <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
-                    {/* <p className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</p> */}
-                    {/* <p>WOWOWOW</p> */}
                 </Link>
             </div>
         </form>
