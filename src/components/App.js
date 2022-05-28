@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/App.css';
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,11 @@ class App extends Component {
   }
 
   render() {
-    return <h1>This is my React app!</h1>;
+    return (
+      <main className='App'>
+        
+      </main>
+    )
 
   }
  }
