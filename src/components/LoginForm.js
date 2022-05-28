@@ -11,7 +11,6 @@ function LoginForm({ login, error }) {
 
     const handleChange = (event) => {
         setFormDetails({...formDetails, [event.target.name]: event.target.value });
-        console.log(formDetails)
     }
 
     return (

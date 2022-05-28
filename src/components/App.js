@@ -8,7 +8,11 @@ function App() {
   const [error, setError] = useState('');
 
   const login = (details) => {
-    console.log(details);
+    console.log('details', details)
+    setError('');
+    if(!details.name) {
+        setError('Please input a name.');
+    }
   }
 
   return (
