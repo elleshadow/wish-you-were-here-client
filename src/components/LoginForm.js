@@ -5,7 +5,8 @@ function LoginForm() {
     <form>
         <div className='form-inner'>
             <h2>Login</h2>
-            <div className='form-group'>
+            {/* ERROR HANDLE */}
+            <section className='form-group'>
                 <label htmlFor='name'>Name: </label>
                 <input 
                     type='text'
@@ -13,8 +14,8 @@ function LoginForm() {
                     id='name'
                     placeholder='Name'
                 />
-            </div>
-            <div className='form-group'>
+            </section>
+            <section className='form-group'>
                 <label htmlFor='email'>Email: </label>
                 <input 
                     type='email'
@@ -22,7 +23,7 @@ function LoginForm() {
                     id='email'
                     placeholder='Email (optional)'
                 />
-            </div>
+            </section>
         </div>
     </form>
   )
