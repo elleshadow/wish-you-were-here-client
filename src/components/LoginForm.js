@@ -14,7 +14,15 @@ function LoginForm() {
                     placeholder='Name'
                 />
             </div>
-
+            <div className='form-group'>
+                <label htmlFor='email'>Email: </label>
+                <input 
+                    type='email'
+                    name='email'
+                    id='email'
+                    placeholder='Email (optional)'
+                />
+            </div>
         </div>
     </form>
   )
