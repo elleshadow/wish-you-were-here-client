@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../styles/App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {}
+function App() {
+
+  const [user, setUser] = useState({name:'', email:''});
+  const [error, setError] = useState('');
+
+  const login = (details) => {
+    console.log(details);
   }
 
-  componentDidMount() {
+  return (
+    <main className='App'>
+      {
+        (!user.name) ? 
+        (
+          <section>
+            <h2>${`Welcome, ${user.name}`}</h2>
+          </section>
+        ) :
+        (
+          <LoginForm />
+        )
+      }
+    </main>
+  );
 
-  }
+}
 
-  render() {
-    return (
-      <main className='App'>
-        
-      </main>
-    )
-
-  }
- }
 
  export default App;
