@@ -4,7 +4,7 @@ import '../styles/App.css';
 
 function App() {
 
-  const [user, setUser] = useState( {name:'', email:''} );
+  const [user, setUser] = useState({ name: '', email: '' });
   const [error, setError] = useState('');
 
   const login = (details) => {
