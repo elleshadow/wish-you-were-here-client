@@ -1,0 +1,52 @@
+:root {
+    font-size: 62.5%;
+    --primary-color: #362143;
+    --secondary-color: #412750;
+    --third-color: #ff7e6a;
+    --button-color: #281722;
+}
+  
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+} 
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+
+input, button {
+    appearance: none;
+    background: none;
+    border: none;
+}
+
+.App {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* font sizes */
+.x-small {
+    font-size: 0.5rem;
+}
+
+.small {
+    font-size: 1rem;
+}
+
+.medium {
+    font-size: 2rem;
+}
+
+.large {
+    font-size: 4rem;
+}
+
+.x-large {
+    font-size: 6rem;
+}
