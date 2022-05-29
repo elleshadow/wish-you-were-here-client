@@ -35,10 +35,10 @@ function Dashboard({ userId }) {
     return (
         <section className='image-capture-container'>
             {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
-            <section className='live-photo app'>
-                <div className='camera'>
+            <section className='live-photo'>
+                <div className='camera-display'>
                     <video ref={videoRef}></video>
-                    <button>CHEESE!</button>
+                    <button className="cheese"></button>
                 </div>
                 <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
                     <canvas ref={photoRef}></canvas>
