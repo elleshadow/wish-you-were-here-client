@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useState, useEffect } from 'react';
+import { useSocket } from '../context/SocketProvider';
 import '../styles/Dashboard.css';
+import UserList from './UserList';
 
+// FIX
 function Dashboard({ userId }) {
     const videoRef = useRef(null);
     const photoRef = useRef(null);
@@ -10,6 +13,17 @@ function Dashboard({ userId }) {
     const getVideo = () => {
         navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
     }
+function Dashboard(props) {
+    const {
+        name,
+        id,
+        pronouns,
+        email
+    }= JSON.parse(props.data)
+
+    const socket = useSocket()
+    const [connectionStatus, setConnectionStatus] = useState(false)
+    const [connectedUsers, setConnectedUsers] = useState(false)
 
     const readURL = (e) => {
         let input = document.getElementById("icon-button-file")
@@ -21,8 +35,33 @@ function Dashboard({ userId }) {
             reader.readAsDataURL(input.files[0])
         }
     }
+    
+    useEffect(() => {
+        socket && socket.on("user-connected", (data) => {
+            if (id === data.id) {
+            console.log("Self Connection Verified")
+            setConnectionStatus(socket.connected)
+            } else {
+            console.log("Another User Connected", data.name)
+            }
+        })
 
+        socket && socket.on("recieve-users-list", (data) => {
+            setConnectedUsers(data)
+        })
+
+        socket && socket.on("user-disconnected", (data) => {
+            console.log(`${data.name} disconnected`)
+        })
+
+        return () => {
+            setConnectionStatus(false)
+        }
+    }, [socket])
+
+    console.log("connected users", connectedUsers)
     return (
+        // fix
         <>
         {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
         <section className='live-photo app'>
@@ -37,16 +76,29 @@ function Dashboard({ userId }) {
         </section>
         <section className='upload-photo'>
             <input 
+            <section>
+                <h1 className='large'>{`Hello ${name}!`}</h1>
+                { (connectionStatus) && <h1>Connected!</h1> }
+                <input 
                 // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
                 accept="image/*" 
                 id="icon-button-file" 
                 type="file" 
                 capture="environment" 
                 onChange={(e) => readURL(e)}
-            />
+                />
             <img className="preview" src=""/>
         </section>
         </>
+                <form onClick={props.logOut}>
+                    <button type='submit' >Log Out</button>
+                </form>
+            </section>
+            <section className='usersListContainer'>
+              { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
+            </section>
+        </>
+
     )
 }
 
