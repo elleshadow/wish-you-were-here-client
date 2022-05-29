@@ -30,7 +30,7 @@ function Dashboard({ userId }) {
         setHasPhoto(true);
     }
 
-    const closePhoto = () => {
+    const clearPhoto = () => {
         let photo = photoRef.current;
         let context = photo.getContext('2d');
 
@@ -61,7 +61,7 @@ function Dashboard({ userId }) {
                 </div>
                 <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
                     <canvas ref={photoRef}></canvas>
-                    <button>CLOSE!</button>
+                    <button onClick={clearPhoto}>Clear</button>
                 </div>
             </section>
             <section className='upload-photo'>
