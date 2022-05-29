@@ -38,7 +38,7 @@ function Dashboard({ userId }) {
             <section className='live-photo'>
                 <div className='camera-display'>
                     <video ref={videoRef}></video>
-                    <button className="cheese"></button>
+                    <button className="cheese btn"></button>
                 </div>
                 <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
                     <canvas ref={photoRef}></canvas>

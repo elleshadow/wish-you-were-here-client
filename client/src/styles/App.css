@@ -31,6 +31,10 @@ input, button {
     align-items: center;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 /* font sizes */
 .x-small {
     font-size: 0.5rem;
