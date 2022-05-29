@@ -24,15 +24,9 @@ function Dashboard(props) {
 
     const getVideo = () => {
         navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
-<<<<<<< HEAD
         .then(videoFeed => {
             let video = videoRef.current;
             video.srcObject = videoFeed;
-=======
-        .then(videoStream => {
-            let video = videoRef.current;
-            video.srcObject = videoStream;
->>>>>>> main
             video.play();
         })
         .catch(error => console.log(error));
@@ -99,66 +93,40 @@ function Dashboard(props) {
 
     console.log("connected users", connectedUsers)
     return (
-<<<<<<< HEAD
-        <section className='image-capture-container'>
-            {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
-            <section className='live-photo'>
-                <div className='camera-display'>
-                    <video ref={videoRef}></video>
-                    <button className="cheese btn" onClick={takePhoto}></button>
-                </div>
-                <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                    <canvas ref={photoRef}></canvas>
-                    <button onClick={clearPhoto}>Clear</button>
-                </div>
-            </section>
-            <section className='upload-photo'>
-                <input 
-=======
         <>
-            {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
-            <section className='live-photo app'>
-                <div className='camera'>
-                    <video ref={videoRef}></video>
-                    <button>CHEESE!</button>
-                </div>
-                <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                    <canvas ref={photoRef}></canvas>
-                    <button>CLOSE!</button>
-                </div>
-            </section>
-            <section className='upload-photo'>
-                <section>
-                    <h1 className='large'>{`Hello ${name}!`}</h1>
+            <section className='image-capture-container'>
+                {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
+                <section className='live-photo'>
+                    <div className='camera-display'>
+                        <video ref={videoRef}></video>
+                        <button className="cheese btn" onClick={takePhoto}></button>
+                    </div>
+                    <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+                        <canvas ref={photoRef}></canvas>
+                        <button onClick={clearPhoto}>Clear</button>
+                    </div>
+                </section>
+                <section className='upload-photo'>
                     <input 
->>>>>>> main
-                    // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
-                    accept="image/*" 
-                    id="icon-button-file" 
-                    type="file" 
-                    capture="environment" 
-<<<<<<< HEAD
-                    onChange={(e) => readURL(e)}
-                />
-                <img className="preview" src=""/>
-            </section>
-        </section>
-=======
-                    onChange={() => readURL()}
+                        // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
+                        accept="image/*" 
+                        id="icon-button-file" 
+                        type="file" 
+                        capture="environment" 
+                        onChange={(e) => readURL(e)}
                     />
-                <img className="preview" src=""/>
+                    <img className="preview" src=""/>
                 </section>
             </section>
-            <section>
-                <form onClick={props.logOut}>
-                    <button type='submit'>Log Out</button>
-                </form>
-                <section className='usersListContainer'>
-                { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
-                </section>
-        </section>
+            <section className='socket-list'>
+                    <form onClick={props.logOut}>
+                        <button type='submit'>Log Out</button>
+                    </form>
+                    <section className='usersListContainer'>
+                    { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
+                    </section>
+            </section>
      </>
->>>>>>> main
     )
 }
 
