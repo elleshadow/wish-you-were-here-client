@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import { useLocalStorage } from '../context/LocalStorageProvider'
 import { SocketProvider } from '../context/SocketProvider';
 import '../styles/App.css';
+import Room from './Room';
 
 function App() {
   const [data, setData] = useLocalStorage('data')
@@ -34,7 +35,8 @@ function App() {
 
   const dashboard = (
     <SocketProvider data={data}>
-      <Dashboard logOut={logOut} data={data}/>
+        {/* <Dashboard logOut={logOut} data={data}/>  */}
+      <Room />
     </SocketProvider>
   )
   
