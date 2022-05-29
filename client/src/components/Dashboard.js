@@ -1,19 +1,10 @@
-import React, { useEffect, useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSocket } from '../context/SocketProvider';
 import '../styles/Dashboard.css';
 import UserList from './UserList';
 
-// FIX
-function Dashboard({ userId }) {
-    const videoRef = useRef(null);
-    const photoRef = useRef(null);
-
-    const [hasPhoto, setHasPhoto] = useState(false);
-
-    const getVideo = () => {
-        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
-    }
 function Dashboard(props) {
+    // Socket
     const {
         name,
         id,
@@ -25,7 +16,17 @@ function Dashboard(props) {
     const [connectionStatus, setConnectionStatus] = useState(false)
     const [connectedUsers, setConnectedUsers] = useState(false)
 
-    const readURL = (e) => {
+    // Video/Images
+    const videoRef = useRef(null);
+    const photoRef = useRef(null);
+
+    const [hasPhoto, setHasPhoto] = useState(false);
+
+    const getVideo = () => {
+        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
+    }
+
+    const readURL = () => {
         let input = document.getElementById("icon-button-file")
         if (input.files[0]) {
             let reader = new FileReader()
@@ -61,44 +62,41 @@ function Dashboard(props) {
 
     console.log("connected users", connectedUsers)
     return (
-        // fix
         <>
-        {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
-        <section className='live-photo app'>
-            <div className='camera'>
-                <video ref={videoRef}></video>
-                <button>CHEESE!</button>
-            </div>
-            <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                <canvas ref={photoRef}></canvas>
-                <button>CLOSE!</button>
-            </div>
-        </section>
-        <section className='upload-photo'>
-            <input 
+            {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
+            <section className='live-photo app'>
+                <div className='camera'>
+                    <video ref={videoRef}></video>
+                    <button>CHEESE!</button>
+                </div>
+                <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+                    <canvas ref={photoRef}></canvas>
+                    <button>CLOSE!</button>
+                </div>
+            </section>
+            <section className='upload-photo'>
+                <section>
+                    <h1 className='large'>{`Hello ${name}!`}</h1>
+                    <input 
+                    // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
+                    accept="image/*" 
+                    id="icon-button-file" 
+                    type="file" 
+                    capture="environment" 
+                    onChange={() => readURL()}
+                    />
+                <img className="preview" src=""/>
+                </section>
+            </section>
             <section>
-                <h1 className='large'>{`Hello ${name}!`}</h1>
-                { (connectionStatus) && <h1>Connected!</h1> }
-                <input 
-                // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
-                accept="image/*" 
-                id="icon-button-file" 
-                type="file" 
-                capture="environment" 
-                onChange={(e) => readURL(e)}
-                />
-            <img className="preview" src=""/>
-        </section>
-        </>
                 <form onClick={props.logOut}>
-                    <button type='submit' >Log Out</button>
+                    <button type='submit'>Log Out</button>
                 </form>
-            </section>
-            <section className='usersListContainer'>
-              { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
-            </section>
-        </>
-
+                <section className='usersListContainer'>
+                { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
+                </section>
+        </section>
+     </>
     )
 }
 

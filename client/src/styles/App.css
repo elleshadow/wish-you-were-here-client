@@ -20,7 +20,7 @@ body {
 input, button {
     appearance: none;
     background: none;
-    border: none;
+    /* border: none; */
 }
 
 .App {
