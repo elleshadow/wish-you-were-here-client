@@ -3,15 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid'
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
+import { useLocalStorage } from '../context/LocalStorageProvider'
+import { SocketProvider } from '../context/SocketProvider';
 import '../styles/App.css';
 
 function App() {
-
-  if ('serviceWoker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js')
-  }
-
-  const [user, setUser] = useState({ name: '', pronouns: '', email: '', id: uuidV4() });
+  const [data, setData] = useLocalStorage('data')
+  const [isLoggedIn, setIsLoggedIn] = useState(!!data)
   const [error, setError] = useState('');
 
   const login = (details) => {
@@ -19,20 +17,31 @@ function App() {
     if(!details.name) { // Needs error handling to be fixed - user should not be able to move to Dashboard w/o a name
         setError('Please input a name.');
     } else {
-        setUser({
+        setData(JSON.stringify({
+            'id': details.id,
             'name': details.name,
             'pronouns': details.pronouns,
             'email': details.email
-        });
+        }));
+        setIsLoggedIn(true)
     }
   }
 
+  const logOut = () => {
+      localStorage.clear()
+      setIsLoggedIn(false)
+  }
+
+  const dashboard = (
+    <SocketProvider data={data}>
+      <Dashboard logOut={logOut} data={data}/>
+    </SocketProvider>
+  )
+  
+
   return (
     <main className='App'>
-        <Switch>
-            <Route exact path='/' render={() => <LoginForm login={login} userId={user.id} error={error} />} />
-            <Route exact path='/dashboard/:id' render={({ match }) => <Dashboard userId={match.params.id}/>} />
-        </Switch>
+        {!!data ?  dashboard : <LoginForm login={login} error={error} /> }
     </main>
   );
 }

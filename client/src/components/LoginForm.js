@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuidV4 } from 'uuid'
 import '../styles/LoginForm.css';
+import { useLocalStorage } from '../context/LocalStorageProvider'
 
 function LoginForm({ login, userId, error }) {
     const [formDetails, setFormDetails] = useState({ name: '', email: '', pronouns: '' });
 
     const submitForm = (event) => {
-        login(formDetails);
+        event.preventDefault()
+        login({
+            'id': uuidV4(),
+            'name': formDetails.name,
+            'pronouns': formDetails.pronouns,
+            'email': formDetails.email
+        });
         clearInputs();
     }
 
