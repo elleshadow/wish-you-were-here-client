@@ -2,3 +2,8 @@
   margin: 2rem;
   height: 30rem;
 }
+
+.image-capture-container {
+  display: flex;
+  flex-direction: column;
+}
