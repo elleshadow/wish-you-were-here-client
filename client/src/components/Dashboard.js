@@ -48,21 +48,20 @@ function Dashboard(props) {
     const clearPhoto = () => {
         let photo = photoRef.current;
         let context = photo.getContext('2d');
+        document.querySelector(".preview").src = '';
 
         context.clearRect(0, 0, photo.width, photo.height);
         setHasPhoto(false);
-
     }
     useEffect(() => {getVideo()}, [videoRef]);
 
-    useEffect(() => {getVideo});
-
     const readURL = () => {
+        setHasPhoto(true);
         let input = document.getElementById("icon-button-file")
         if (input.files[0]) {
             let reader = new FileReader()
             reader.onload = (event) => {
-                document.querySelector(".preview").src = event.target.result
+                document.querySelector(".preview").src = event.target.result;
             }
             reader.readAsDataURL(input.files[0])
         }
@@ -93,40 +92,43 @@ function Dashboard(props) {
 
     console.log("connected users", connectedUsers)
     return (
-        <>
+        <div>
+            <h1 className='large'>Hello!</h1>
             <section className='image-capture-container'>
-                {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
-                <section className='live-photo'>
+                <section className='polaroid-cam'>
                     <div className='camera-display'>
                         <video ref={videoRef}></video>
                         <button className="cheese btn" onClick={takePhoto}></button>
                     </div>
-                    <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                        <canvas ref={photoRef}></canvas>
-                        <button onClick={clearPhoto}>Clear</button>
+                    <div className='side-btns'>
+                        <input 
+                            // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
+                            className='file-input btn btn-styled'
+                            accept="image/*" 
+                            id="icon-button-file" 
+                            type="file" 
+                            capture="environment" 
+                            onChange={(e) => readURL(e)}
+                        />
+                       {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     </div>
                 </section>
-                <section className='upload-photo'>
-                    <input 
-                        // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
-                        accept="image/*" 
-                        id="icon-button-file" 
-                        type="file" 
-                        capture="environment" 
-                        onChange={(e) => readURL(e)}
-                    />
-                    <img className="preview" src=""/>
+                <section className='photo-album-container'>
+                    <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+                        <canvas ref={photoRef}></canvas>
+                        <img className="preview" src=""/>
+                    </div>
                 </section>
             </section>
-            <section className='socket-list'>
+            {/* <section className='socket-list'>
                     <form onClick={props.logOut}>
                         <button type='submit'>Log Out</button>
                     </form>
                     <section className='usersListContainer'>
                     { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
                     </section>
-            </section>
-     </>
+            </section> */}
+     </div>
     )
 }
 
