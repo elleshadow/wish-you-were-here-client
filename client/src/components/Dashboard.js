@@ -29,6 +29,15 @@ function Dashboard({ userId }) {
         context.drawImage(video, 0, 0, width, height);
         setHasPhoto(true);
     }
+
+    const closePhoto = () => {
+        let photo = photoRef.current;
+        let context = photo.getContext('2d');
+
+        context.clearRect(0, 0, photo.width, photo.height);
+        setHasPhoto(false);
+
+    }
     useEffect(() => {getVideo()}, [videoRef]);
 
     const readURL = (e) => {
