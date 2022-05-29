@@ -15,12 +15,13 @@
 body {
     font-family: 'Montserrat', sans-serif;
     color: #333;
+    background-color: #b0c4de;
 }
 
 input, button {
     appearance: none;
     background: none;
-    border: none;
+    /* border: none; */
 }
 
 .App {
@@ -28,6 +29,10 @@ input, button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.btn {
+    cursor: pointer;
 }
 
 /* font sizes */
