@@ -16,6 +16,20 @@ function Dashboard({ userId }) {
         })
         .catch(error => console.log(error));
     }
+    const takePhoto = () => {
+        const width = 414;
+        const height = width / (16/9); // get a 16 by 9 ratio
+
+        let video = videoRef.current;
+        let photo = photoRef.current;
+        photo.width = width;
+        photo.height = height;
+
+        let context = photo.getContext('2d');
+        context.drawImage(video, 0, 0, width, height);
+        setHasPhoto(true);
+    }
+    useEffect(() => {getVideo()}, [videoRef]);
 
     const readURL = (e) => {
         let input = document.getElementById("icon-button-file")
@@ -28,17 +42,13 @@ function Dashboard({ userId }) {
         }
     }
 
-    useEffect(() => {
-        getVideo();
-    }, [videoRef]);
-
     return (
         <section className='image-capture-container'>
             {/* <h1 className='large'>{`Hello ${userId}!`}</h1> */}
             <section className='live-photo'>
                 <div className='camera-display'>
                     <video ref={videoRef}></video>
-                    <button className="cheese btn"></button>
+                    <button className="cheese btn" onClick={takePhoto}></button>
                 </div>
                 <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
                     <canvas ref={photoRef}></canvas>
