@@ -9,19 +9,23 @@ export function useSocket() {
 
 export function SocketProvider({ data, children }) {
     const [socket, setSocket] = useState()
-    
     const socketData = JSON.parse(data)
-
 
   useEffect(() => {
     const newSocket = io(
-      'http://localhost:3002',
+      'https://api-wish-you-were-here.herokuapp.com',
+    // 'http://localhost:3001',
+      
+      
       { query: socketData }
     )
     setSocket(newSocket)
-
-    return () => newSocket.close()
-  }, [socket])
+    console.log("Socket Connecting")
+    return () => {
+        console.log("Socket Disconnecting")
+        newSocket.close()
+    }    
+  }, [])
 
   return (
     <SocketContext.Provider value={socket}>

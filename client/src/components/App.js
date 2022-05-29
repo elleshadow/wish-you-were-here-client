@@ -27,10 +27,10 @@ function App() {
     }
   }
 
-    const logOut = () => {
-        localStorage.clear()
-        setIsLoggedIn(false)
-    }
+  const logOut = () => {
+      localStorage.clear()
+      setIsLoggedIn(false)
+  }
 
   const dashboard = (
     <SocketProvider data={data}>
