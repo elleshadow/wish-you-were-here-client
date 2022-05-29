@@ -24,7 +24,15 @@ function Dashboard(props) {
 
     const getVideo = () => {
         navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
+        .then(videoStream => {
+            let video = videoRef.current;
+            video.srcObject = videoStream;
+            video.play();
+        })
+        .catch(error => console.log(error));
     }
+
+    useEffect(() => {getVideo});
 
     const readURL = () => {
         let input = document.getElementById("icon-button-file")
