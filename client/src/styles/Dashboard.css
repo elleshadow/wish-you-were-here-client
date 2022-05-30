@@ -1,4 +1,6 @@
-.preview {
-  margin: 2rem;
-  height: 30rem;
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: auto;
 }
+

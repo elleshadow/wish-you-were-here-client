@@ -6,11 +6,11 @@
     grid-template: auto 1fr auto / auto 1fr auto;
   }
   
-header {
+/* header {
     background-color: thistle;
     padding: 2rem;
     grid-column: 1 / 4;
-  }
+  } */
 
   
 .left-side {
@@ -39,6 +39,7 @@ input +label {
     text-align: center;
     background-color: grey;
 }
+
 input:checked +label {
     padding: 1rem;
     border: 1px solid black;
@@ -79,7 +80,7 @@ input:checked +label {
     height: 100%;
 }
 
-footer {
+/* footer {
     background-color: blueviolet;
     grid-column: 1 / 4;
-  }
+  } */
