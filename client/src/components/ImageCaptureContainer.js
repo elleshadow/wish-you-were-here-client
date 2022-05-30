@@ -81,7 +81,7 @@ return (
                     </div>
                 </section>
             </section>
-)
+    )
 }
 
 export default ImageCaptureContainer;
