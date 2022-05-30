@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ImageAlbumContainer from './ImageAlbumContainer';
 import "../styles/ImageCaptureContainer.css"
 
 const ImageCaptureContainer = () => {
@@ -44,6 +45,7 @@ const ImageCaptureContainer = () => {
 
         let video = videoRef.current;
         let photo = photoRef.current;
+        console.log(photo)
         photo.width = width;
         photo.height = height;
 
@@ -57,7 +59,6 @@ const ImageCaptureContainer = () => {
         const myCanvas = document.querySelector('#canvasImg');
         const dataURI = myCanvas.toDataURL();
         setPhotos([...photos, dataURI]);
-        console.log(photos.length);
     }
 
     const clearPhoto = () => {
@@ -66,6 +67,7 @@ const ImageCaptureContainer = () => {
         document.querySelector(".preview").src = '';
 
         context.clearRect(0, 0, photo.width, photo.height);
+        setPhotos([]);
         setHasPhoto(false);
     }
 
@@ -108,8 +110,17 @@ const ImageCaptureContainer = () => {
                             <img className="preview" src=""/>
                         </div>
                     </section>
+                    {photos.length !==0 && <ImageAlbumContainer photos={photos} />}
                 </section>
         )
 }
 
 export default ImageCaptureContainer;
+
+
+{/* <section className='photo-album-container'>
+<div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+    <canvas id='canvasImg' ref={photoRef}></canvas>
+    <img className="preview" src=""/>
+</div>
+</section> */}
