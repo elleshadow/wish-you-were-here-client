@@ -18,8 +18,33 @@ function Dashboard(props) {
     const socket = useSocket()
     const [connectionStatus, setConnectionStatus] = useState(false)
     const [connectedUsers, setConnectedUsers] = useState(false)
+    const [messages, setMessages] = useState([])
 
-   
+    // const sendPhoto = (() => {
+    //     const reader = new FileReader();
+    //         reader.onload = function() {
+    //             const photo = this.result.replace(/.*base64,/, '');
+    //             const data = {
+    //                 id: id,
+    //                 timeStamp: new Date(),
+    //                 photo: photo,
+    //             }
+    //             socket.emit('send_photo', data);
+    //         };
+    //     reader.readAsDataURL(this.files[0]);
+    // }, false);
+
+    // const sendPhotoTest = ((photo) => {
+
+               
+    //             const data = {
+    //                 id: id,
+    //                 timeStamp: new Date(),
+    //                 photo: photo,
+    //             }
+    //             console.log("Client Sending Photo")
+    //             socket.emit('send_photo', data);
+    //         })
     
     useEffect(() => {
         socket && socket.on("user-connected", (data) => {
@@ -29,6 +54,16 @@ function Dashboard(props) {
             } else {
             console.log("Another User Connected", data.name)
             }
+        })
+
+        socket && socket.on("recieve_message", (data) => {
+            setMessages(prevMessages => [...prevMessages, data])
+            console.log("Client Recieved Message", data)
+        })
+
+        socket && socket.on("recieve_photo_URL", (data) => {
+            const { id, name, pronouns, email, url} = data
+            console.log(`${data.name} sent a photo`)
         })
 
         socket && socket.on("recieve-users-list", (data) => {
@@ -48,7 +83,7 @@ function Dashboard(props) {
     return (
         <div className='dashboard'>
             <ImageCaptureContainer />
-            <RoomChat connectedUsers={connectedUsers}/>
+            <RoomChat messages={messages} connectedUsers={connectedUsers}/>
         </div>
     )
 }

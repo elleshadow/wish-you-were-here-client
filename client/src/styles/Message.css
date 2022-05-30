@@ -1,0 +1,21 @@
+.single-message-box {
+  /* border: solid black 1px; */
+  margin-bottom: 1rem;
+}
+
+.chat-user-info {
+  display: flex;
+  margin-left: .5rem;
+}
+
+.chat-pronouns {
+  margin-left: .5rem;
+  color: #72818d
+}
+
+.chat-message {
+  width:fit-content;
+  background: #bcd4e6;
+  border-radius: 2rem;
+  padding: 1rem 1.4rem;
+}
