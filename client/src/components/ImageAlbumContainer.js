@@ -2,12 +2,14 @@ import React from 'react';
 import ImageCard from './ImageCard';
 import "../styles/ImageAlbumContainer.css";
 
-const ImageAlbumContainer = ({ photos }) => {
-    const imageCards = photos.map((image, idx) => {
+const ImageAlbumContainer = ({ photos, deletePhoto }) => {
+    const imageCards = photos.map((image) => {
         return (
             <ImageCard
-                url={image}
-                key={idx}
+                url={image.url}
+                id={image.id}
+                key={image.id}
+                deletePhoto={deletePhoto}
             />
         )
     })
