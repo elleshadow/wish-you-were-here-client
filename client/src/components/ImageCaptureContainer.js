@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import "../styles/ImageCaptureContainer.css"
 
 const ImageCaptureContainer = () => {
- // Video/Images
     const videoRef = useRef(null);
     const photoRef = useRef(null);
 
@@ -16,13 +15,13 @@ const ImageCaptureContainer = () => {
             // var vidTrack = videoStream.getVideoTracks();
             let video = videoRef.current;
             video.srcObject = videoStream;
-            // if(cameraOff) {
-            //     // videoStream.getVideoTracks()[0].stop();
-            //     // vidTrack.forEach(track => track.enabled = false);
-            // } else {
-            //     // vidTrack.forEach(track => track.enabled = true);
-            //     // video.play();
-            // }
+            if(cameraOff) {
+                // videoStream.getVideoTracks()[0].stop();
+                // vidTrack.forEach(track => track.enabled = false);
+            } else {
+                // vidTrack.forEach(track => track.enabled = true);
+                // video.play();
+            }
             video.play();
         })
         .catch(error => console.log(error));
@@ -49,12 +48,16 @@ const ImageCaptureContainer = () => {
         photo.height = height;
 
         let context = photo.getContext('2d');
-        context.drawImage(video, 0, 0, width, height);
-        console.log('context', context)
-        // console.log('drawnImg', context.drawImage(video, 0, 0, width, height))
+        context.drawImage(video, 0, 0, width, height); // Screen shot of video from top left (0,0) and adjust height/width
+        // console.log('context', context)
         setHasPhoto(true);
-        console.log('video Ref', videoRef)
-        console.log('photo Ref', photoRef)
+        // console.log('video Ref', videoRef)
+        // console.log('photo Ref', photoRef)
+        // window.location = document.getElementById("canvas").toDataURL('image/png');
+        const myCanvas = document.querySelector('#canvasImg');
+        const dataURI = myCanvas.toDataURL();
+        setPhotos([...photos, dataURI]);
+        console.log(photos.length);
     }
 
     const clearPhoto = () => {
@@ -78,36 +81,35 @@ const ImageCaptureContainer = () => {
         }
     }
 
-
-return (
-    <section className='image-capture-container'>
-                <section className='polaroid-cam'>
-                    <div className='camera-display'>
-                        {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
-                        <button className="cheese btn" onClick={takePhoto}></button>
-                    </div>
-                    <div className='side-btns'>
-                        <input 
-                            // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
-                            className='file-input btn btn-styled'
-                            accept="image/*" 
-                            id="icon-button-file" 
-                            type="file" 
-                            capture="environment" 
-                            onChange={(e) => readURL(e)}
-                        />
-                        <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
-                       {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
-                    </div>
+    return (
+        <section className='image-capture-container'>
+                    <section className='polaroid-cam'>
+                        <div className='camera-display'>
+                            {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
+                            <button className="cheese btn" onClick={takePhoto}></button>
+                        </div>
+                        <div className='side-btns'>
+                            <input 
+                                // accept="image/png, image/jpeg" - use to limit to .png and .jpeg
+                                className='file-input btn btn-styled'
+                                accept="image/*" 
+                                id="icon-button-file" 
+                                type="file" 
+                                capture="environment" 
+                                onChange={(e) => readURL(e)}
+                            />
+                            <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+                        {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
+                        </div>
+                    </section>
+                    <section className='photo-album-container'>
+                        <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+                            <canvas id='canvasImg' ref={photoRef}></canvas>
+                            <img className="preview" src=""/>
+                        </div>
+                    </section>
                 </section>
-                <section className='photo-album-container'>
-                    <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                        <canvas ref={photoRef}></canvas>
-                        <img className="preview" src=""/>
-                    </div>
-                </section>
-            </section>
-    )
+        )
 }
 
 export default ImageCaptureContainer;
