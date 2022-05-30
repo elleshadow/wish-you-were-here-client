@@ -6,7 +6,6 @@ import Dashboard from './Dashboard';
 import { useLocalStorage } from '../context/LocalStorageProvider'
 import { SocketProvider } from '../context/SocketProvider';
 import '../styles/App.css';
-import Room from './Room';
 import NavBar from './NavBar';
 
 function App() {
@@ -36,15 +35,14 @@ function App() {
 
   const dashboard = (
     <SocketProvider data={data}>
+        <NavBar logOut={logOut}/>
         <Dashboard  data={data}/> 
-      {/* <Room /> */}
     </SocketProvider>
   )
   
 
   return (
     <main className='App'>
-        <NavBar logOut={logOut}/>
         {!!data ?  dashboard : <LoginForm login={login} error={error} /> }
     </main>
   );

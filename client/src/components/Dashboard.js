@@ -47,16 +47,9 @@ function Dashboard(props) {
     console.log("connected users", connectedUsers)
     return (
         <div className='dashboard'>
-            <RoomLeftSidebar />
-                <ImageCaptureContainer />
-            <RoomChat />
-            {/* <section className='socket-list'>
-
-                    <section className='usersListContainer'>
-                    { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
-                    </section>
-            </section> */}
-     </div>
+            <ImageCaptureContainer />
+            <RoomChat connectedUsers={connectedUsers}/>
+        </div>
     )
 }
 
