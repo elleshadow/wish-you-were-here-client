@@ -1,3 +1,15 @@
 .img-card {
     margin: auto;
+    background: white;
+    height: 35rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 1rem rgba(0,0,0, 0.3);
+    transition: 0.4s ease; 
 }
+
+.img-card:hover {
+    opacity: 1;
+    transition: 0.4s ease; 
+    transform: scale(1.1);
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
+  }

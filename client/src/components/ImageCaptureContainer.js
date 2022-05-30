@@ -30,7 +30,6 @@ const ImageCaptureContainer = () => {
     useEffect(() => {getVideo()}, [videoRef]);
 
     const toggleCamera = () => {
-        console.log("HERE")
         if(!cameraOff){
             setCameraOff(true);
         } else {
@@ -58,6 +57,10 @@ const ImageCaptureContainer = () => {
         // window.location = document.getElementById("canvas").toDataURL('image/png');
         const myCanvas = document.querySelector('#canvasImg');
         const dataURI = myCanvas.toDataURL();
+        photoData = {
+            'url': dataURI, 
+            'id': Date.now() // replace with more robust randomized ID
+        }
         setPhotos([...photos, dataURI]);
     }
 
@@ -69,6 +72,10 @@ const ImageCaptureContainer = () => {
         context.clearRect(0, 0, photo.width, photo.height);
         setPhotos([]);
         setHasPhoto(false);
+    }
+
+    const deletePhoto = (photoToDelete) => {
+
     }
 
     const readURL = () => {
