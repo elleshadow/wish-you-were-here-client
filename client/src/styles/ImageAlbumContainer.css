@@ -1,6 +1,11 @@
 .card-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-gap: 4rem;
     padding: 4rem;
+    border: 1px solid black;
+    margin-top: 2rem;
+    background-color: bisque;
 }

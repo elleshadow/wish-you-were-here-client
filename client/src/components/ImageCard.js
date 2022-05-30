@@ -3,7 +3,7 @@ import "../styles/ImageCard.css";
 
 const ImageCard = ({ url, idx}) => {
     return (
-        <div className='img-card' key={idx}>
+        <div className='img-card'>
             <img src={url} />
         </div>
     );

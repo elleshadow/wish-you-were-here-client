@@ -1,19 +1,12 @@
-
-.preview {
-  margin: 2rem; 
-   height: 30rem;
-}
-
 .image-capture-container {
-  transform: scale(.6);
-  display: grid;
+  transform: scale(.8);
+  /* display: grid;
   place-content: center;
-  /* border: 0.1rem solid teal; */
+  border: 0.1rem solid teal; */
 }
 
 /* LIVE PHOTO CONTAINER */
 .polaroid-cam {
-  /* margin-top: 30rem; */
   border: 0.7rem solid rgba(0, 0, 0, 0.9);
   border-radius: 0.5rem;
   padding: 4rem;
@@ -84,15 +77,12 @@ video, .no-video {
   transform: scale(0.98);
 }
 
-/* PHOTO ALBUM CONTAINER */
-.photo-album-container {
-  max-width: 100rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-  padding: 2rem;
-  /* border: 0.4rem solid purple; */
+.preview {
+  margin: 2rem; 
+   height: 30rem;
 }
+
+/* PHOTO ALBUM CONTAINER */
 
 /* .result {
   position: fixed; 

@@ -103,12 +103,13 @@ const ImageCaptureContainer = () => {
                             <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
                         {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                         </div>
-                    </section>
-                    <section className='photo-album-container'>
                         <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
+                            <h2 className='medium'>Preview IMG:</h2>
                             <canvas id='canvasImg' ref={photoRef}></canvas>
                             <img className="preview" src=""/>
                         </div>
+                    </section>
+                    <section className='photo-album-container'>
                     </section>
                     {photos.length !==0 && <ImageAlbumContainer photos={photos} />}
                 </section>
