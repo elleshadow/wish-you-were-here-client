@@ -5,12 +5,12 @@ const Message = ({ name, pronouns, message }) => {
 
 
   return (
-    <div>
-      <div>
-        <p>{name}</p>
-        <p>{pronouns}</p>
+    <div className="single-message-box">
+      <div className="chat-user-info">
+        <p className="chat-name">{name}</p>
+        <p className="chat-pronouns">{pronouns}</p>
       </div>
-      <p>{message}</p>
+      <p className="chat-message">{message}</p>
     </div>
   )
 }
