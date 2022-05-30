@@ -4,7 +4,34 @@ import UserList from './UserList';
 
 const RoomChat = ({ connectedUsers }) => {
 
-    const [displayedMessages, setDisplayedMessages] = useState({  })
+
+    const [allMessages, setAllMessages] = useState([
+        {
+            email: "",
+            id: "320901df-2f94-45ba-9a72-b6604eb33ec6",
+            name: "Alex",
+            pronouns: "",
+            message: "Did I send a thing?",
+            timeStamp: "1653938171121"
+        },
+        {
+            email: "",
+            id: "320901df-2f94-45ba-9a72-b6604eb33ec5",
+            name: "Probably not Alex",
+            pronouns: "",
+            message: "Yep!",
+            timeStamp: "1653938173583"
+        },
+        {
+            email: "",
+            id: "320901df-2f94-45ba-9a72-b6604eb33ec9",
+            name: "Joe",
+            pronouns: "",
+            message: "something something pigeon tamagotchi something something",
+            timeStamp: "1653938175502"
+        }
+    ])
+    
     const [chatInput, setChatInput] = useState("")
 
     const handleChange = (event) => {
