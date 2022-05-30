@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../styles/RoomChat.css'
 import UserList from './UserList';
+import Message from './Message';
 
 const RoomChat = ({ connectedUsers }) => {
 
@@ -10,7 +11,7 @@ const RoomChat = ({ connectedUsers }) => {
             email: "",
             id: "320901df-2f94-45ba-9a72-b6604eb33ec6",
             name: "Alex",
-            pronouns: "",
+            pronouns: "he/him",
             message: "Did I send a thing?",
             timeStamp: "1653938171121"
         },
@@ -31,12 +32,23 @@ const RoomChat = ({ connectedUsers }) => {
             timeStamp: "1653938175502"
         }
     ])
-    
+
     const [chatInput, setChatInput] = useState("")
 
     const handleChange = (event) => {
         setChatInput(event.target.value)
     }
+
+    const displayedMesssages = allMessages.map(message => {
+        return (
+            <Message
+                key={message.id}
+                name={message.name}
+                pronouns={message.pronouns}
+                message={message.message}
+            />
+        )
+    });
 
     return (
         <div className="right-side yellow section" contenteditable>
@@ -48,7 +60,7 @@ const RoomChat = ({ connectedUsers }) => {
             </div>
             <div className="chat">
                 <div className="message-container">
-                    Message Container
+                    {displayedMesssages}
                 </div>
                 <input className="message-box" type="text" placeholder="message..." onChange={(event) => handleChange(event)} value={chatInput} />
                 <button className="button-send"> Send</button>
