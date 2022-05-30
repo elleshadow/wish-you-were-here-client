@@ -49,7 +49,7 @@ function Dashboard(props) {
         <div className='dashboard'>
             <ImageCaptureContainer />
             <RoomChat connectedUsers={connectedUsers}/>
-     </div>
+        </div>
     )
 }
 

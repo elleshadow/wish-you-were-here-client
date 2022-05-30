@@ -35,6 +35,7 @@ function App() {
 
   const dashboard = (
     <SocketProvider data={data}>
+        <NavBar logOut={logOut}/>
         <Dashboard  data={data}/> 
     </SocketProvider>
   )
@@ -42,7 +43,6 @@ function App() {
 
   return (
     <main className='App'>
-        <NavBar logOut={logOut}/>
         {!!data ?  dashboard : <LoginForm login={login} error={error} /> }
     </main>
   );

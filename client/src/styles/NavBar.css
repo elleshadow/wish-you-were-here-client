@@ -5,7 +5,7 @@
     padding: 10px
 }
 
-button {
+.logout-btn {
     cursor: pointer;
     background-color: #bcd4e6;
     color: white;

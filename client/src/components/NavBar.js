@@ -6,7 +6,7 @@ const NavBar = (props) => {
     return (
         <nav className="navBar">
             <form onClick={props.logOut}>
-                <button type='submit'>Log Out</button>
+                <button className='logout-btn' type='submit'>Log Out</button>
             </form>
         </nav>
     )
