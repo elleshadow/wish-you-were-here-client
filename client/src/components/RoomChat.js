@@ -4,10 +4,11 @@ import UserList from './UserList';
 
 const RoomChat = ({ connectedUsers }) => {
 
-    const [chatInput, setChatInput] = useState({ message: "" })
+    const [displayedMessages, setDisplayedMessages] = useState({  })
+    const [chatInput, setChatInput] = useState("")
 
     const handleChange = (event) => {
-        setChatInput({ [event.target.name]: event.target.value })
+        setChatInput(event.target.value)
     }
 
     return (
@@ -22,7 +23,7 @@ const RoomChat = ({ connectedUsers }) => {
                 <div className="message-container">
                     Message Container
                 </div>
-                <input className="message-box" name="message" type="text" placeholder="message..." onChange={(event) => handleChange(event)} value={chatInput.message} />
+                <input className="message-box" type="text" placeholder="message..." onChange={(event) => handleChange(event)} value={chatInput} />
                 <button className="button-send"> Send</button>
                 <section className='socket-list'>
                     <section className='usersListContainer'>
