@@ -18,6 +18,7 @@ function Dashboard(props) {
     const socket = useSocket()
     const [connectionStatus, setConnectionStatus] = useState(false)
     const [connectedUsers, setConnectedUsers] = useState(false)
+    const [messages, setMessages] = useState([])
 
    
     
@@ -29,6 +30,11 @@ function Dashboard(props) {
             } else {
             console.log("Another User Connected", data.name)
             }
+        })
+
+        socket && socket.on("recieve_message", (data) => {
+            setMessages(prevMessages => [...prevMessages, data])
+            console.log("Client Recieved Message", data)
         })
 
         socket && socket.on("recieve-users-list", (data) => {
@@ -48,7 +54,7 @@ function Dashboard(props) {
     return (
         <div className='dashboard'>
             <ImageCaptureContainer />
-            <RoomChat connectedUsers={connectedUsers}/>
+            <RoomChat messages={messages} connectedUsers={connectedUsers}/>
         </div>
     )
 }
