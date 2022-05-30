@@ -6,17 +6,39 @@ const ImageCaptureContainer = () => {
     const videoRef = useRef(null);
     const photoRef = useRef(null);
 
+    const [photos, setPhotos] = useState([])
     const [hasPhoto, setHasPhoto] = useState(false);
+    const [cameraOff, setCameraOff] = useState(false);
 
     const getVideo = () => {
-        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params
-        .then(videoFeed => {
+        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params || input what type of media we want
+        .then(videoStream => {
+            // var vidTrack = videoStream.getVideoTracks();
             let video = videoRef.current;
-            video.srcObject = videoFeed;
+            video.srcObject = videoStream;
+            // if(cameraOff) {
+            //     // videoStream.getVideoTracks()[0].stop();
+            //     // vidTrack.forEach(track => track.enabled = false);
+            // } else {
+            //     // vidTrack.forEach(track => track.enabled = true);
+            //     // video.play();
+            // }
             video.play();
         })
         .catch(error => console.log(error));
     }
+    useEffect(() => {getVideo()}, [videoRef]);
+
+    const toggleCamera = () => {
+        console.log("HERE")
+        if(!cameraOff){
+            setCameraOff(true);
+        } else {
+            setCameraOff(false);
+        }
+        getVideo();
+    }
+
     const takePhoto = () => {
         const width = 414;
         const height = width / (16/9); // get a 16 by 9 ratio
@@ -28,7 +50,11 @@ const ImageCaptureContainer = () => {
 
         let context = photo.getContext('2d');
         context.drawImage(video, 0, 0, width, height);
+        console.log('context', context)
+        // console.log('drawnImg', context.drawImage(video, 0, 0, width, height))
         setHasPhoto(true);
+        console.log('video Ref', videoRef)
+        console.log('photo Ref', photoRef)
     }
 
     const clearPhoto = () => {
@@ -39,7 +65,6 @@ const ImageCaptureContainer = () => {
         context.clearRect(0, 0, photo.width, photo.height);
         setHasPhoto(false);
     }
-    useEffect(() => {getVideo()}, [videoRef]);
 
     const readURL = () => {
         setHasPhoto(true);
@@ -58,7 +83,7 @@ return (
     <section className='image-capture-container'>
                 <section className='polaroid-cam'>
                     <div className='camera-display'>
-                        <video ref={videoRef}></video>
+                        {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
                         <button className="cheese btn" onClick={takePhoto}></button>
                     </div>
                     <div className='side-btns'>
@@ -71,6 +96,7 @@ return (
                             capture="environment" 
                             onChange={(e) => readURL(e)}
                         />
+                        <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
                        {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     </div>
                 </section>
