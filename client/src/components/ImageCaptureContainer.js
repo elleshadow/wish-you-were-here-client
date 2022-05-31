@@ -50,13 +50,11 @@ const ImageCaptureContainer = () => {
         let context = photo.getContext('2d');
         context.drawImage(video, 0, 0, width, height); // Screen shot of video from top left (0,0) and adjust height/width
         setHasPhoto(true);
-        const currentCanvas = document.querySelector('#canvasImg');
 
+        const currentCanvas = document.querySelector('#canvasImg');
         // Convert canvas to a data URL (URI)
         const canvasUrl = currentCanvas.toDataURL('image/png', 0.5); //file type and quality 50%
-
         // Create an anchor and set the href value to our data URL
-        // const URLTest = new URL(dataURI);
         if(cameraOff) {
             // HAVE IMAGE CANVAS DOWNLOAD
             downloadCanvas(canvasUrl);
@@ -123,9 +121,9 @@ const ImageCaptureContainer = () => {
                     <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
                     {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     <input 
-                        // accept='image/png, image/jpeg' - limit to .png and .jpeg
+                        accept='image/png, image/jpeg' 
                         className='file-input btn btn-styled'
-                        accept='image/*' 
+                        // accept='image/*' 
                         id='icon-button-file' 
                         type='file' 
                         capture='environment' 
