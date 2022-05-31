@@ -29,17 +29,21 @@ input:checked +label {
 }
 
 .message-container {
+    display: flex;
+    flex-direction: column-reverse;
     height: 60vh;
     background-color: white;
     margin: .5rem;
     padding: .5rem;
     border-radius: .5rem;
     font-size: 1.5rem;
+    overflow-y: auto;
 }
 
 .message-box {
     height: 5vh;
     border: none;
+    width: 100%;
     background-color: #c5e9fc;
     outline: #bcd4e6;
     padding-left: 1vw;
