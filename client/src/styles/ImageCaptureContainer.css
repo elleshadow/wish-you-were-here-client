@@ -1,19 +1,12 @@
-
-.preview {
-  margin: 2rem; 
-   height: 30rem;
-}
-
 .image-capture-container {
-  transform: scale(.6);
-  display: grid;
+  transform: scale(.8);
+  /* display: grid;
   place-content: center;
-  /* border: 0.1rem solid teal; */
+  border: 0.1rem solid teal; */
 }
 
 /* LIVE PHOTO CONTAINER */
 .polaroid-cam {
-  /* margin-top: 30rem; */
   border: 0.7rem solid rgba(0, 0, 0, 0.9);
   border-radius: 0.5rem;
   padding: 4rem;
@@ -28,12 +21,11 @@
   align-items: center;
 }
 
-video {
+video, .no-video {
   border: 0.3rem solid black;
   border-radius: 0.5rem;
   width: 100%;
   max-width: 100%;
-  
 }
 
 .cheese {
@@ -61,22 +53,12 @@ video {
   box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
 }
 
-.side-btns {
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.file-input {
-  margin-bottom: 1rem;
-}
-
 .btn-styled {
   background-color: #77bcc2; 
   border: none;
   color: white;
-  padding: 1.5rem 3rem;
-  font-size: 1.6rem;
+  padding: 2rem 4rem;
+  font-size: 2rem;
 }
 
 .btn-styled:hover {
@@ -85,28 +67,31 @@ video {
   transform: scale(0.98);
 }
 
-/* PHOTO ALBUM CONTAINER */
-.photo-album-container {
-  max-width: 100rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-  padding: 2rem;
-  /* border: 0.4rem solid purple; */
+.preview {
+  margin: 2rem; 
+  height: 30rem;
 }
 
-/* .result {
-  position: fixed; 
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
+/* PHOTO ALBUM CONTAINER */
+
+.controls {
+  margin: 1rem 0.5rem;
+  background-color: #a0b2cbb4;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: 0.5s;
-} */
+  padding: 2rem;
+}
 
-/* .result.hasPhoto {
-  left: 0;
-} */
+.side-btns > * {
+  margin: 1rem;
+}
+
+.preview-stage {
+  padding: 1rem;
+}
+
+.preview-stage > h2 {
+  color: #323944b4;
+  margin: 1rem 0;
+}

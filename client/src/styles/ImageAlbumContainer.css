@@ -1,0 +1,12 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-gap: 4rem;
+    padding: 4rem;
+    border: 0.3rem solid rgba(160, 158, 158, 0.587);
+    margin-top: 2rem;
+    background-color: bisque;
+    border-radius: 0.5rem;
+}

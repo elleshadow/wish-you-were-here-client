@@ -1,0 +1,43 @@
+.img-card {
+    margin: auto;
+    background: white;
+    height: 35rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 1rem rgba(0,0,0, 0.3);
+    transition: 0.4s ease; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-card:hover {
+    transition: 0.4s ease; 
+    transform: scale(1.1);
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
+}
+
+.img-btns {
+    display: flex;
+    justify-content: space-around;
+    width: 40rem;
+    max-height: 25rem;
+}
+
+.img-btns > a > img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.img-btns > * {
+    border: none;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+.img-btns > *:hover {
+    opacity: 1;
+    transition: 0.4s ease; 
+    transform: scale(1.1);
+}
