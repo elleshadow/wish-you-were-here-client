@@ -16,6 +16,11 @@
     box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
 }
 
+.img-card > img {
+    width: 40rem;
+    max-height: 25rem;
+}
+
 .img-card > button {
     border: none;
     margin-top: 2rem;

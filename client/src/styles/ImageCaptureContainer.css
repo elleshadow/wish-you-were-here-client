@@ -53,22 +53,12 @@ video, .no-video {
   box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
 }
 
-.side-btns {
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.file-input {
-  margin-bottom: 1rem;
-}
-
 .btn-styled {
   background-color: #77bcc2; 
   border: none;
   color: white;
-  padding: 1.5rem 3rem;
-  font-size: 1.6rem;
+  padding: 2rem 4rem;
+  font-size: 2rem;
 }
 
 .btn-styled:hover {
@@ -84,18 +74,17 @@ video, .no-video {
 
 /* PHOTO ALBUM CONTAINER */
 
-/* .result {
-  position: fixed; 
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
+.controls {
+  margin: 1rem 0.5rem;
+  /* background-color: blue; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: 0.5s;
-} */
+}
 
-/* .result.hasPhoto {
-  left: 0;
-} */
+.side-btns > * {
+  margin: 1rem 1rem;
+}
+
+.file-input {
+  padding: 1rem;
+}
