@@ -44,16 +44,25 @@ const ImageCaptureContainer = () => {
 
         let video = videoRef.current;
         let photo = photoRef.current;
-        console.log(photo)
         photo.width = width;
         photo.height = height;
 
         let context = photo.getContext('2d');
         context.drawImage(video, 0, 0, width, height); // Screen shot of video from top left (0,0) and adjust height/width
         setHasPhoto(true);
-        const myCanvas = document.querySelector('#canvasImg');
-        const dataURI = myCanvas.toDataURL();
-        addPhoto(dataURI);
+        const currentCanvas = document.querySelector('#canvasImg');
+
+        // Convert canvas to a data URL (URI)
+        const canvasUrl = currentCanvas.toDataURL("image/png", 0.5); //file type and quality 50%
+
+        // Create an anchor and set the href value to our data URL
+        // const URLTest = new URL(dataURI);
+        const createEl = document.createElement('a');
+        createEl.href = canvasUrl;
+        createEl.download = 'download-me';
+        createEl.click();
+        createEl.remove();
+        addPhoto(canvasUrl);
     }
 
     const addPhoto = (url) => {
@@ -94,35 +103,35 @@ const ImageCaptureContainer = () => {
 
     return (
         <section className='image-capture-container'>
-                    <section className='polaroid-cam'>
-                        <div className='camera-display'>
-                            {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
-                            <button className="cheese btn" onClick={takePhoto}></button>
-                        </div>
-                        <div className='side-btns'>
-                            <input 
-                                // accept="image/png, image/jpeg" - limit to .png and .jpeg
-                                className='file-input btn btn-styled'
-                                accept="image/*" 
-                                id="icon-button-file" 
-                                type="file" 
-                                capture="environment" 
-                                onChange={readURL}
-                            />
-                            <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
-                        {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
-                        </div>
-                        <div className={'result' + (hasPhoto ? 'hasPhoto' : '')}>
-                            <h2 className='medium'>Preview IMG:</h2>
-                            <canvas id='canvasImg' ref={photoRef}></canvas>
-                            <img className="preview" src=""/>
-                        </div>
-                    </section>
-                    <section className='photo-album-container'>
-                    </section>
-                    {photos.length !==0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
-                </section>
-        )
+            <section className='polaroid-cam'>
+                <div className='camera-display'>
+                    {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
+                    <button className="cheese btn" onClick={takePhoto}></button>
+                </div>
+            </section>
+            <section className='controls'>
+                <div className='side-btns'>
+                    <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+                    {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
+                    <input 
+                        // accept="image/png, image/jpeg" - limit to .png and .jpeg
+                        className='file-input btn btn-styled'
+                        accept="image/*" 
+                        id="icon-button-file" 
+                        type="file" 
+                        capture="environment" 
+                        onChange={readURL}
+                    />
+                </div>
+                <div className='preview-stage'>
+                    <h2 className='medium'>Image Preview</h2>
+                    <canvas id='canvasImg' ref={photoRef}></canvas>
+                    <img className="preview" src=""/>
+                </div>
+            </section>
+            {photos.length !==0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
+        </section>
+    )
 }
 
 export default ImageCaptureContainer;
