@@ -16,12 +16,19 @@
     box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
 }
 
-.img-card > img {
+.img-btns {
+    display: flex;
+    justify-content: space-around;
     width: 40rem;
     max-height: 25rem;
 }
 
-.img-card > button {
+.img-btns > a > img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.img-btns > * {
     border: none;
     margin-top: 2rem;
     padding: 1rem;
@@ -29,7 +36,7 @@
     opacity: 0.5;
 }
 
-.img-card > button:hover {
+.img-btns > *:hover {
     opacity: 1;
     transition: 0.4s ease; 
     transform: scale(1.1);

@@ -57,13 +57,22 @@ const ImageCaptureContainer = () => {
 
         // Create an anchor and set the href value to our data URL
         // const URLTest = new URL(dataURI);
-        const createEl = document.createElement('a');
-        createEl.href = canvasUrl;
-        createEl.download = 'download-me';
-        createEl.click();
-        createEl.remove();
+        if(cameraOff) {
+            // HAVE IMAGE CANVAS DOWNLOAD
+            downloadCanvas(canvasUrl);
+        }
         addPhoto(canvasUrl);
     }
+
+    const downloadCanvas = (canvasUrl) => {
+        const linkWrapper = document.createElement('a');
+        linkWrapper.href = canvasUrl;
+        linkWrapper.download = 'canvas-download';
+        linkWrapper.click();
+        linkWrapper.remove();
+    }
+
+
 
     const addPhoto = (url) => {
         const newPhoto = {

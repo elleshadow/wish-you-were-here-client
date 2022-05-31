@@ -1,11 +1,18 @@
 import React from 'react';
-import "../styles/ImageCard.css";
+import '../styles/ImageCard.css';
+
+// import './images/bed-2-icon.png';
 
 const ImageCard = ({ url, id, deletePhoto }) => {
     return (
         <div className='img-card'>
-            <img id={id} src={url} />
-            <button onClick={() => deletePhoto(id)}>❌</button>
+        <img id={id} src={url} alt='snapshot image' />
+        <div className='img-btns'>
+            <button className='btn' onClick={() => deletePhoto(id)}>❌</button>
+            <a download={`snapshot_${id}`} href={url} title='snapshot'>
+                <img src='https://cdn-icons-png.flaticon.com/512/3580/3580083.png' alt='download arrow icon' />
+            </a>
+        </div>
         </div>
     );
 }
