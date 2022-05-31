@@ -44,8 +44,6 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
         return false;
     }
 
-    console.log("USER INFO RIGHT HERE",userInfo);
-
     const displayedMesssages = sortedMessages.map(message => {
         return (
             <Message
