@@ -69,22 +69,29 @@ video, .no-video {
 
 .preview {
   margin: 2rem; 
-   height: 30rem;
+  height: 30rem;
 }
 
 /* PHOTO ALBUM CONTAINER */
 
 .controls {
   margin: 1rem 0.5rem;
-  /* background-color: blue; */
+  background-color: #a0b2cbb4;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
 }
 
 .side-btns > * {
-  margin: 1rem 1rem;
+  margin: 1rem;
 }
 
-.file-input {
+.preview-stage {
   padding: 1rem;
+}
+
+.preview-stage > h2 {
+  color: #323944b4;
+  margin: 1rem 0;
 }

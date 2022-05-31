@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ImageAlbumContainer from './ImageAlbumContainer';
-import "../styles/ImageCaptureContainer.css"
+import '../styles/ImageCaptureContainer.css'
 
 const ImageCaptureContainer = () => {
     const videoRef = useRef(null);
@@ -53,7 +53,7 @@ const ImageCaptureContainer = () => {
         const currentCanvas = document.querySelector('#canvasImg');
 
         // Convert canvas to a data URL (URI)
-        const canvasUrl = currentCanvas.toDataURL("image/png", 0.5); //file type and quality 50%
+        const canvasUrl = currentCanvas.toDataURL('image/png', 0.5); //file type and quality 50%
 
         // Create an anchor and set the href value to our data URL
         // const URLTest = new URL(dataURI);
@@ -85,7 +85,7 @@ const ImageCaptureContainer = () => {
     const clearPhoto = () => {
         let photo = photoRef.current;
         let context = photo.getContext('2d');
-        document.querySelector(".preview").src = '';
+        document.querySelector('.preview').src = '';
 
         context.clearRect(0, 0, photo.width, photo.height);
         setPhotos([]);
@@ -99,11 +99,11 @@ const ImageCaptureContainer = () => {
 
     const readURL = () => {
         setHasPhoto(true);
-        let input = document.getElementById("icon-button-file")
+        let input = document.getElementById('icon-button-file')
         if (input.files[0]) {
             let reader = new FileReader()
             reader.onload = (event) => {
-                document.querySelector(".preview").src = event.target.result;
+                document.querySelector('.preview').src = event.target.result;
                 addPhoto(event.target.result);
             }
             reader.readAsDataURL(input.files[0])
@@ -115,27 +115,27 @@ const ImageCaptureContainer = () => {
             <section className='polaroid-cam'>
                 <div className='camera-display'>
                     {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
-                    <button className="cheese btn" onClick={takePhoto}></button>
+                    <button className='cheese btn' onClick={takePhoto}></button>
                 </div>
             </section>
             <section className='controls'>
                 <div className='side-btns'>
-                    <button className="btn btn-styled" onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+                    <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
                     {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     <input 
-                        // accept="image/png, image/jpeg" - limit to .png and .jpeg
+                        // accept='image/png, image/jpeg' - limit to .png and .jpeg
                         className='file-input btn btn-styled'
-                        accept="image/*" 
-                        id="icon-button-file" 
-                        type="file" 
-                        capture="environment" 
+                        accept='image/*' 
+                        id='icon-button-file' 
+                        type='file' 
+                        capture='environment' 
                         onChange={readURL}
                     />
                 </div>
                 <div className='preview-stage'>
-                    <h2 className='medium'>Image Preview</h2>
+                    <h2 className='medium'>Image Preview:</h2>
                     <canvas id='canvasImg' ref={photoRef}></canvas>
-                    <img className="preview" src=""/>
+                    <img className='preview' src=''/>
                 </div>
             </section>
             {photos.length !==0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
