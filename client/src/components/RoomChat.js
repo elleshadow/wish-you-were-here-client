@@ -36,10 +36,21 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
         return Date.parse(b.timeStamp) - Date.parse(a.timeStamp)
     })
 
+    const compareUserID = (messageID) => {
+        const userID = JSON.parse(userInfo).id;
+        if (userID === messageID) {
+            return true;
+        }
+        return false;
+    }
+
+    console.log("USER INFO RIGHT HERE",userInfo);
+
     const displayedMesssages = sortedMessages.map(message => {
         return (
             <Message
                 key={message.id + message.timeStamp}
+                matchesActiveUserID={compareUserID(message.id)}
                 name={message.name}
                 pronouns={message.pronouns}
                 message={message.message}
