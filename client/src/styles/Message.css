@@ -1,5 +1,11 @@
 .single-message-box {
-  /* border: solid black 1px; */
+  margin-bottom: 1rem;
+}
+
+.user-single-message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin-bottom: 1rem;
 }
 
@@ -18,4 +24,13 @@
   background: #bcd4e6;
   border-radius: 2rem;
   padding: 1rem 1.4rem;
+  max-width: 70%;
+}
+
+.user-chat-message {
+  width:fit-content;
+  background: #74a0d1;
+  border-radius: 2rem;
+  padding: 1rem 1.4rem;
+  max-width: 70%;
 }

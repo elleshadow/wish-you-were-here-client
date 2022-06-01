@@ -5,24 +5,24 @@ import Message from './Message';
 import { useSocket } from '../context/SocketProvider';
 import { useLocalStorage } from "../context/LocalStorageProvider";
 
-const RoomChat = ({ connectedUsers, messages }) => {
+const RoomChat = ({ userInfo, connectedUsers, messages }) => {
 
     const socket = useSocket()
-    const [localStorageData, setLocalStorageData] = useLocalStorage('data')
+
 
     const [chatInput, setChatInput] = useState("")
 
-    const sendMessage = (userInfo, message) => {
-        userInfo.timeStamp = new Date().toISOString()
-        userInfo.message = message
+    const sendMessage = (dataStringUserInfo, message) => {
+        const userInfoObject = JSON.parse(dataStringUserInfo)
+        userInfoObject.timeStamp = new Date().toISOString()
+        userInfoObject.message = message
 
-        socket.emit("send_message", userInfo)
+        socket.emit("send_message", userInfoObject)
         console.log("Client sent message");
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const userInfo = JSON.parse(localStorageData)
         setChatInput("")
 
         sendMessage(userInfo, chatInput)
@@ -36,10 +36,19 @@ const RoomChat = ({ connectedUsers, messages }) => {
         return Date.parse(b.timeStamp) - Date.parse(a.timeStamp)
     })
 
+    const compareUserID = (messageID) => {
+        const userID = JSON.parse(userInfo).id;
+        if (userID === messageID) {
+            return true;
+        }
+        return false;
+    }
+
     const displayedMesssages = sortedMessages.map(message => {
         return (
             <Message
                 key={message.id + message.timeStamp}
+                matchesActiveUserID={compareUserID(message.id)}
                 name={message.name}
                 pronouns={message.pronouns}
                 message={message.message}

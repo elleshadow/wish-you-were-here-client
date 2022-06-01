@@ -1,16 +1,22 @@
 import React from "react";
 import "../styles/Message.css";
 
-const Message = ({ name, pronouns, message }) => {
+const Message = ({ name, pronouns, message, matchesActiveUserID }) => {
 
+  const checkIDMatch = (className) => {
+    if (matchesActiveUserID) {
+      return `user-${className}`;
+    }
+    return className;
+  }
 
   return (
-    <div className="single-message-box">
+    <div className={checkIDMatch("single-message-box")}>
       <div className="chat-user-info">
         <p className="chat-name">{name}</p>
         <p className="chat-pronouns">{pronouns}</p>
       </div>
-      <p className="chat-message">{message}</p>
+      <p className={checkIDMatch("chat-message")}>{message}</p>
     </div>
   )
 }

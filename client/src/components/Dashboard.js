@@ -83,7 +83,11 @@ function Dashboard(props) {
     return (
         <div className='dashboard'>
             <ImageCaptureContainer />
-            <RoomChat messages={messages} connectedUsers={connectedUsers}/>
+            <RoomChat 
+            userInfo={props.data} 
+            messages={messages} 
+            connectedUsers={connectedUsers}
+            />
         </div>
     )
 }
