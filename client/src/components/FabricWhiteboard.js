@@ -73,6 +73,7 @@ const FabricWhiteboard = (props) => {
 
 
 const updateLocation = () => {
+  if (!editor.canvas._objects[0].ownMatrixCache.value) return
   const [scale, , , ,left,top] =  editor.canvas._objects[0].ownMatrixCache.value
   const newLocation = {
     left,

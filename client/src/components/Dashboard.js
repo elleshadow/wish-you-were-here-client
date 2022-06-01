@@ -36,6 +36,7 @@ function Dashboard(props) {
     // }, false);
 
     const sendPhotoLocation = ((location) => {
+                if (location.left === 0) return
                 const data = {
                     id: id,
                     timeStamp: new Date(),
