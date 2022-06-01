@@ -1,0 +1,37 @@
+.whiteboard {
+  position: absolute;
+  font-family: sans-serif;
+  text-align: center;
+  height: 800px;
+  width: 800px;
+  /* z-index: 2; */
+  border: orange 1px solid;
+}
+
+.sample-canvas {
+  height: 800px;
+  width: 800px;
+  border: green 1px solid;
+}
+
+.whiteboard-bg {
+  position: absolute;
+  height: 800px;
+  width: 800px;
+  /* z-index: 1; */
+  border: black 1px solid;
+}
+
+.whiteboard-container {
+  position: relative;
+  height: 800px;
+  width: 800px;
+  border: red 1px solid;
+  margin-bottom: 10vh;
+}
+
+.upper-canvas {
+  height: 800px;
+  width: 800px;
+  border: purple 1px solid;
+}
