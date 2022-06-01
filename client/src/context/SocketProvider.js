@@ -13,7 +13,7 @@ export function SocketProvider({ data, children }) {
 
   useEffect(() => {
     const newSocket = io(
-      'https://api-wish-you-were-here.herokuapp.com',
+     'https://api-wish-you-were-here.herokuapp.com',
     // 'http://localhost:3001',
       
       

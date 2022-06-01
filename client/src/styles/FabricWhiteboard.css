@@ -1,17 +1,9 @@
-.whiteboard {
-  position: absolute;
-  font-family: sans-serif;
-  text-align: center;
+.whiteboard-container {
+  position: relative;
   height: 800px;
   width: 800px;
-  /* z-index: 2; */
-  border: orange 1px solid;
-}
-
-.sample-canvas {
-  height: 800px;
-  width: 800px;
-  border: green 1px solid;
+  border: red 1px solid;
+  margin-bottom: 10vh;
 }
 
 .whiteboard-bg {
@@ -22,15 +14,39 @@
   border: black 1px solid;
 }
 
-.whiteboard-container {
-  position: relative;
-  height: 800px;
-  width: 800px;
-  border: red 1px solid;
-  margin-bottom: 10vh;
+#canv {
+  position: absolute;
+
 }
 
+.sample-canvas {
+  position: absolute;
+  height: 800px;
+  width: 800px;
+  border: green 1px solid;
+  z-index: 1;
+}
+
+.whiteboard {
+  position: relative;
+  font-family: sans-serif;
+  text-align: center;
+  height: 800px;
+  width: 800px;
+  /* z-index: 2; */
+  border: orange 1px solid;
+}
+
+
+
+
+
+
+
+
+
 .upper-canvas {
+  position: absolute;
   height: 800px;
   width: 800px;
   border: purple 1px solid;
