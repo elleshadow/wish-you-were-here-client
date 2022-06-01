@@ -70,8 +70,6 @@ const ImageCaptureContainer = () => {
         linkWrapper.remove();
     }
 
-
-
     const addPhoto = (url) => {
         const newPhoto = {
             'url': url, 
@@ -108,6 +106,7 @@ const ImageCaptureContainer = () => {
         }
     }
 
+
     return (
         <section className='image-capture-container'>
             <section className='polaroid-cam'>
@@ -123,7 +122,6 @@ const ImageCaptureContainer = () => {
                     <input 
                         accept='image/png, image/jpeg' 
                         className='file-input btn btn-styled'
-                        // accept='image/*' 
                         id='icon-button-file' 
                         type='file' 
                         capture='environment' 
