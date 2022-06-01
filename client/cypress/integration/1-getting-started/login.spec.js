@@ -18,7 +18,30 @@ describe('Landing Page', () => {
 
     it('User should be able to login with just a name', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
-        cy.get('button').click();
+        cy.get('a').click();
+        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+    }) 
+
+    // SAD PATH TEST - TO DO
+    // it('User should not be able to login without a name', () => {
+    //     cy.get('input[name="name"]').type('Bobby-Joe');
+    //     cy.get('button').click();
+    //     cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+    // }) 
+
+    it('User should be able to login with just a name and pronouns', () => {
+        cy.get('input[name="name"]').type('Bobby-Joe');
+        cy.get('input[name="pronouns"]').type('he/him');
+        cy.get('a').click();
+        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+    }) 
+
+    it('User should be able to login with a name, pronouns, and email address', () => {
+        cy.get('input[name="name"]').type('Bobby-Joe');
+        cy.get('input[name="pronouns"]').type('he/him');
+        cy.get('input[name="email"]').type('bbjoe@monster-energy.edu');
+        cy.get('a').click();
+        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
     }) 
 
 })
