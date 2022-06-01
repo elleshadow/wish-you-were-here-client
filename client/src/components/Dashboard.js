@@ -35,9 +35,17 @@ function Dashboard(props) {
     //     reader.readAsDataURL(this.files[0]);
     // }, false);
 
-    const sendPhotoTest = ((photo) => {
+    const sendPhotoLocation = ((location) => {
+                const data = {
+                    id: id,
+                    timeStamp: new Date(),
+                    location: location,
+                }
+                console.log("Client Sending location", location)
+                socket.emit('send_photo_location', data);
+    })
 
-               
+    const sendPhotoTest = ((photo) => {
                 const data = {
                     id: id,
                     timeStamp: new Date(),
@@ -63,19 +71,23 @@ function Dashboard(props) {
         })
 
         socket && socket.on("recieve_photo_location", (data) => {
-            const { id, name, pronouns, email, url, location, scale} = data
+            const { id, location} = data
             console.log(`${data.name} sent a location`)
             setConnectedUsers(prevConnectedUsers => {
                 const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
                     return connectedUser.id !== id
                 })
-                return [...updatedConnectedUsers, data]
+                const newLocation = prevConnectedUsers.filter(connectedUser => {
+                    return connectedUser.id === id
+                })
+                newLocation.location = location
+                return [...updatedConnectedUsers, newLocation]
             })
             console.log(connectedUsers)
         })
 
         socket && socket.on("recieve_photo_URL", (data) => {
-            const { id, name, pronouns, email, url, location, scale} = data
+            const { id, name, pronouns, email, url} = data
             console.log(`${data.name} sent a photo`)
             setConnectedUsers(prevConnectedUsers => {
                 const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
@@ -111,7 +123,7 @@ function Dashboard(props) {
             connectedUsers={connectedUsers}
             />
         </div>
-        <FabricWhiteboard connectedUsers={connectedUsers} myID={id}/>
+        <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
         </>
     )
 }

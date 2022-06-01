@@ -6,6 +6,13 @@ import "../styles/FabricWhiteboard.css";
 
 const FabricWhiteboard = (props) => {
   const [canvas, setCanvas] = useState('');
+  const [location, setLocation] = useState({
+    left: 0,
+    top: 0,
+    scale: 0
+  });
+
+  const [timer, setTimer] = useState(0);
 
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
   
@@ -23,6 +30,10 @@ const FabricWhiteboard = (props) => {
     console.log(canvas)
   }, []);
 
+
+
+   
+
   useEffect(() => {
     console.log("running")
     console.log(canvas)
@@ -37,24 +48,45 @@ const FabricWhiteboard = (props) => {
         });
       } else if(connectedUser.url) {
          console.log("userURL", connectedUser.url, index)
-         addImage(connectedUser.url, connectedUser.location, connectedUser.scale)
+         addImage(connectedUser.url, connectedUser.location)
        }
+       console.log("Multiple ME", editor.canvas._objects)
+       console.log("Multiple ME", editor.canvas._objects.length)
      })
   }, [canvas, props.connectedUsers])
 
-  const addImage = (URL) => {
-    // let object 
+  const addImage = (URL, location) => {
+    
+    const {left, top, scale} = location
+    if (!left) return 
 
     fabric.Image.fromURL(URL, function(img) {
-      var oImg = img.set({ left: 2, top: 50}).scale(0.25);
+      var oImg = img.set({ left: left, top: top}).scale(scale);
       canvas.add(oImg);
       canvas.renderAll()
     });
   }
+    useEffect(() => {
+      console.log(location)
+      props.sendPhotoLocation(location)
+}, [location]);
+
+
+const updateLocation = () => {
+  const [scale, , , ,left,top] =  editor.canvas._objects[0].ownMatrixCache.value
+  const newLocation = {
+    left,
+    top,
+    scale
+  }
+  setLocation(newLocation)
+   }
+
+
 
   return (
     <>
-    <div className="whiteboard-container">
+    <div onMouseUp={updateLocation}  className="whiteboard-container">
       <img className="whiteboard-bg" src="https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcC1zODMtcGFpLTY2MzQtY2FyZC0wMWEuanBn.jpg"/>
 
 
