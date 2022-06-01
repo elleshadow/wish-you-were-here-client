@@ -21,11 +21,11 @@ const FabricWhiteboard = () => {
   };
 
   return (
-    <div className="whiteboard">
-      <h1>Whiteboard</h1>
-      <button onClick={onAddCircle}>Add circle</button>
-      <button onClick={onAddRectangle}>Add Rectangle</button>
-      <FabricJSCanvas className="sample-canvas" onReady={onReady} />
+    <div className="whiteboard-container">
+      <img className="whiteboard-bg" src="https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcC1zODMtcGFpLTY2MzQtY2FyZC0wMWEuanBn.jpg"/>
+      <div className="whiteboard">
+        <FabricJSCanvas className="sample-canvas" onReady={onReady} />
+      </div>
     </div>
   );
 }
