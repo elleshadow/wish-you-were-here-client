@@ -20,20 +20,15 @@ describe('Landing Page', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
         cy.get('a').click();
         cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+        // cy.get('.logout-btn').click()
     }) 
-
-    // SAD PATH TEST - TO DO
-    // it('User should not be able to login without a name', () => {
-    //     cy.get('input[name="name"]').type('Bobby-Joe');
-    //     cy.get('button').click();
-    //     cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
-    // }) 
 
     it('User should be able to login with just a name and pronouns', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
         cy.get('input[name="pronouns"]').type('he/him');
         cy.get('a').click();
         cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+        // cy.get('.logout-btn').click()
     }) 
 
     it('User should be able to login with a name, pronouns, and email address', () => {
@@ -42,6 +37,11 @@ describe('Landing Page', () => {
         cy.get('input[name="email"]').type('bbjoe@monster-energy.edu');
         cy.get('a').click();
         cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+        // cy.get('.logout-btn').click()
     }) 
 
+    it('User should not be able to login without a name', () => {
+        cy.get('button').click();
+        cy.get('h3').contains('Please input a name.');
+    }) 
 })
