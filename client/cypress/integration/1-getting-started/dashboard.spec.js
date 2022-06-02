@@ -23,7 +23,7 @@ describe('Dashboard Page', () => {
         cy.get('.form-inner').contains('Login');
     })
 
-    it.only('Should have a chat box with a label, chat window, text field, send button, and connected users', () => {
+    it('Should have a chat box with a label, chat window, text field, send button, and connected users', () => {
         cy.get('label[for="chat"]').contains('Chat');
         cy.get('.message-container').should('exist');
         cy.get('.message-box').should('exist');
@@ -35,19 +35,22 @@ describe('Dashboard Page', () => {
 
     })
 
-    it('Should be able to send a message in chat and have it appear in chat window.', () => {
+    it.only('Should be able to send a message in chat and have it appear in chat window.', () => {
+        cy.get('.message-box').type('Hello I am a human!')
+        // .type("{enter}");
+        // cy.get('.button-send').click();
     })
 
-    it('Should have current user shown in connected users area.', () => {
-    })
+    // it('Should have current user shown in connected users area.', () => {
+    // })
 
-    it('Should have a live camera with a clickable cheese button that takes a photo.', () => {
-    })
+    // it('Should have a live camera with a clickable cheese button that takes a photo.', () => {
+    // })
 
-    it('Should have camera toggle option, a file picker and an image preview.', () => {
-    })
+    // it('Should have camera toggle option, a file picker and an image preview.', () => {
+    // })
 
-    it('When user takes a photo, it should save to a gallery.', () => {
-    })
+    // it('When user takes a photo, it should save to a gallery.', () => {
+    // })
 
 })
