@@ -12,19 +12,23 @@
   width: 800px;
   /* z-index: 1; */
   border: black 1px solid;
+  
 }
 
 #canv {
   position: absolute;
-
+  /* border: red 50px solid; */
+    height: 800px;
+  width: 800px;
 }
 
 .sample-canvas {
   position: absolute;
   height: 800px;
   width: 800px;
-  border: green 1px solid;
+  /* border: green 5px solid; */
   z-index: 1;
+  
 }
 
 .whiteboard {

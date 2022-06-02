@@ -5,6 +5,7 @@ import "../styles/FabricWhiteboard.css";
 
 
 const FabricWhiteboard = (props) => {
+  const [myPhoto, setMyPhoto] = useState(true);
   const [canvas, setCanvas] = useState('');
   const [location, setLocation] = useState({
     left: 0,
@@ -12,14 +13,12 @@ const FabricWhiteboard = (props) => {
     scale: 0
   });
 
-  const [timer, setTimer] = useState(0);
-
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
   
     const initCanvas = () => {
       return new fabric.Canvas('canv', {
-        height: 800,
-        width: 800,
+        height: 1000,
+        width: 1000,
         backgroundColor: 'transparent',
       })
     }
@@ -31,9 +30,11 @@ const FabricWhiteboard = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("running")
-    console.log(canvas)
+    console.log("running HERE", props.connectedUsers)
+   
      props.connectedUsers && props.connectedUsers.forEach((connectedUser, index) => {
+      if(!connectedUser.photoLocation) return
+      console.log(props.connectedUsers)
       const {
         email,
         id,
@@ -50,19 +51,24 @@ const FabricWhiteboard = (props) => {
         scale
       } = photoLocation
 
-      if (id === props.myID && photo && photoURL) {
+      if (id === props.myID && photo && photoURL && myPhoto) {
         fabric.Image.fromURL(photoURL, function(img) {
           var oImg = img.set({ left: left, top: top}).scale(scale);
             return editor.canvas.add(oImg);
         });
-      } else if(photo && photoURL) {
+        setMyPhoto(false)
+      } else if(id !== props.myID && photo && photoURL) {
          console.log("userURL", photoURL, index)
          addImage(photoURL, photoLocation)
        }
        console.log("Multiple ME", editor.canvas._objects)
        console.log("Multiple ME", editor.canvas._objects.length)
      })
-  }, [canvas, props.connectedUsers])
+  }, [canvas])
+
+  useEffect(() => {
+    setCanvas(initCanvas());
+  }, [props.connectedUsers])
 
   const addImage = (URL, location) => {
 
@@ -82,12 +88,16 @@ const FabricWhiteboard = (props) => {
     useEffect(() => {
       console.log(location)
       props.sendPhotoLocation(location)
-}, [location]);
+    }, [location]);
 
 
 const updateLocation = () => {
+
   if (!editor.canvas._objects[0].ownMatrixCache.value) return
-  const [scale, , , ,left,top] =  editor.canvas._objects[0].ownMatrixCache.value
+  const scale =  editor.canvas._objects[0].scaleX
+  const left = editor.canvas._objects[0].left
+  const top = editor.canvas._objects[0].top
+
   const newLocation = {
     left,
     top,
@@ -105,7 +115,7 @@ const updateLocation = () => {
 
 
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
-        <canvas id='canv' />
+        <canvas id="canv" />
 
     </div>
 

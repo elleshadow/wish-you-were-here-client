@@ -36,7 +36,7 @@ function Dashboard(props) {
     // }, false);
 
     const sendPhotoLocation = ((location) => {
-                if (location.left === 0) return
+                if(!location.scale) return
                 const data = {
                     id: id,
                     timeStamp: new Date(),
@@ -72,6 +72,7 @@ function Dashboard(props) {
         })
 
         socket && socket.on("recieve_photo_location", (data) => {
+            console.log("recieve_photo_location")
             const { id, location} = data
             console.log(`${data.name} sent a location`)
             setConnectedUsers(prevConnectedUsers => {
@@ -81,27 +82,29 @@ function Dashboard(props) {
                 const newLocation = prevConnectedUsers.filter(connectedUser => {
                     return connectedUser.id === id
                 })
-                newLocation.location = location
+                newLocation.photoLocation = location
                 return [...updatedConnectedUsers, newLocation]
             })
             console.log(connectedUsers)
         })
 
-        socket && socket.on("recieve_photo_URL", (data) => {
-            const { id, name, pronouns, email, url} = data
-            data.location = {left: 0, top: 0, scale: 0.25}
-            console.log(`${data.name} sent a photo`)
-            setConnectedUsers(prevConnectedUsers => {
-                const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
-                    return connectedUser.id !== id
-                })
-                return [...updatedConnectedUsers, data]
-            })
-            console.log(connectedUsers)
-        })
+        // socket && socket.on("recieve_photo_URL", (data) => {
+        //     const { id, name, pronouns, email, url} = data
+        //     data.location = {left: 0, top: 0, scale: 0.25}
+        //     console.log(`${data.name} sent a photo`)
+        //     setConnectedUsers(prevConnectedUsers => {
+        //         const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
+        //             return connectedUser.id !== id
+        //         })
+        //         return [...updatedConnectedUsers, data]
+        //     })
+        //     console.log(connectedUsers)
+        // })
 
         socket && socket.on("recieve-users-list", (data) => {
-            setConnectedUsers(data)
+            console.log("recieve-users-list")
+            console.log(data)
+            setConnectedUsers(data) 
         })
 
         socket && socket.on("user-disconnected", (data) => {
@@ -113,7 +116,7 @@ function Dashboard(props) {
         }
     }, [socket])
 
-    console.log("connected users", connectedUsers)
+    
     return (
         <>
         
