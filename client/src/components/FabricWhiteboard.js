@@ -30,25 +30,34 @@ const FabricWhiteboard = (props) => {
     console.log(canvas)
   }, []);
 
-
-
-   
-
   useEffect(() => {
     console.log("running")
     console.log(canvas)
      props.connectedUsers && props.connectedUsers.forEach((connectedUser, index) => {
-       console.log(connectedUser.id === props.myID)
-       console.log(props)
-       console.log(connectedUser.id, props.myID)
-      if (connectedUser.id === props.myID && connectedUser.url) {
-        fabric.Image.fromURL(connectedUser.url, function(img) {
-          var oImg = img.set({ left: 0, top: 0}).scale(0.25);
+      const {
+        email,
+        id,
+        name,
+        photo,
+        photoLocation,
+        photoURL,
+        pronouns,
+      } = connectedUser
+
+      const {
+        top, 
+        left, 
+        scale
+      } = photoLocation
+
+      if (id === props.myID && photo && photoURL) {
+        fabric.Image.fromURL(photoURL, function(img) {
+          var oImg = img.set({ left: left, top: top}).scale(scale);
             return editor.canvas.add(oImg);
         });
-      } else if(connectedUser.url) {
-         console.log("userURL", connectedUser.url, index)
-         addImage(connectedUser.url, connectedUser.location)
+      } else if(photo && photoURL) {
+         console.log("userURL", photoURL, index)
+         addImage(photoURL, photoLocation)
        }
        console.log("Multiple ME", editor.canvas._objects)
        console.log("Multiple ME", editor.canvas._objects.length)
@@ -56,9 +65,13 @@ const FabricWhiteboard = (props) => {
   }, [canvas, props.connectedUsers])
 
   const addImage = (URL, location) => {
-    
-    const {left, top, scale} = location
-    if (!left) return 
+
+     const {
+        top, 
+        left, 
+        scale
+      } = location
+
 
     fabric.Image.fromURL(URL, function(img) {
       var oImg = img.set({ left: left, top: top}).scale(scale);

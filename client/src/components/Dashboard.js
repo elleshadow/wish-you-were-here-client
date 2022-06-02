@@ -89,6 +89,7 @@ function Dashboard(props) {
 
         socket && socket.on("recieve_photo_URL", (data) => {
             const { id, name, pronouns, email, url} = data
+            data.location = {left: 0, top: 0, scale: 0.25}
             console.log(`${data.name} sent a photo`)
             setConnectedUsers(prevConnectedUsers => {
                 const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
