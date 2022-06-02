@@ -70,10 +70,10 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
                 </div>
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input className="message-box" type="text" placeholder="message..." onChange={(event) => handleChange(event)} value={chatInput} />
-                    <button className="button-send"> Send</button>
+                    <button className="button-send">Send</button>
                 </form>
                 <section className='socket-list'>
-                    <section className='usersListContainer'>
+                    <section className='users-list-container'>
                         { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
                     </section>
                 </section>

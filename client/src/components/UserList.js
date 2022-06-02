@@ -11,7 +11,7 @@ const UsersList = ({ connectedUsers }) => {
 
     return (
         <>
-        <h1>{`${users.length} Connected Users:`}</h1>
+        <h3 className='medium-small'>{`${users.length} Connected Users:`}</h3>
         <ul>
             {users}
         </ul>
