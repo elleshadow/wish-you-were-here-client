@@ -1,32 +1,125 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import "../styles/FabricWhiteboard.css";
 
 
-const FabricWhiteboard = () => {
-
-  const { selectedObjects, editor, onReady } = useFabricJSEditor();
-  fabric.Image.fromURL('https://api-wish-you-were-here.herokuapp.com/without-background/Alex2.jpg', function(img) {
-    var oImg = img.set({ left: 0, top: 0}).scale(0.25);
-    editor.canvas.add(oImg);
+const FabricWhiteboard = (props) => {
+  const [myPhoto, setMyPhoto] = useState(true);
+  const [canvas, setCanvas] = useState('');
+  const [location, setLocation] = useState({
+    left: 0,
+    top: 0,
+    scale: 0
   });
 
-  const onAddCircle = () => {
-    editor.addCircle();
-  };
+  const { selectedObjects, editor, onReady } = useFabricJSEditor();
+  
+    const initCanvas = () => {
+      return new fabric.Canvas('canv', {
+        height: 1000,
+        width: 1000,
+        backgroundColor: 'transparent',
+      })
+    }
+    
+  useEffect(() => {
+    console.log("setting canvas")
+    setCanvas(initCanvas());
+    console.log(canvas)
+  }, []);
 
-  const onAddRectangle = () => {
-    editor.addRectangle();
-  };
+  useEffect(() => {
+    console.log("running HERE", props.connectedUsers)
+   
+     props.connectedUsers && props.connectedUsers.forEach((connectedUser, index) => {
+      if(!connectedUser.photoLocation) return
+      console.log(props.connectedUsers)
+      const {
+        email,
+        id,
+        name,
+        photo,
+        photoLocation,
+        photoURL,
+        pronouns,
+      } = connectedUser
+
+      const {
+        top, 
+        left, 
+        scale
+      } = photoLocation
+
+      if (id === props.myID && photo && photoURL && myPhoto) {
+        fabric.Image.fromURL(photoURL, function(img) {
+          var oImg = img.set({ left: left, top: top}).scale(scale);
+            return editor.canvas.add(oImg);
+        });
+        setMyPhoto(false)
+      } else if(id !== props.myID && photo && photoURL) {
+         console.log("userURL", photoURL, index)
+         addImage(photoURL, photoLocation)
+       }
+       console.log("Multiple ME", editor.canvas._objects)
+       console.log("Multiple ME", editor.canvas._objects.length)
+     })
+  }, [canvas])
+
+  useEffect(() => {
+    setCanvas(initCanvas());
+  }, [props.connectedUsers])
+
+  const addImage = (URL, location) => {
+
+     const {
+        top, 
+        left, 
+        scale
+      } = location
+
+
+    fabric.Image.fromURL(URL, function(img) {
+      var oImg = img.set({ left: left, top: top}).scale(scale);
+      canvas.add(oImg);
+      canvas.renderAll()
+    });
+  }
+    useEffect(() => {
+      console.log(location)
+      props.sendPhotoLocation(location)
+    }, [location]);
+
+
+const updateLocation = () => {
+
+  if (!editor.canvas._objects[0].ownMatrixCache.value) return
+  const scale =  editor.canvas._objects[0].scaleX
+  const left = editor.canvas._objects[0].left
+  const top = editor.canvas._objects[0].top
+
+  const newLocation = {
+    left,
+    top,
+    scale
+  }
+  setLocation(newLocation)
+   }
+
+
 
   return (
-    <div className="whiteboard-container">
+    <>
+    <div onMouseUp={updateLocation}  className="whiteboard-container">
       <img className="whiteboard-bg" src="https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcC1zODMtcGFpLTY2MzQtY2FyZC0wMWEuanBn.jpg"/>
-      <div className="whiteboard">
+
+
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
-      </div>
+        <canvas id="canv" />
+
     </div>
+
+    </>
   );
 }
 

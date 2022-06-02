@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ImageAlbumContainer from './ImageAlbumContainer';
 import '../styles/ImageCaptureContainer.css'
 
-const ImageCaptureContainer = () => {
+const ImageCaptureContainer = (props) => {
     const videoRef = useRef(null);
     const photoRef = useRef(null);
 
@@ -101,6 +101,7 @@ const ImageCaptureContainer = () => {
             reader.onload = (event) => {
                 document.querySelector('.preview').src = event.target.result;
                 addPhoto(event.target.result);
+                props.handleSendPhoto(input.files[0])
             }
             reader.readAsDataURL(input.files[0])
         }

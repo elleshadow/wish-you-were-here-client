@@ -5,6 +5,7 @@ import ImageCaptureContainer from './ImageCaptureContainer';
 import RoomLeftSidebar from './RoomLeftSidebar';
 import RoomChat from './RoomChat';
 import UserList from './UserList';
+import FabricWhiteboard from './FabricWhiteboard'
 
 function Dashboard(props) {
     // Socket
@@ -34,17 +35,26 @@ function Dashboard(props) {
     //     reader.readAsDataURL(this.files[0]);
     // }, false);
 
-    // const sendPhotoTest = ((photo) => {
+    const sendPhotoLocation = ((location) => {
+                if(!location.scale) return
+                const data = {
+                    id: id,
+                    timeStamp: new Date(),
+                    location: location,
+                }
+                console.log("Client Sending location", location)
+                socket.emit('send_photo_location', data);
+    })
 
-               
-    //             const data = {
-    //                 id: id,
-    //                 timeStamp: new Date(),
-    //                 photo: photo,
-    //             }
-    //             console.log("Client Sending Photo")
-    //             socket.emit('send_photo', data);
-    //         })
+    const sendPhotoTest = ((photo) => {
+                const data = {
+                    id: id,
+                    timeStamp: new Date(),
+                    photo: photo,
+                }
+                console.log("Client Sending Photo")
+                socket.emit('send_photo', data);
+            })
     
     useEffect(() => {
         socket && socket.on("user-connected", (data) => {
@@ -61,13 +71,40 @@ function Dashboard(props) {
             console.log("Client Recieved Message", data)
         })
 
-        socket && socket.on("recieve_photo_URL", (data) => {
-            const { id, name, pronouns, email, url} = data
-            console.log(`${data.name} sent a photo`)
+        socket && socket.on("recieve_photo_location", (data) => {
+            console.log("recieve_photo_location")
+            const { id, location} = data
+            console.log(`${data.name} sent a location`)
+            setConnectedUsers(prevConnectedUsers => {
+                const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
+                    return connectedUser.id !== id
+                })
+                const newLocation = prevConnectedUsers.filter(connectedUser => {
+                    return connectedUser.id === id
+                })
+                newLocation.photoLocation = location
+                return [...updatedConnectedUsers, newLocation]
+            })
+            console.log(connectedUsers)
         })
 
+        // socket && socket.on("recieve_photo_URL", (data) => {
+        //     const { id, name, pronouns, email, url} = data
+        //     data.location = {left: 0, top: 0, scale: 0.25}
+        //     console.log(`${data.name} sent a photo`)
+        //     setConnectedUsers(prevConnectedUsers => {
+        //         const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
+        //             return connectedUser.id !== id
+        //         })
+        //         return [...updatedConnectedUsers, data]
+        //     })
+        //     console.log(connectedUsers)
+        // })
+
         socket && socket.on("recieve-users-list", (data) => {
-            setConnectedUsers(data)
+            console.log("recieve-users-list")
+            console.log(data)
+            setConnectedUsers(data) 
         })
 
         socket && socket.on("user-disconnected", (data) => {
@@ -79,16 +116,20 @@ function Dashboard(props) {
         }
     }, [socket])
 
-    console.log("connected users", connectedUsers)
+    
     return (
+        <>
+        
         <div className='dashboard'>
-            <ImageCaptureContainer />
+            <ImageCaptureContainer handleSendPhoto={sendPhotoTest}/>
             <RoomChat 
             userInfo={props.data} 
             messages={messages} 
             connectedUsers={connectedUsers}
             />
         </div>
+        <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
+        </>
     )
 }
 

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid'
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
-import FabricWhiteboard from './FabricWhiteboard'
+
 import { useLocalStorage } from '../context/LocalStorageProvider'
 import { SocketProvider } from '../context/SocketProvider';
 import '../styles/App.css';
@@ -38,7 +38,6 @@ function App() {
     <SocketProvider data={data}>
         <NavBar logOut={logOut}/>
         <Dashboard  data={data}/> 
-        <FabricWhiteboard />
     </SocketProvider>
   )
   
