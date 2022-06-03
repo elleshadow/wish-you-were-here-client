@@ -1,8 +1,13 @@
 .navBar {
     display: flex;
     justify-content: flex-end;
+    top: 0px;
+    z-index: 5;
+    position: absolute;
     background-color: #6ca0dc;
-    padding: 10px;
+    height: 6vh;
+    width: 100vw;
+    padding: 15px;
 }
 
 .logout-btn {

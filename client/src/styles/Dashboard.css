@@ -1,5 +1,11 @@
 .dashboard {
   display: flex;
   justify-content: space-between;
-  width: auto;
+  height: 100vh;
+}
+
+.user-photo-area {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }

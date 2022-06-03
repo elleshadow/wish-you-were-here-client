@@ -1,32 +1,27 @@
 .whiteboard-container {
   position: relative;
-  height: 800px;
-  width: 800px;
-  border: red 1px solid;
+  height: 1000px;
+  width: 1200px;
   margin-bottom: 10vh;
+  left: 3.5vw;
 }
 
 .whiteboard-bg {
   position: absolute;
-  height: 800px;
-  width: 800px;
-  /* z-index: 1; */
-  border: black 1px solid;
-  
+  height: 1000px;
+  width: 1200px;
 }
 
 #canv {
   position: absolute;
-  /* border: red 50px solid; */
-    height: 800px;
-  width: 800px;
+  height: 1000px;
+  width: 1200px;
 }
 
 .sample-canvas {
   position: absolute;
-  height: 800px;
-  width: 800px;
-  /* border: green 5px solid; */
+  height: 1000px;
+  width: 1200px;
   z-index: 1;
   
 }
@@ -35,23 +30,13 @@
   position: relative;
   font-family: sans-serif;
   text-align: center;
-  height: 800px;
-  width: 800px;
-  /* z-index: 2; */
-  border: orange 1px solid;
+  height: 1000px;
+  width: 1200px;
 }
-
-
-
-
-
-
-
-
 
 .upper-canvas {
   position: absolute;
-  height: 800px;
-  width: 800px;
+  height: 1000px;
+  width: 1200px;
   border: purple 1px solid;
 }

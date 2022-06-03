@@ -1,8 +1,5 @@
 .image-capture-container {
   transform: scale(.8);
-  /* display: grid;
-  place-content: center;
-  border: 0.1rem solid teal; */
 }
 
 /* LIVE PHOTO CONTAINER */
@@ -73,6 +70,10 @@ video, .no-video {
 }
 
 /* PHOTO ALBUM CONTAINER */
+
+.sample-photo {
+  height: 200px;
+}
 
 .controls {
   margin: 1rem 0.5rem;

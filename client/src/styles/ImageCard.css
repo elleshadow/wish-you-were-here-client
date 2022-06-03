@@ -2,6 +2,7 @@
     margin: auto;
     background: white;
     height: 35rem;
+    width: 35rem;
     padding: 2rem;
     box-shadow: 0 0.2rem 1rem rgba(0,0,0, 0.3);
     transition: 0.4s ease; 

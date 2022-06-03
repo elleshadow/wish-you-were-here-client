@@ -10,3 +10,9 @@
     background-color: bisque;
     border-radius: 0.5rem;
 }
+
+.sample-image {
+    max-height: 80%;
+    width: auto;
+    overflow: auto;
+}

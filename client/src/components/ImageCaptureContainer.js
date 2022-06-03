@@ -135,7 +135,7 @@ const ImageCaptureContainer = (props) => {
                     <img className='preview' src=''/>
                 </div>
             </section>
-            {photos.length !==0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
+            {photos.length !== 0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
         </section>
     )
 }
