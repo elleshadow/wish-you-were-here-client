@@ -1,13 +1,12 @@
 describe('Landing Page', () => {
     beforeEach( () => {
-        cy.visit('http://localhost:3000/?');
+        cy.visit('http://localhost:3000/');
     })
 
     it('Should load landing page URL', () => {
-        cy.url().should('eq', 'http://localhost:3000/?');
+        cy.url().should('eq', 'http://localhost:3000/');
     })
 
-    // Check what should be displayed
     it('Should have a login form with title, name input, pronoun input and optional email input', () => {
         cy.get('.form-inner').contains('Login');
         cy.get('.form-inner').contains('Name');
@@ -18,30 +17,28 @@ describe('Landing Page', () => {
 
     it('User should be able to login with just a name', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
-        cy.get('a').click();
-        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
-        // cy.get('.logout-btn').click()
+        cy.get('.submit-name-btn').click();
+        cy.url().should('eq', 'http://localhost:3000/dashboard');
     }) 
 
     it('User should be able to login with just a name and pronouns', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
         cy.get('input[name="pronouns"]').type('he/him');
-        cy.get('a').click();
-        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
-        // cy.get('.logout-btn').click()
+        cy.get('.submit-name-btn').click();
+        cy.url().should('eq', 'http://localhost:3000/dashboard');
     }) 
 
     it('User should be able to login with a name, pronouns, and email address', () => {
         cy.get('input[name="name"]').type('Bobby-Joe');
         cy.get('input[name="pronouns"]').type('he/him');
         cy.get('input[name="email"]').type('bbjoe@monster-energy.edu');
-        cy.get('a').click();
-        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
-        // cy.get('.logout-btn').click()
+        cy.get('.submit-name-btn').click();
+        cy.url().should('eq', 'http://localhost:3000/dashboard');
     }) 
 
     it('User should not be able to login without a name', () => {
-        cy.get('button').click();
+        cy.get('.submit-name-btn').click();
         cy.get('h3').contains('Please input a name.');
+        cy.url().should('eq', 'http://localhost:3000/');
     }) 
 })

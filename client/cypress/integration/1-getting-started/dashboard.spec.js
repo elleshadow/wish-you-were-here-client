@@ -1,13 +1,13 @@
 describe('Dashboard Page', () => {
     beforeEach( () => {
-        cy.visit('http://localhost:3000/?');
+        cy.visit('http://localhost:3000/');
         cy.get('input[name="name"]').type('Bobby-Joe');
         cy.get('input[name="pronouns"]').type('he/him');
         cy.get('a').click();
     })
 
     it('Should load Dashboard URL', () => {
-        cy.url().should('eq', 'http://localhost:3000/?');  // update with implemented router
+        cy.url().should('eq', 'http://localhost:3000/');  // update with implemented router
     })
 
     // Check what should be displayed
@@ -19,7 +19,7 @@ describe('Dashboard Page', () => {
     it('User should be able to logout and be redirected to the login screen.', () => {
         // Need to test logo and title
         cy.get('.logout-btn').click();
-        cy.url().should('eq', 'http://localhost:3000/?'); // update with implemented router
+        cy.url().should('eq', 'http://localhost:3000/'); // update with implemented router
         cy.get('.form-inner').contains('Login');
     })
 
