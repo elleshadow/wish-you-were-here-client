@@ -12,6 +12,10 @@
     font-size: 1.2rem;
 }
 
+form {
+    display: flex;
+}
+
 input +label {
     padding: 1rem;
     width: 100%;
@@ -54,11 +58,23 @@ input:checked +label {
 }
 
 .button-send {
+    cursor: pointer;
     display: block;
-    width: 100%;
+    width: 40%;
+    background-color: #6ca0dc;
+    color: white;
     height: 5vh;
+    border: none;
     border-radius: 0px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    letter-spacing: .2rem;
+    box-shadow:
+        0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075),
+        0 16px 16px hsl(0deg 0% 0% / 0.075)
+   ;
 }
 
 .socket-list {
