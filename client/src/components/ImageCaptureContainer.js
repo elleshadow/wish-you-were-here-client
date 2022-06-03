@@ -23,7 +23,21 @@ const ImageCaptureContainer = (props) => {
                 // vidTrack.forEach(track => track.enabled = true);
                 // video.play();
             }
-            video.play();
+
+            var playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(pause => {
+                        video.pause()
+                    })
+                    .then(vid => {
+                        video.play()
+                    })
+                    .catch(error => {
+                    console.log(error)
+                    });
+                }
+
         })
         .catch(error => console.log(error));
     }
