@@ -27,51 +27,52 @@ function LoginForm({ login, userId, error }) {
     }
 
     return (
-        <section className="form-page">
-            <form className='form-container'>
-                <div className='form-inner'>
-                    <h2 className='large'>Login</h2>
-                    <section className='form-group medium'>
-                        <label htmlFor='name'>Name: </label>
-                        <input 
-                            className='input-login'
-                            type='text'
-                            name='name'
-                            placeholder='Name'
-                            value={formDetails.name}
-                            onChange={(event) => {handleChange(event)}}
-                        /> 
-                    </section>
-                    <section className='form-group medium'>
-                        <label htmlFor='name'>Pronouns: </label>
-                        <input 
-                            className='input-login'
-                            type='text'
-                            name='pronouns'
-                            placeholder='Pronouns (optional)'
-                            value={formDetails.pronouns}
-                            onChange={(event) => {handleChange(event)}}
-                        /> 
-                    </section>
-                    <section className='form-group medium'>
-                        <label htmlFor='email'>Email: </label>
-                        <input 
-                            className='input-login'
-                            type='email'
-                            name='email'
-                            placeholder='Email (optional)'
-                            value={formDetails.email}
-                            onChange={(event) => handleChange(event)}
-                        />
-                    </section>
-                    {error ? <h3 className='medium'>{error}</h3> : ''}
-                    <Link to={`/dashboard/${userId}`}>
-                        <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
-                    </Link>
-                </div>
-            </form>
-        </section>
-    )
-}
+            <section className="form-page">
+                <form className='form-container'>
+                    <div className='form-inner'>
+                        <h2 className='large'>Login</h2>
+                        <section className='form-group medium'>
+                            <label htmlFor='name'>Name: </label>
+                            <input 
+                                className='input-login'
+                                type='text'
+                                name='name'
+                                placeholder='Name'
+                                value={formDetails.name}
+                                onChange={(event) => {handleChange(event)}}
+                            /> 
+                        </section>
+                        <section className='form-group medium'>
+                            <label htmlFor='name'>Pronouns: </label>
+                            <input 
+                                className='input-login'
+                                type='text'
+                                name='pronouns'
+                                placeholder='Pronouns (optional)'
+                                value={formDetails.pronouns}
+                                onChange={(event) => {handleChange(event)}}
+                            /> 
+                        </section>
+                        <section className='form-group medium'>
+                            <label htmlFor='email'>Email: </label>
+                            <input 
+                                className='input-login'
+                                type='email'
+                                name='email'
+                                placeholder='Email (optional)'
+                                value={formDetails.email}
+                                onChange={(event) => handleChange(event)}
+                            />
+                        </section>
+                        {error ? <h3 className='medium'>{error}</h3> : ''}
+                        <Link to={`/dashboard`}>
+                            {console.log("link is working")}
+                            <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                        </Link>
+                    </div>
+                </form>
+            </section>
+         )
+    }
 
 export default LoginForm;

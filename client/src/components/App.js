@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { v4 as uuidV4 } from 'uuid'
+import React, { useState } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 
@@ -40,11 +39,15 @@ function App() {
         <Dashboard  data={data}/> 
     </SocketProvider>
   )
-  
 
   return (
     <main className='App'>
-        {!!data ?  dashboard : <LoginForm login={login} error={error} /> }
+      <Route exact path="/">
+        {!!data ? <Redirect to="/dashboard" /> : <LoginForm login={login} error={error}/>}
+      </Route>
+      <Route exact path="/dashboard">
+        {!!data ? dashboard : <Redirect to="/"/>}
+      </Route>
     </main>
   );
 }
