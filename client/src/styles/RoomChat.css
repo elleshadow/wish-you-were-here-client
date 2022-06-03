@@ -1,8 +1,12 @@
+.chat-sidebar {
+    margin-top: 6vh;
+}
+
 .chat {
     display: flex;
     flex-direction: column;
     background-color: white;
-    height: 100vh;
+    height: 90vh;
     width: 20vw;
     border-top: none;
     font-size: 1.2rem;
@@ -24,7 +28,7 @@ input:checked +label {
     font-size: 1.5rem;
 }
 
-.right-side-tabs {
+.chat-tab {
     display: flex;
 }
 

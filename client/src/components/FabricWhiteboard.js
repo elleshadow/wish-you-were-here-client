@@ -18,7 +18,7 @@ const FabricWhiteboard = (props) => {
     const initCanvas = () => {
       return new fabric.Canvas('canv', {
         height: 1000,
-        width: 1000,
+        width: 1200,
         backgroundColor: 'transparent',
       })
     }
@@ -30,11 +30,8 @@ const FabricWhiteboard = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("running HERE", props.connectedUsers)
-   
      props.connectedUsers && props.connectedUsers.forEach((connectedUser, index) => {
       if(!connectedUser.photoLocation) return
-      console.log(props.connectedUsers)
       const {
         email,
         id,
@@ -58,11 +55,8 @@ const FabricWhiteboard = (props) => {
         });
         setMyPhoto(false)
       } else if(id !== props.myID && photo && photoURL) {
-         console.log("userURL", photoURL, index)
          addImage(photoURL, photoLocation)
        }
-       console.log("Multiple ME", editor.canvas._objects)
-       console.log("Multiple ME", editor.canvas._objects.length)
      })
   }, [canvas])
 
@@ -93,25 +87,28 @@ const FabricWhiteboard = (props) => {
 
 const updateLocation = () => {
 
-  if (!editor.canvas._objects[0].ownMatrixCache.value) return
-  const scale =  editor.canvas._objects[0].scaleX
-  const left = editor.canvas._objects[0].left
-  const top = editor.canvas._objects[0].top
-
-  const newLocation = {
-    left,
-    top,
-    scale
+  if (!editor.canvas._objects[0].ownMatrixCache.value) {
+    return
+  } else {
+    const scale =  editor.canvas._objects[0].scaleX
+    const left = editor.canvas._objects[0].left
+    const top = editor.canvas._objects[0].top
+  
+    const newLocation = {
+      left,
+      top,
+      scale
+    }
+    setLocation(newLocation)
+    }
   }
-  setLocation(newLocation)
-   }
 
 
 
   return (
     <>
     <div onMouseUp={updateLocation}  className="whiteboard-container">
-      <img className="whiteboard-bg" src="https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcC1zODMtcGFpLTY2MzQtY2FyZC0wMWEuanBn.jpg"/>
+      <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
 
 
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />

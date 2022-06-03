@@ -57,13 +57,11 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
     });
 
     return (
-        <div className="right-side yellow section" contenteditable>
-            <div className="right-side-tabs">
-                {/* <input id="participants" type="radio" name="tabs" value="participants"/>
-                <label for="participants">Participants</label> */}
+        <section className="chat-sidebar" contenteditable>
+            <span className="chat-tab">
                 <input id="chat" type="radio" name="tabs" value="chat" checked/>
                 <label for="chat">Chat</label>
-            </div>
+            </span>
             <div className="chat">
                 <div className="message-container">
                     {displayedMesssages}
@@ -78,7 +76,7 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
                     </section>
                 </section>
             </div>
-      </div>
+      </section>
     )
 }
 

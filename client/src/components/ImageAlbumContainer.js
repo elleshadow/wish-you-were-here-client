@@ -8,6 +8,7 @@ const ImageAlbumContainer = ({ photos, deletePhoto }) => {
             <ImageCard
                 url={image.url}
                 id={image.id}
+                className="sample-image"
                 key={image.id}
                 deletePhoto={deletePhoto}
             />

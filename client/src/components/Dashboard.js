@@ -118,18 +118,18 @@ function Dashboard(props) {
 
     
     return (
-        <>
-        
-        <div className='dashboard'>
-            <ImageCaptureContainer handleSendPhoto={sendPhotoTest}/>
+        <section className="dashboard">    
+            <div className='user-photo-area'>
+                <ImageCaptureContainer handleSendPhoto={sendPhotoTest}/>
+                <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
+            </div>
             <RoomChat 
+            className="chat-box"
             userInfo={props.data} 
             messages={messages} 
             connectedUsers={connectedUsers}
             />
-        </div>
-        <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
-        </>
+        </section>
     )
 }
 
