@@ -5,7 +5,7 @@ const UsersList = ({ connectedUsers }) => {
   
     const users = connectedUsers.map(user => {
         return (
-            <li>{user.name} {user.pronouns} {user.photo && user.photoURL}</li>
+            <li>{user.name} {user.pronouns}</li>
         )
     })
 
