@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #edcbbe;
+    background-color: #b0c4de;;
     height: 100vh;
     width: 100vw;
 }
@@ -13,7 +13,7 @@
 }
 
 .form-inner {
-   background-color: var(--third-color);
+   background-color: #6ca0dc;
    padding: 5rem;
    display: flex;
    flex-direction: column;
@@ -43,11 +43,11 @@
     border-bottom: 0.2rem solid white;
     font-size: 2rem;
     margin-left: 1rem;
-    outline: #edcbbe;
+    outline: #6ca0dc;
 }
 
 .input-login::placeholder {
-    color: #7a3b31a4;
+    color: white;
 }
 
 .submit-name-btn {
@@ -60,6 +60,6 @@
     background: none;
 }
 .submit-name-btn:hover {
-    background-color: #fb9687;
+    background-color: #6ca0dc;
     border: 0.3rem solid white;
 }
