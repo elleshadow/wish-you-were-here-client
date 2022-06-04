@@ -87,7 +87,7 @@ const FabricWhiteboard = (props) => {
 
 const updateLocation = () => {
 
-  if (!editor.canvas._objects[0].ownMatrixCache.value) {
+  if (!editor.canvas._objects[0]) {
     return
   } else {
     const scale =  editor.canvas._objects[0].scaleX

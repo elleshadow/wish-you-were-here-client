@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ImageAlbumContainer from './ImageAlbumContainer';
+import { v4 as uuidV4 } from 'uuid'
 import '../styles/ImageCaptureContainer.css'
 
 const ImageCaptureContainer = (props) => {
@@ -87,7 +88,7 @@ const ImageCaptureContainer = (props) => {
     const addPhoto = (url) => {
         const newPhoto = {
             'url': url, 
-            'id': Date.now() // replace with more robust randomized ID
+            'id': uuidV4() 
         }
         setPhotos([...photos, newPhoto]);
     }
@@ -115,15 +116,34 @@ const ImageCaptureContainer = (props) => {
             reader.onload = (event) => {
                 document.querySelector('.preview').src = event.target.result;
                 addPhoto(event.target.result);
-                props.handleSendPhoto(input.files[0])
+                
             }
             reader.readAsDataURL(input.files[0])
         }
     }
 
+    const readFile = (url) => {
+        const canvas = document.createElement("CANVAS");
+        let ctx = canvas.getContext('2d');
+        let img = new Image;
+        img.onload = function(){
+            ctx.drawImage(img,0,0); // Or at whatever offset you like
+        };
+        img.src = url;
+        console.log(img)
+        fetch(url)
+        .then(response => response.blob())
+        .then(function(blob) {
+            const file = new File([blob], uuidV4(), {type: blob.type,});
+            props.handleSendPhoto(file)
+        });
+
+    }
+
 
     return (
         <section className='image-capture-container'>
+                                <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
             <section className='polaroid-cam'>
                 <div className='camera-display'>
                     {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
@@ -131,8 +151,8 @@ const ImageCaptureContainer = (props) => {
                 </div>
             </section>
             <section className='controls'>
-                <div className='side-btns'>
-                    <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+                {/* <div className='side-btns'>
+
                     {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     <input 
                         accept='image/png, image/jpeg' 
@@ -142,14 +162,14 @@ const ImageCaptureContainer = (props) => {
                         capture='environment' 
                         onChange={readURL}
                     />
-                </div>
+                </div> */}
                 <div className='preview-stage'>
                     <h2 className='medium'>Image Preview:</h2>
                     <canvas id='canvasImg' ref={photoRef}></canvas>
                     <img className='preview' src=''/>
                 </div>
             </section>
-            {photos.length !== 0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
+            {photos.length !== 0 && <ImageAlbumContainer handleUsePhoto={readFile} photos={photos} deletePhoto={deletePhoto} />}
         </section>
     )
 }

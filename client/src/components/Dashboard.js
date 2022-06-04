@@ -10,13 +10,17 @@ import FabricWhiteboard from './FabricWhiteboard'
 function Dashboard(props) {
     // Socket
     const {
-        name,
+        email,
         id,
+        name,
+        photo,
+        photoLocation,
+        photoURL,
         pronouns,
-        email
     }= JSON.parse(props.data)
 
     const socket = useSocket()
+    const [sentPhoto, setSentPhoto] = useState(false)
     const [connectionStatus, setConnectionStatus] = useState(false)
     const [connectedUsers, setConnectedUsers] = useState(false)
     const [messages, setMessages] = useState([])
@@ -46,13 +50,13 @@ function Dashboard(props) {
                 socket.emit('send_photo_location', data);
     })
 
-    const sendPhotoTest = ((photo) => {
+    const sendPhoto = ((photo) => {
                 const data = {
                     id: id,
                     timeStamp: new Date(),
                     photo: photo,
                 }
-                console.log("Client Sending Photo")
+                console.log("Client Sending Photo", data)
                 socket.emit('send_photo', data);
             })
     
@@ -104,7 +108,8 @@ function Dashboard(props) {
         socket && socket.on("recieve-users-list", (data) => {
             console.log("recieve-users-list")
             console.log(data)
-            setConnectedUsers(data) 
+            setConnectedUsers(data)
+            setData(data) 
         })
 
         socket && socket.on("user-disconnected", (data) => {
@@ -116,12 +121,22 @@ function Dashboard(props) {
         }
     }, [socket])
 
-    
+    const setData =(data) => {
+        const updatedData = data.find(user => {
+            return user.id === id
+        }) 
+        const dataString = JSON.stringify(updatedData)
+        console.log(dataString)
+        props.handleSetData(
+            dataString
+        );
+    }
+    console.log(photo)
+
     return (
         <section className="dashboard">    
             <div className='user-photo-area'>
-                <ImageCaptureContainer handleSendPhoto={sendPhotoTest}/>
-                <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
+            { !photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
             </div>
             <RoomChat 
             className="chat-box"

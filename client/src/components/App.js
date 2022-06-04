@@ -22,7 +22,8 @@ function App() {
             'id': details.id,
             'name': details.name,
             'pronouns': details.pronouns,
-            'email': details.email
+            'email': details.email,
+            'photo': ''
         }));
         setIsLoggedIn(true)
     }
@@ -36,7 +37,7 @@ function App() {
   const dashboard = (
     <SocketProvider data={data}>
         <NavBar logOut={logOut}/>
-        <Dashboard  data={data}/> 
+        <Dashboard handleSetData={setData} data={data}/> 
     </SocketProvider>
   )
 
