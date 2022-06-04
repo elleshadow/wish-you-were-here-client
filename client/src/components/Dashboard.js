@@ -108,7 +108,8 @@ function Dashboard(props) {
         socket && socket.on("recieve-users-list", (data) => {
             console.log("recieve-users-list")
             console.log(data)
-            setConnectedUsers(data) 
+            setConnectedUsers(data)
+            setData(data) 
         })
 
         socket && socket.on("user-disconnected", (data) => {
@@ -120,12 +121,22 @@ function Dashboard(props) {
         }
     }, [socket])
 
-    console.log("photo", photo)
+    const setData =(data) => {
+        const updatedData = data.find(user => {
+            return user.id === id
+        }) 
+        const dataString = JSON.stringify(updatedData)
+        console.log(dataString)
+        props.handleSetData(
+            dataString
+        );
+    }
+    console.log(photo)
+
     return (
         <section className="dashboard">    
             <div className='user-photo-area'>
-             <ImageCaptureContainer handleSendPhoto={sendPhoto}/> 
-                <FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/>
+            { !photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
             </div>
             <RoomChat 
             className="chat-box"

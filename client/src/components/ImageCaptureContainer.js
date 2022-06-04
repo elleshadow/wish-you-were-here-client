@@ -143,6 +143,7 @@ const ImageCaptureContainer = (props) => {
 
     return (
         <section className='image-capture-container'>
+                                <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
             <section className='polaroid-cam'>
                 <div className='camera-display'>
                     {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
@@ -150,8 +151,8 @@ const ImageCaptureContainer = (props) => {
                 </div>
             </section>
             <section className='controls'>
-                <div className='side-btns'>
-                    <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+                {/* <div className='side-btns'>
+
                     {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
                     <input 
                         accept='image/png, image/jpeg' 
@@ -161,7 +162,7 @@ const ImageCaptureContainer = (props) => {
                         capture='environment' 
                         onChange={readURL}
                     />
-                </div>
+                </div> */}
                 <div className='preview-stage'>
                     <h2 className='medium'>Image Preview:</h2>
                     <canvas id='canvasImg' ref={photoRef}></canvas>
