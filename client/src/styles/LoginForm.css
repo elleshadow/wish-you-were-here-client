@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #b0c4de;;
+    background-color: var(--primary-color);
     height: 100vh;
     width: 100vw;
 }
@@ -13,7 +13,7 @@
 }
 
 .form-inner {
-   background-color: #6ca0dc;
+   background-color: var(--secondary-color);
    padding: 5rem;
    display: flex;
    flex-direction: column;
@@ -37,13 +37,10 @@
 
 .input-login {
     border: none;
-
     color: white;
-
     border-bottom: 0.2rem solid white;
-    font-size: 2rem;
     margin-left: 1rem;
-    outline: #6ca0dc;
+    outline: var(--secondary-color);
 }
 
 .input-login::placeholder {
@@ -60,6 +57,6 @@
     background: none;
 }
 .submit-name-btn:hover {
-    background-color: #6ca0dc;
+    background-color: var(--secondary-color);
     border: 0.3rem solid white;
 }

@@ -3,7 +3,6 @@ import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import "../styles/FabricWhiteboard.css";
 
-
 const FabricWhiteboard = (props) => {
   const [myPhoto, setMyPhoto] = useState(true);
   const [canvas, setCanvas] = useState('');
@@ -15,18 +14,16 @@ const FabricWhiteboard = (props) => {
 
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
   
-    const initCanvas = () => {
-      return new fabric.Canvas('canv', {
-        height: 1000,
-        width: 1200,
-        backgroundColor: 'transparent',
-      })
-    }
+  const initCanvas = () => {
+    return new fabric.Canvas('canv', {
+      height: 1000,
+      width: 1200,
+      backgroundColor: 'transparent',
+    });
+  };
     
   useEffect(() => {
-    console.log("setting canvas")
     setCanvas(initCanvas());
-    console.log(canvas)
   }, []);
 
   useEffect(() => {
@@ -56,13 +53,13 @@ const FabricWhiteboard = (props) => {
         setMyPhoto(false)
       } else if(id !== props.myID && photo && photoURL) {
          addImage(photoURL, photoLocation)
-       }
-     })
-  }, [canvas])
+       };
+     });
+  }, [canvas]);
 
   useEffect(() => {
     setCanvas(initCanvas());
-  }, [props.connectedUsers])
+  }, [props.connectedUsers]);
 
   const addImage = (URL, location) => {
 
@@ -72,13 +69,12 @@ const FabricWhiteboard = (props) => {
         scale
       } = location
 
-
     fabric.Image.fromURL(URL, function(img) {
       var oImg = img.set({ left: left, top: top}).scale(scale);
       canvas.add(oImg);
       canvas.renderAll()
     });
-  }
+  };
     useEffect(() => {
       console.log(location)
       props.sendPhotoLocation(location)
@@ -98,27 +94,20 @@ const updateLocation = () => {
       left,
       top,
       scale
-    }
+    };
     setLocation(newLocation)
-    }
-  }
-
-
+    };
+  };
 
   return (
     <>
-    <div onMouseUp={updateLocation}  className="whiteboard-container">
-      <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
-
-
+      <div onMouseUp={updateLocation}  className="whiteboard-container">
+        <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
-
-    </div>
-
+      </div>
     </>
   );
-}
-
+};
 
 export default FabricWhiteboard

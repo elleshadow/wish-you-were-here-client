@@ -1,39 +1,33 @@
-import React, { useState } from "react";
-import '../styles/RoomChat.css'
+import React, { useState } from 'react';
+import '../styles/RoomChat.css';
 import UserList from './UserList';
 import Message from './Message';
 import { useSocket } from '../context/SocketProvider';
-import { useLocalStorage } from "../context/LocalStorageProvider";
 
 const RoomChat = ({ userInfo, connectedUsers, messages }) => {
-
-    const socket = useSocket()
-
-
-    const [chatInput, setChatInput] = useState("")
+    const socket = useSocket();
+    const [chatInput, setChatInput] = useState('');
 
     const sendMessage = (dataStringUserInfo, message) => {
-        const userInfoObject = JSON.parse(dataStringUserInfo)
-        userInfoObject.timeStamp = new Date().toISOString()
-        userInfoObject.message = message
-
-        socket.emit("send_message", userInfoObject)
-        console.log("Client sent message");
+        const userInfoObject = JSON.parse(dataStringUserInfo);
+        userInfoObject.timeStamp = new Date().toISOString();
+        userInfoObject.message = message;
+        socket.emit('send_message', userInfoObject);
+        console.log('Client sent message');
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault()
-        setChatInput("")
-
-        sendMessage(userInfo, chatInput)
+        event.preventDefault();
+        setChatInput('');
+        sendMessage(userInfo, chatInput);
     }
 
     const handleChange = (event) => {
-        setChatInput(event.target.value)
+        setChatInput(event.target.value);
     }
 
     const sortedMessages = messages.sort((a, b) => {
-        return Date.parse(b.timeStamp) - Date.parse(a.timeStamp)
+        return Date.parse(b.timeStamp) - Date.parse(a.timeStamp);
     })
 
     const compareUserID = (messageID) => {
@@ -57,18 +51,18 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
     });
 
     return (
-        <section className="chat-sidebar" contenteditable>
-            <span className="chat-tab">
-                <input id="chat" type="radio" name="tabs" value="chat" checked/>
-                <label for="chat">Chat</label>
+        <section className='chat-sidebar' contenteditable>
+            <span className='chat-tab'>
+                <input id='chat' type='radio' name='tabs' value='chat' checked/>
+                <label className='medium' for='chat'>Chat</label>
             </span>
-            <div className="chat">
-                <div className="message-container">
+            <div className='chat'>
+                <div className='message-container'>
                     {displayedMesssages}
                 </div>
                 <form onSubmit={(event) => handleSubmit(event)}>
-                    <input className="message-box" type="text" placeholder="message..." onChange={(event) => handleChange(event)} value={chatInput} />
-                    <button className="button-send">Send</button>
+                    <input className='message-box medium-small' type='text' placeholder='message...' onChange={(event) => handleChange(event)} value={chatInput} />
+                    <button className='button-send medium'>Send</button>
                 </form>
                 <section className='socket-list'>
                     <section className='users-list-container'>
@@ -76,8 +70,8 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
                     </section>
                 </section>
             </div>
-      </section>
+        </section>
     )
 }
 
-export default RoomChat
+export default RoomChat;

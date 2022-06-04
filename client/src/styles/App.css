@@ -1,8 +1,8 @@
 :root {
     font-size: 62.5%;
-    --primary-color: #362143;
-    --secondary-color: #412750;
-    --third-color: #ff7e6a;
+    --primary-color: #b0c4de;
+    --secondary-color: #6ca0dc;
+    --third-color: #bcd4e6;
     --button-color: #281722;
 }
   
@@ -15,8 +15,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     color: #333;
-    background-color: #b0c4de;
-    
+    background-color: var(--primary-color);
 }
 
 input, button {

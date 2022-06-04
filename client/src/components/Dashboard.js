@@ -1,43 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSocket } from '../context/SocketProvider';
 import '../styles/Dashboard.css';
 import ImageCaptureContainer from './ImageCaptureContainer';
-import RoomLeftSidebar from './RoomLeftSidebar';
 import RoomChat from './RoomChat';
-import UserList from './UserList';
-import FabricWhiteboard from './FabricWhiteboard'
+import FabricWhiteboard from './FabricWhiteboard';
 
 function Dashboard(props) {
-    // Socket
     const {
-        email,
         id,
-        name,
         photo,
-        photoLocation,
-        photoURL,
-        pronouns,
-    }= JSON.parse(props.data)
+    }= JSON.parse(props.data);
 
-    const socket = useSocket()
-    const [sentPhoto, setSentPhoto] = useState(false)
-    const [connectionStatus, setConnectionStatus] = useState(false)
-    const [connectedUsers, setConnectedUsers] = useState(false)
-    const [messages, setMessages] = useState([])
-
-    // const sendPhoto = (() => {
-    //     const reader = new FileReader();
-    //         reader.onload = function() {
-    //             const photo = this.result.replace(/.*base64,/, '');
-    //             const data = {
-    //                 id: id,
-    //                 timeStamp: new Date(),
-    //                 photo: photo,
-    //             }
-    //             socket.emit('send_photo', data);
-    //         };
-    //     reader.readAsDataURL(this.files[0]);
-    // }, false);
+    const socket = useSocket();
+    const [connectionStatus, setConnectionStatus] = useState(false);
+    const [connectedUsers, setConnectedUsers] = useState(false);
+    const [messages, setMessages] = useState([]);
 
     const sendPhotoLocation = ((location) => {
                 if(!location.scale) return
@@ -46,97 +23,72 @@ function Dashboard(props) {
                     timeStamp: new Date(),
                     location: location,
                 }
-                console.log("Client Sending location", location)
                 socket.emit('send_photo_location', data);
-    })
+    });
 
     const sendPhoto = ((photo) => {
                 const data = {
                     id: id,
                     timeStamp: new Date(),
                     photo: photo,
-                }
-                console.log("Client Sending Photo", data)
+                };
                 socket.emit('send_photo', data);
-            })
+            });
     
     useEffect(() => {
         socket && socket.on("user-connected", (data) => {
             if (id === data.id) {
-            console.log("Self Connection Verified")
-            setConnectionStatus(socket.connected)
+                setConnectionStatus(socket.connected);
             } else {
-            console.log("Another User Connected", data.name)
-            }
-        })
+                console.log("Another User Connected", data.name);
+            };
+        });
 
         socket && socket.on("recieve_message", (data) => {
-            setMessages(prevMessages => [...prevMessages, data])
-            console.log("Client Recieved Message", data)
-        })
+            setMessages(prevMessages => [...prevMessages, data]);
+        });
 
         socket && socket.on("recieve_photo_location", (data) => {
-            console.log("recieve_photo_location")
-            const { id, location} = data
-            console.log(`${data.name} sent a location`)
+            const { id, location} = data;
             setConnectedUsers(prevConnectedUsers => {
                 const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
-                    return connectedUser.id !== id
-                })
+                    return connectedUser.id !== id;
+                });
                 const newLocation = prevConnectedUsers.filter(connectedUser => {
-                    return connectedUser.id === id
-                })
-                newLocation.photoLocation = location
-                return [...updatedConnectedUsers, newLocation]
-            })
-            console.log(connectedUsers)
-        })
-
-        // socket && socket.on("recieve_photo_URL", (data) => {
-        //     const { id, name, pronouns, email, url} = data
-        //     data.location = {left: 0, top: 0, scale: 0.25}
-        //     console.log(`${data.name} sent a photo`)
-        //     setConnectedUsers(prevConnectedUsers => {
-        //         const updatedConnectedUsers = prevConnectedUsers.filter(connectedUser => {
-        //             return connectedUser.id !== id
-        //         })
-        //         return [...updatedConnectedUsers, data]
-        //     })
-        //     console.log(connectedUsers)
-        // })
-
+                    return connectedUser.id === id;
+                });
+                newLocation.photoLocation = location;
+                return [...updatedConnectedUsers, newLocation];
+            });
+        });
         socket && socket.on("recieve-users-list", (data) => {
-            console.log("recieve-users-list")
-            console.log(data)
-            setConnectedUsers(data)
-            setData(data) 
-        })
+            console.log("recieve-users-list");
+            console.log(data);
+            setConnectedUsers(data);
+            setData(data);
+        });
 
         socket && socket.on("user-disconnected", (data) => {
-            console.log(`${data.name} disconnected`)
-        })
+            console.log(`${data.name} disconnected`);
+        });
 
         return () => {
-            setConnectionStatus(false)
-        }
+            setConnectionStatus(false);
+        };
     }, [socket])
 
     const setData =(data) => {
         const updatedData = data.find(user => {
-            return user.id === id
-        }) 
-        const dataString = JSON.stringify(updatedData)
-        console.log(dataString)
-        props.handleSetData(
-            dataString
-        );
-    }
-    console.log(photo)
+            return user.id === id;
+        });
+        const dataString = JSON.stringify(updatedData);
+        props.handleSetData(dataString);
+    };
 
     return (
         <section className="dashboard">    
             <div className='user-photo-area'>
-            { !photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
+            {!photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
             </div>
             <RoomChat 
             className="chat-box"

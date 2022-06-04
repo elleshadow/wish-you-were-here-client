@@ -21,7 +21,7 @@
 
 .chat-message {
   width:fit-content;
-  background: #bcd4e6;
+  background: var(--third-color);;
   border-radius: 2rem;
   padding: 1rem 1.4rem;
   max-width: 70%;
@@ -29,7 +29,7 @@
 
 .user-chat-message {
   width:fit-content;
-  background: #74a0d1;
+  background: var(--secondary-color);;
   border-radius: 2rem;
   padding: 1rem 1.4rem;
   max-width: 70%;

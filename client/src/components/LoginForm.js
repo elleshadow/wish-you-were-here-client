@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { v4 as uuidV4 } from 'uuid'
+import { v4 as uuidV4 } from 'uuid';
 import '../styles/LoginForm.css';
-import { useLocalStorage } from '../context/LocalStorageProvider'
 
 function LoginForm({ login, userId, error }) {
     const [formDetails, setFormDetails] = useState({ name: '', email: '', pronouns: '' });
 
     const submitForm = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         login({
             'id': uuidV4(),
             'name': formDetails.name,
@@ -16,25 +15,25 @@ function LoginForm({ login, userId, error }) {
             'email': formDetails.email
         });
         clearInputs();
-    }
+    };
 
     const handleChange = (event) => {
         setFormDetails({ ...formDetails, [event.target.name]: event.target.value });
-    }
+    };
 
     const clearInputs = () => {
         setFormDetails({ name: '', email: '', pronouns: '' });
-    }
+    };
 
     return (
-            <section className="form-page">
+            <section className='form-page'>
                 <form className='form-container'>
                     <div className='form-inner'>
                         <h2 className='large'>Login</h2>
                         <section className='form-group medium'>
                             <label htmlFor='name'>Name: </label>
                             <input 
-                                className='input-login'
+                                className='input-login medium'
                                 type='text'
                                 name='name'
                                 placeholder='Name'
@@ -45,7 +44,7 @@ function LoginForm({ login, userId, error }) {
                         <section className='form-group medium'>
                             <label htmlFor='name'>Pronouns: </label>
                             <input 
-                                className='input-login'
+                                className='input-login medium'
                                 type='text'
                                 name='pronouns'
                                 placeholder='Pronouns (optional)'
@@ -56,7 +55,7 @@ function LoginForm({ login, userId, error }) {
                         <section className='form-group medium'>
                             <label htmlFor='email'>Email: </label>
                             <input 
-                                className='input-login'
+                                className='input-login medium'
                                 type='email'
                                 name='email'
                                 placeholder='Email (optional)'
@@ -66,13 +65,12 @@ function LoginForm({ login, userId, error }) {
                         </section>
                         {error ? <h3 className='medium'>{error}</h3> : ''}
                         <Link to={`/dashboard`}>
-                            {console.log("link is working")}
                             <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
                         </Link>
                     </div>
                 </form>
             </section>
-         )
-    }
+         );
+    };
 
 export default LoginForm;

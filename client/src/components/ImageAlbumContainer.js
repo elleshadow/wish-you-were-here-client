@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageCard from './ImageCard';
-import "../styles/ImageAlbumContainer.css";
+import '../styles/ImageAlbumContainer.css';
 
 const ImageAlbumContainer = ({ photos, deletePhoto, handleUsePhoto }) => {
     const imageCards = photos.map((image) => {
@@ -8,18 +8,18 @@ const ImageAlbumContainer = ({ photos, deletePhoto, handleUsePhoto }) => {
             <ImageCard
                 url={image.url}
                 id={image.id}
-                className="sample-image"
+                className='sample-image'
                 key={image.id}
                 deletePhoto={deletePhoto}
                 handleUsePhoto={handleUsePhoto}
             />
-        )
-    })
+        );
+    });
     return (
-        <div className="card-container">
+        <div className='card-container'>
             { imageCards }
         </div>
     );
-}
+};
 
 export default ImageAlbumContainer;

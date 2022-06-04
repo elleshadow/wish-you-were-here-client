@@ -9,7 +9,6 @@
     height: 90vh;
     width: 20vw;
     border-top: none;
-    font-size: 1.2rem;
 }
 
 form {
@@ -26,10 +25,9 @@ input +label {
 input:checked +label {
     padding: 1rem;
     text-align: center;
-    background-color: #bcd4e6;
+    background-color: var(--third-color);
     color: white;
     border-bottom: none;
-    font-size: 1.5rem;
 }
 
 .chat-tab {
@@ -44,7 +42,6 @@ input:checked +label {
     margin: .5rem;
     padding: .5rem;
     border-radius: .5rem;
-    font-size: 1.5rem;
     overflow-y: auto;
 }
 
@@ -52,8 +49,8 @@ input:checked +label {
     height: 5vh;
     border: none;
     width: 100%;
-    background-color: #c5e9fc;
-    outline: #bcd4e6;
+    background-color: var(--third-color);;
+    outline: var(--third-color);;
     padding-left: 1vw;
 }
 
@@ -61,12 +58,11 @@ input:checked +label {
     cursor: pointer;
     display: block;
     width: 40%;
-    background-color: #6ca0dc;
+    background-color: var(--secondary-color);
     color: white;
     height: 5vh;
     border: none;
     border-radius: 0px;
-    font-size: 1.8rem;
     letter-spacing: .2rem;
     box-shadow:
         0 1px 1px hsl(0deg 0% 0% / 0.075),
