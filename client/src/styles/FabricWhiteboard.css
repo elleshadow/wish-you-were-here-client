@@ -3,6 +3,7 @@
   height: 1000px;
   width: 1200px;
   margin-bottom: 10vh;
+  margin-top: 10vh;
   left: 3.5vw;
 }
 
@@ -38,5 +39,4 @@
   position: absolute;
   height: 1000px;
   width: 1200px;
-  border: purple 1px solid;
 }

@@ -1,47 +1,36 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ImageAlbumContainer from './ImageAlbumContainer';
-import { v4 as uuidV4 } from 'uuid'
-import '../styles/ImageCaptureContainer.css'
+import { v4 as uuidV4 } from 'uuid';
+import '../styles/ImageCaptureContainer.css';
 
 const ImageCaptureContainer = (props) => {
     const videoRef = useRef(null);
     const photoRef = useRef(null);
 
-    const [photos, setPhotos] = useState([])
+    const [photos, setPhotos] = useState([]);
     const [hasPhoto, setHasPhoto] = useState(false);
     const [cameraOff, setCameraOff] = useState(false);
 
     const getVideo = () => {
-        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) // width and height are scalable TO these params || input what type of media we want
+        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080 }}) 
         .then(videoStream => {
-            // var vidTrack = videoStream.getVideoTracks();
             let video = videoRef.current;
             video.srcObject = videoStream;
-            if(cameraOff) {
-                // videoStream.getVideoTracks()[0].stop();
-                // vidTrack.forEach(track => track.enabled = false);
-            } else {
-                // vidTrack.forEach(track => track.enabled = true);
-                // video.play();
-            }
-
             var playPromise = video.play();
-
                 if (playPromise !== undefined) {
                     playPromise.then(pause => {
-                        video.pause()
+                        video.pause();
                     })
                     .then(vid => {
-                        video.play()
+                        video.play();
                     })
                     .catch(error => {
-                    console.log(error)
+                    console.log(error);
                     });
-                }
-
+            };
         })
         .catch(error => console.log(error));
-    }
+    };
     useEffect(() => {getVideo()}, [videoRef]);
 
     const toggleCamera = () => {
@@ -49,13 +38,13 @@ const ImageCaptureContainer = (props) => {
             setCameraOff(true);
         } else {
             setCameraOff(false);
-        }
+        };
         getVideo();
-    }
+    };
 
     const takePhoto = () => {
         const width = 414;
-        const height = width / (16/9); // get a 16 by 9 ratio
+        const height = width / (16/9);
 
         let video = videoRef.current;
         let photo = photoRef.current;
@@ -63,15 +52,12 @@ const ImageCaptureContainer = (props) => {
         photo.height = height;
 
         let context = photo.getContext('2d');
-        context.drawImage(video, 0, 0, width, height); // Screen shot of video from top left (0,0) and adjust height/width
+        context.drawImage(video, 0, 0, width, height);
         setHasPhoto(true);
 
         const currentCanvas = document.querySelector('#canvasImg');
-        // Convert canvas to a data URL (URI)
-        const canvasUrl = currentCanvas.toDataURL('image/png', 0.5); //file type and quality 50%
-        // Create an anchor and set the href value to our data URL
+        const canvasUrl = currentCanvas.toDataURL('image/png', 0.5);
         if(cameraOff) {
-            // HAVE IMAGE CANVAS DOWNLOAD
             downloadCanvas(canvasUrl);
         }
         addPhoto(canvasUrl);
@@ -89,89 +75,47 @@ const ImageCaptureContainer = (props) => {
         const newPhoto = {
             'url': url, 
             'id': uuidV4() 
-        }
+        };
         setPhotos([...photos, newPhoto]);
-    }
-
-    const clearPhoto = () => {
-        let photo = photoRef.current;
-        let context = photo.getContext('2d');
-        document.querySelector('.preview').src = '';
-
-        context.clearRect(0, 0, photo.width, photo.height);
-        setPhotos([]);
-        setHasPhoto(false);
-    }
+    };
 
     const deletePhoto = (photoToDeleteId) => {
         const filteredPhotos = photos.filter(photo => photo.id !== photoToDeleteId);
         setPhotos(filteredPhotos);
-    }
-
-    const readURL = () => {
-        setHasPhoto(true);
-        let input = document.getElementById('icon-button-file')
-        if (input.files[0]) {
-            let reader = new FileReader()
-            reader.onload = (event) => {
-                document.querySelector('.preview').src = event.target.result;
-                addPhoto(event.target.result);
-                
-            }
-            reader.readAsDataURL(input.files[0])
-        }
-    }
+    };
 
     const readFile = (url) => {
-        const canvas = document.createElement("CANVAS");
+        const canvas = document.createElement('CANVAS');
         let ctx = canvas.getContext('2d');
         let img = new Image;
-        img.onload = function(){
-            ctx.drawImage(img,0,0); // Or at whatever offset you like
+        img.onload = function() {
+            ctx.drawImage(img,0,0); 
         };
         img.src = url;
-        console.log(img)
         fetch(url)
         .then(response => response.blob())
         .then(function(blob) {
             const file = new File([blob], uuidV4(), {type: blob.type,});
-            props.handleSendPhoto(file)
+            props.handleSendPhoto(file);
         });
 
-    }
-
+    };
 
     return (
         <section className='image-capture-container'>
-                                <button className='btn btn-styled' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
+            <button className='btn btn-styled medium' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
             <section className='polaroid-cam'>
                 <div className='camera-display'>
                     {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
                     <button className='cheese btn' onClick={takePhoto}></button>
                 </div>
             </section>
-            <section className='controls'>
-                {/* <div className='side-btns'>
-
-                    {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
-                    <input 
-                        accept='image/png, image/jpeg' 
-                        className='file-input btn btn-styled'
-                        id='icon-button-file' 
-                        type='file' 
-                        capture='environment' 
-                        onChange={readURL}
-                    />
-                </div> */}
-                <div className='preview-stage'>
-                    <h2 className='medium'>Image Preview:</h2>
-                    <canvas id='canvasImg' ref={photoRef}></canvas>
-                    <img className='preview' src=''/>
-                </div>
-            </section>
             {photos.length !== 0 && <ImageAlbumContainer handleUsePhoto={readFile} photos={photos} deletePhoto={deletePhoto} />}
+            <div className='preview-stage hidden'>
+                <canvas id='canvasImg' ref={photoRef}></canvas>
+            </div>
         </section>
-    )
-}
+    );
+};
 
 export default ImageCaptureContainer;
