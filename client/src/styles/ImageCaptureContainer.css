@@ -96,3 +96,7 @@ video, .no-video {
   color: #323944b4;
   margin: 1rem 0;
 }
+
+.hidden {
+  display: none;
+}

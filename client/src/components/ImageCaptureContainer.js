@@ -150,26 +150,10 @@ const ImageCaptureContainer = (props) => {
                     <button className='cheese btn' onClick={takePhoto}></button>
                 </div>
             </section>
-            <section className='controls'>
-                {/* <div className='side-btns'>
-
-                    {hasPhoto && <button className='btn btn-styled' onClick={clearPhoto}>Clear</button>}
-                    <input 
-                        accept='image/png, image/jpeg' 
-                        className='file-input btn btn-styled'
-                        id='icon-button-file' 
-                        type='file' 
-                        capture='environment' 
-                        onChange={readURL}
-                    />
-                </div> */}
-                <div className='preview-stage'>
-                    <h2 className='medium'>Image Preview:</h2>
-                    <canvas id='canvasImg' ref={photoRef}></canvas>
-                    <img className='preview' src=''/>
-                </div>
-            </section>
             {photos.length !== 0 && <ImageAlbumContainer handleUsePhoto={readFile} photos={photos} deletePhoto={deletePhoto} />}
+            <div className='preview-stage hidden'>
+                <canvas id='canvasImg' ref={photoRef}></canvas>
+            </div>
         </section>
     )
 }
