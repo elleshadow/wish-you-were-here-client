@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ImageAlbumContainer from './ImageAlbumContainer';
+import { v4 as uuidV4 } from 'uuid'
 import '../styles/ImageCaptureContainer.css'
 
 const ImageCaptureContainer = (props) => {
@@ -87,7 +88,7 @@ const ImageCaptureContainer = (props) => {
     const addPhoto = (url) => {
         const newPhoto = {
             'url': url, 
-            'id': Date.now() // replace with more robust randomized ID
+            'id': uuidV4() 
         }
         setPhotos([...photos, newPhoto]);
     }
@@ -115,10 +116,28 @@ const ImageCaptureContainer = (props) => {
             reader.onload = (event) => {
                 document.querySelector('.preview').src = event.target.result;
                 addPhoto(event.target.result);
-                props.handleSendPhoto(input.files[0])
+                
             }
             reader.readAsDataURL(input.files[0])
         }
+    }
+
+    const readFile = (url) => {
+        const canvas = document.createElement("CANVAS");
+        let ctx = canvas.getContext('2d');
+        let img = new Image;
+        img.onload = function(){
+            ctx.drawImage(img,0,0); // Or at whatever offset you like
+        };
+        img.src = url;
+        console.log(img)
+        fetch(url)
+        .then(response => response.blob())
+        .then(function(blob) {
+            const file = new File([blob], uuidV4(), {type: blob.type,});
+            props.handleSendPhoto(file)
+        });
+
     }
 
 
@@ -149,7 +168,7 @@ const ImageCaptureContainer = (props) => {
                     <img className='preview' src=''/>
                 </div>
             </section>
-            {photos.length !== 0 && <ImageAlbumContainer photos={photos} deletePhoto={deletePhoto} />}
+            {photos.length !== 0 && <ImageAlbumContainer handleUsePhoto={readFile} photos={photos} deletePhoto={deletePhoto} />}
         </section>
     )
 }

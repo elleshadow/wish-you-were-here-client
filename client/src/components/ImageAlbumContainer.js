@@ -2,7 +2,7 @@ import React from 'react';
 import ImageCard from './ImageCard';
 import "../styles/ImageAlbumContainer.css";
 
-const ImageAlbumContainer = ({ photos, deletePhoto }) => {
+const ImageAlbumContainer = ({ photos, deletePhoto, handleUsePhoto }) => {
     const imageCards = photos.map((image) => {
         return (
             <ImageCard
@@ -11,6 +11,7 @@ const ImageAlbumContainer = ({ photos, deletePhoto }) => {
                 className="sample-image"
                 key={image.id}
                 deletePhoto={deletePhoto}
+                handleUsePhoto={handleUsePhoto}
             />
         )
     })
