@@ -17,13 +17,13 @@ function Dashboard(props) {
     const [messages, setMessages] = useState([]);
 
     const sendPhotoLocation = ((location) => {
-                if(!location.scale) return
-                const data = {
-                    id: id,
-                    timeStamp: new Date(),
-                    location: location,
-                }
-                socket.emit('send_photo_location', data);
+        if(!location.scale) return
+        const data = {
+            id: id,
+            timeStamp: new Date(),
+            location: location,
+        }
+        socket.emit('send_photo_location', data);
     });
 
     const sendPhoto = ((photo) => {
@@ -88,13 +88,14 @@ function Dashboard(props) {
     return (
         <section className="dashboard">    
             <div className='user-photo-area'>
-            {!photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
+                {!photo && <ImageCaptureContainer handleSendPhoto={sendPhoto}/> }<FabricWhiteboard sendPhotoLocation={sendPhotoLocation} connectedUsers={connectedUsers} myID={id}/> 
             </div>
+
             <RoomChat 
-            className="chat-box"
-            userInfo={props.data} 
-            messages={messages} 
-            connectedUsers={connectedUsers}
+                className="chat-box"
+                userInfo={props.data} 
+                messages={messages} 
+                connectedUsers={connectedUsers}
             />
         </section>
     )

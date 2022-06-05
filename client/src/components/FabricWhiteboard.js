@@ -101,11 +101,11 @@ const updateLocation = () => {
 
   return (
     <>
-      <div onMouseUp={updateLocation}  className="whiteboard-container">
+      <section onMouseUp={updateLocation} className="whiteboard-container">
         <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
-      </div>
+      </section>
     </>
   );
 };

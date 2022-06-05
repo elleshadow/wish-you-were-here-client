@@ -11,13 +11,13 @@ const Message = ({ name, pronouns, message, matchesActiveUserID }) => {
   };
 
   return (
-    <div className={checkIDMatch('single-message-box')}>
-      <div className='chat-user-info'>
+    <section className={checkIDMatch('single-message-box')}>
+      <summary className='chat-user-info'>
         <p className='chat-name medium-small'>{name}</p>
         <p className='chat-pronouns medium-small'>{pronouns}</p>
-      </div>
+      </summary>
       <p className={checkIDMatch('chat-message medium-small')}>{message}</p>
-    </div>
+    </section>
   );
 };
 
