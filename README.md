@@ -1,5 +1,6 @@
 # Wish You Were Here
-- 
+![App Icon](https://user-images.githubusercontent.com/82775910/172031537-1dbab416-40d6-425c-b951-b4124215982f.png)
+
 
 #### Full Demo
 - Insert a video or GIF demo of general user flow
