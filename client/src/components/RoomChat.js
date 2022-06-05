@@ -56,10 +56,10 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
                 <input id='chat' type='radio' name='tabs' value='chat' checked/>
                 <label className='medium' for='chat'>Chat</label>
             </span>
-            <div className='chat'>
-                <div className='message-container'>
+            <section className='chat'>
+                <summary className='message-container'>
                     {displayedMesssages}
-                </div>
+                </summary>
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input className='message-box medium-small' type='text' placeholder='message...' onChange={(event) => handleChange(event)} value={chatInput} />
                     <button className='button-send medium'>Send</button>
@@ -69,7 +69,7 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
                         { !!connectedUsers && <UserList connectedUsers={connectedUsers} />}
                     </section>
                 </section>
-            </div>
+            </section>
         </section>
     )
 }

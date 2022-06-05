@@ -111,9 +111,9 @@ const ImageCaptureContainer = (props) => {
                 </div>
             </section>
             {photos.length !== 0 && <ImageAlbumContainer handleUsePhoto={readFile} photos={photos} deletePhoto={deletePhoto} />}
-            <div className='preview-stage hidden'>
+            <section className='preview-stage hidden'>
                 <canvas id='canvasImg' ref={photoRef}></canvas>
-            </div>
+            </section>
         </section>
     );
 };
