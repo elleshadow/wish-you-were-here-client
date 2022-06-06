@@ -4,7 +4,7 @@ const UsersList = ({ connectedUsers }) => {
 
     const users = connectedUsers.map(user => {
         return (
-            <li>{user.name} {user.pronouns}</li>
+            <li key={user.id}>{user.name} {user.pronouns}</li>
         );
     });
 

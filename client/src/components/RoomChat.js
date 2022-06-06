@@ -13,7 +13,6 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
         userInfoObject.timeStamp = new Date().toISOString();
         userInfoObject.message = message;
         socket.emit('send_message', userInfoObject);
-        console.log('Client sent message');
     }
 
     const handleSubmit = (event) => {
@@ -51,10 +50,10 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
     });
 
     return (
-        <section className='chat-sidebar' contenteditable>
+        <section className='chat-sidebar'>
             <span className='chat-tab'>
-                <input id='chat' type='radio' name='tabs' value='chat' checked/>
-                <label className='medium' for='chat'>Chat</label>
+                <input id='chat' type='radio' name='tabs' value='chat'/>
+                <label className='medium' htmlFor='chat'>Chat</label>
             </span>
             <section className='chat'>
                 <summary className='message-container'>
