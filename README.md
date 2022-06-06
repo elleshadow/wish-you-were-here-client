@@ -58,33 +58,27 @@ This was part of Turing School of Software & Design module3 group project where 
 #### Instructions on Use
 **_Login_**
 The user is initially asked to login with a name, preferred pronouns, and email address. All but the name are optional.
+![login](https://user-images.githubusercontent.com/97044701/172260425-8e98fb4f-c112-49d0-b3f4-fefb523fe7d3.gif)
 
 **_Chat_**
 A live chat is available for users to see who's on and interact with each other.
+![chat_room](https://user-images.githubusercontent.com/97044701/172260441-f82f8a85-35e7-41d2-a3fa-92c324350a91.gif)
 
-**_Photo_**
-Users are encouraged to take a photo by pressing the blue cheese button. Once pressed, the gallary will be immedietly populated with the photo. Multiple photos can be stored in the gallery. 
+**_Insert Photo and Drag, Drop, and Scale Photo**
+Users are encouraged to take a photo by pressing the blue cheese button. Once pressed, the gallary will be immedietly populated with the photo. Multiple photos can be stored in the gallery. If a user is satisfied with a photo they've taken, they can insert it into the group photo stage. Once the photo is in the group photo stage, users can drag, drop, and scale their images - live with other users.
+![use_photo](https://user-images.githubusercontent.com/97044701/172260919-1196e24b-2531-4296-957f-8bb6b6f0e858.gif)
 
 **_Delete Photo_**
 If a user doesn't like their photo, they can delete it from the gallery.
-
-**_Insert Photo_**
-If a user is satisfied with a photo they've taken, they can insert it into the group photo stage.
-
-**_Drag, Drop, and Scale Photo_**
-Once the photo is in the group photo stage, users can drag, drop, and scale their images - live with other users.
+![delete_photo](https://user-images.githubusercontent.com/97044701/172260766-1c62ea9c-f84e-4f71-8155-7990ae0d8103.gif)
 
 **_Download Group Photo_**
 Finally, if a user is satified with the group photo they can download it for keepsake.
+![download_photo](https://user-images.githubusercontent.com/97044701/172261320-6d927ec4-1b3e-4777-aab8-ec122513d08d.gif)
 
-
-#### Demo of Features
-1. **Login Page**
-2. **Chat Page**
-3. **Insert Photo**
-4. **Delete Photo**
-5. **Drag and Drop**
-6. **Download Group Photo**
+**_Logout_**
+Users can logout and login as a different user if they choose.
+![logout](https://user-images.githubusercontent.com/97044701/172260569-482bb5fb-c5c1-49b9-938e-007822660bef.gif)
 
 
 #### Testing the App
