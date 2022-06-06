@@ -25,11 +25,11 @@ const ImageCaptureContainer = (props) => {
                         video.play();
                     })
                     .catch(error => {
-                    console.log(error);
+
                     });
             };
         })
-        .catch(error => console.log(error));
+        .catch(error => {});
     };
     useEffect(() => {getVideo()}, [videoRef]);
 

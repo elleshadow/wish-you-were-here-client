@@ -39,9 +39,7 @@ function Dashboard(props) {
         socket && socket.on("user-connected", (data) => {
             if (id === data.id) {
                 setConnectionStatus(socket.connected);
-            } else {
-                console.log("Another User Connected", data.name);
-            };
+            } 
         });
 
         socket && socket.on("recieve_message", (data) => {
@@ -62,15 +60,10 @@ function Dashboard(props) {
             });
         });
         socket && socket.on("recieve-users-list", (data) => {
-            console.log("recieve-users-list");
-            console.log(data);
             setConnectedUsers(data);
             setData(data);
         });
 
-        socket && socket.on("user-disconnected", (data) => {
-            console.log(`${data.name} disconnected`);
-        });
 
         return () => {
             setConnectionStatus(false);

@@ -76,7 +76,6 @@ const FabricWhiteboard = (props) => {
     });
   };
     useEffect(() => {
-      console.log(location)
       props.sendPhotoLocation(location)
     }, [location]);
 
