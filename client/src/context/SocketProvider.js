@@ -17,9 +17,7 @@ export function SocketProvider({ data, children }) {
       { query: socketData }
     );
     setSocket(newSocket);
-    console.log('Socket Connecting');
     return () => {
-        console.log('Socket Disconnecting');
         newSocket.close();
     }    
   }, []);

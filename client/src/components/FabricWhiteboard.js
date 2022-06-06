@@ -5,6 +5,7 @@ import "../styles/FabricWhiteboard.css";
 
 const FabricWhiteboard = (props) => {
   const [myPhoto, setMyPhoto] = useState(true);
+  const [downloadURL, setDownloadURL] = useState('');
   const [canvas, setCanvas] = useState('');
   const [location, setLocation] = useState({
     left: 0,
@@ -15,15 +16,21 @@ const FabricWhiteboard = (props) => {
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
   
   const initCanvas = () => {
-    return new fabric.Canvas('canv', {
+    const canvas2 = new fabric.Canvas('canv', {
       height: 1000,
       width: 1200,
-      backgroundColor: 'transparent',
     });
+    fabric.Image.fromURL('../../turing-classroom.jpg', function(img) {
+         canvas2.setBackgroundImage('../../turing-classroom.jpg', canvas2.renderAll.bind(canvas2), {
+            scaleX: canvas2.width / img.width,
+            scaleY: canvas2.height / img.height
+         });
+      }, { crossOrigin: 'Anonymous' });
+    return canvas2
   };
     
   useEffect(() => {
-    setCanvas(initCanvas());
+     setCanvas(initCanvas());
   }, []);
 
   useEffect(() => {
@@ -51,7 +58,8 @@ const FabricWhiteboard = (props) => {
             return editor.canvas.add(oImg);
         });
         setMyPhoto(false)
-      } else if(id !== props.myID && photo && photoURL) {
+      } 
+      if(photo && photoURL) {
          addImage(photoURL, photoLocation)
        };
      });
@@ -61,7 +69,34 @@ const FabricWhiteboard = (props) => {
     setCanvas(initCanvas());
   }, [props.connectedUsers]);
 
-  const addImage = (URL, location) => {
+  const createDataURL = async () => {
+    console.log("attempting DL")
+    const me = props.connectedUsers.find(connectedUser => {
+      return connectedUser.id === props.myID
+    })
+    console.log(me)
+    const {
+      id,
+      photoLocation,
+      photoURL
+    } = me
+
+      await addImage(photoURL, photoLocation);
+      const dataURL = canvas.toDataURL();
+      console.log(dataURL);
+      downloadCanvas(dataURL)
+      return dataURL;
+  }
+
+  const downloadCanvas = (canvasUrl) => {
+        const linkWrapper = document.createElement('a');
+        linkWrapper.href = canvasUrl;
+        linkWrapper.download = `wish-you-were-here-${Date.now()}`;
+        linkWrapper.click();
+        linkWrapper.remove();
+    }
+
+  const addImage = async (URL, location) => {
 
      const {
         top, 
@@ -69,14 +104,13 @@ const FabricWhiteboard = (props) => {
         scale
       } = location
 
-    fabric.Image.fromURL(URL, function(img) {
+    await fabric.Image.fromURL(URL, function(img) {
       var oImg = img.set({ left: left, top: top}).scale(scale);
       canvas.add(oImg);
-      canvas.renderAll()
-    });
+     canvas.renderAll()
+    }, { crossOrigin: 'Anonymous' });
   };
     useEffect(() => {
-      console.log(location)
       props.sendPhotoLocation(location)
     }, [location]);
 
@@ -102,10 +136,10 @@ const updateLocation = () => {
   return (
     <>
       <section onMouseUp={updateLocation} className="whiteboard-container">
-        <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
       </section>
+      <button className='save-snap medium' onClick={downloadImage}>Download</button>
     </>
   );
 };

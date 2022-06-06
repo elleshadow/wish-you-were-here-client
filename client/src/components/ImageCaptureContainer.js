@@ -25,11 +25,11 @@ const ImageCaptureContainer = (props) => {
                         video.play();
                     })
                     .catch(error => {
-                    console.log(error);
+
                     });
             };
         })
-        .catch(error => console.log(error));
+        .catch(error => {});
     };
     useEffect(() => {getVideo()}, [videoRef]);
 
@@ -98,15 +98,16 @@ const ImageCaptureContainer = (props) => {
             const file = new File([blob], uuidV4(), {type: blob.type,});
             props.handleSendPhoto(file);
         });
-
     };
+
+    // https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg
 
     return (
         <section className='image-capture-container'>
             <button className='btn btn-styled medium' onClick={toggleCamera}>{!cameraOff ? 'Camera Off' : 'Camera On'}</button>
             <section className='polaroid-cam'>
                 <div className='camera-display'>
-                    {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='https://cdn.britannica.com/21/78721-050-E0525C8E/stilton-cheese.jpg' />}
+                    {!cameraOff ? <video ref={videoRef}></video> : <img className='no-video' src='./app-logo.png' />}
                     <button className='cheese btn' onClick={takePhoto}></button>
                 </div>
             </section>
