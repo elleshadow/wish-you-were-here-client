@@ -29,11 +29,15 @@ function LoginForm({ login, userId, error }) {
             <section className='form-page'>
                 <form className='form-container'>
                     <div className='form-inner'>
-                        <h2 className='large'>Login</h2>
+                        <div className='login-title-box'>
+                            <h3 className='login-title medium-large'>Wish You Were Here</h3>
+                            <img className='login-logo' src='./app-logo.png'/>
+                        </div>
+                        {/* <h2 className='login-header mid-medium'>Login</h2> */}
                         <section className='form-group medium'>
-                            <label htmlFor='name'>Name: </label>
+                            <label className='login-label' htmlFor='name'>Name: </label>
                             <input 
-                                className='input-login medium'
+                                className='input-login medium-small'
                                 type='text'
                                 name='name'
                                 placeholder='Name'
@@ -42,9 +46,9 @@ function LoginForm({ login, userId, error }) {
                             /> 
                         </section>
                         <section className='form-group medium'>
-                            <label htmlFor='name'>Pronouns: </label>
+                            <label className='login-label' htmlFor='name'>Pronouns: </label>
                             <input 
-                                className='input-login medium'
+                                className='input-login medium-small'
                                 type='text'
                                 name='pronouns'
                                 placeholder='Pronouns (optional)'
@@ -52,20 +56,9 @@ function LoginForm({ login, userId, error }) {
                                 onChange={(event) => {handleChange(event)}}
                             /> 
                         </section>
-                        <section className='form-group medium'>
-                            <label htmlFor='email'>Email: </label>
-                            <input 
-                                className='input-login medium'
-                                type='email'
-                                name='email'
-                                placeholder='Email (optional)'
-                                value={formDetails.email}
-                                onChange={(event) => handleChange(event)}
-                            />
-                        </section>
                         {error ? <h3 className='medium'>{error}</h3> : ''}
                         <Link to={`/dashboard`}>
-                            <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Submit</button>
+                            <button className='submit-name-btn medium' onClick={event => submitForm(event)}>Login</button>
                         </Link>
                     </div>
                 </form>

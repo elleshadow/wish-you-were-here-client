@@ -10,20 +10,31 @@
     padding: 15px;
 }
 
+.logo-title-box {
+    display: flex;
+    align-items: center;
+    margin: 0vw 1vw;
+}
+
 .app-title {
     align-self: center;
     color: white;
     letter-spacing: .3rem;
+    margin: 0vw 1vw;
+}
+
+.nav-logo {
+    height: 3.5rem;
 }
 
 .logout-btn {
     cursor: pointer;
     background-color: var(--third-color);;
-    color: white;
+    color: rgb(81, 78, 78);
     border: none;
     height: 3vh;
     width: 5vw;
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow:
      0 1px 1px hsl(0deg 0% 0% / 0.075),
      0 2px 2px hsl(0deg 0% 0% / 0.075),
@@ -31,4 +42,14 @@
      0 8px 8px hsl(0deg 0% 0% / 0.075),
      0 16px 16px hsl(0deg 0% 0% / 0.075)
    ;
+}
+
+.logout-btn:hover {
+    transition: .2s ease;
+    transform: translateY(-3px);
+}
+
+.logout-btn:active {
+    transition: .2s ease;
+    transform: translateY(0px);
 }

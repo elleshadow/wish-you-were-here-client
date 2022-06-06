@@ -17,6 +17,8 @@
   position: absolute;
   height: 1000px;
   width: 1200px;
+  outline: 6px black solid;
+  border-radius: 1px;
 }
 
 .sample-canvas {
@@ -39,4 +41,32 @@
   position: absolute;
   height: 1000px;
   width: 1200px;
+}
+
+.save-snap {
+  background-color: var(--secondary-color);
+  color: white;
+  align-self: center;
+  margin-bottom: 8vh;
+  margin-top: -5vh;
+  width: 12vw;
+  border: none;
+  border-radius: 4px;
+  padding: 1.2rem;
+  box-shadow:
+     0 1px 1px hsl(0deg 0% 0% / 0.075),
+     0 2px 2px hsl(0deg 0% 0% / 0.075),
+     0 4px 4px hsl(0deg 0% 0% / 0.075),
+     0 8px 8px hsl(0deg 0% 0% / 0.075),
+     0 16px 16px hsl(0deg 0% 0% / 0.075)
+}
+
+.save-snap:hover {
+  transition: .3s ease;
+  transform: translateY(-3px);
+}
+
+.save-snap:active {
+  transition: .3s ease;
+  transform: translateY(0px);
 }
