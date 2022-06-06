@@ -5,6 +5,7 @@ import "../styles/FabricWhiteboard.css";
 
 const FabricWhiteboard = (props) => {
   const [myPhoto, setMyPhoto] = useState(true);
+  const [downloadURL, setDownloadURL] = useState('');
   const [canvas, setCanvas] = useState('');
   const [location, setLocation] = useState({
     left: 0,
@@ -57,7 +58,8 @@ const FabricWhiteboard = (props) => {
             return editor.canvas.add(oImg);
         });
         setMyPhoto(false)
-      } else if(id !== props.myID && photo && photoURL) {
+      } 
+      if(photo && photoURL) {
          addImage(photoURL, photoLocation)
        };
      });
@@ -67,7 +69,7 @@ const FabricWhiteboard = (props) => {
     setCanvas(initCanvas());
   }, [props.connectedUsers]);
 
-  const downloadImage = () => {
+  const createDataURL = async () => {
     console.log("attempting DL")
     const me = props.connectedUsers.find(connectedUser => {
       return connectedUser.id === props.myID
@@ -79,13 +81,22 @@ const FabricWhiteboard = (props) => {
       photoURL
     } = me
 
-      addImage(photoURL, photoLocation);
+      await addImage(photoURL, photoLocation);
       const dataURL = canvas.toDataURL();
       console.log(dataURL);
+      downloadCanvas(dataURL)
       return dataURL;
   }
 
-  const addImage = (URL, location) => {
+  const downloadCanvas = (canvasUrl) => {
+        const linkWrapper = document.createElement('a');
+        linkWrapper.href = canvasUrl;
+        linkWrapper.download = `wish-you-were-here-${Date.now()}`;
+        linkWrapper.click();
+        linkWrapper.remove();
+    }
+
+  const addImage = async (URL, location) => {
 
      const {
         top, 
@@ -93,10 +104,10 @@ const FabricWhiteboard = (props) => {
         scale
       } = location
 
-    fabric.Image.fromURL(URL, function(img) {
+    await fabric.Image.fromURL(URL, function(img) {
       var oImg = img.set({ left: left, top: top}).scale(scale);
       canvas.add(oImg);
-      canvas.renderAll()
+     canvas.renderAll()
     }, { crossOrigin: 'Anonymous' });
   };
     useEffect(() => {
