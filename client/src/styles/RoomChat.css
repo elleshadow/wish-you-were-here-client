@@ -11,6 +11,12 @@
     border-top: none;
 }
 
+.chat-tab-text {
+    color: rgb(81, 78, 78);
+    align-items: center;
+    letter-spacing: 0.2rem;
+}
+
 form {
     display: flex;
 }

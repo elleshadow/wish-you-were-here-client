@@ -53,7 +53,7 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
         <section className='chat-sidebar'>
             <span className='chat-tab'>
                 <input id='chat' type='radio' name='tabs' value='chat'/>
-                <label className='medium' htmlFor='chat'>Chat</label>
+                <label className='chat-tab-text medium' htmlFor='chat'>Chat</label>
             </span>
             <section className='chat'>
                 <summary className='message-container'>

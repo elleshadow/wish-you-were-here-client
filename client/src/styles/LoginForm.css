@@ -37,6 +37,7 @@
 
 .input-login {
     border: none;
+    width: 60%;
     color: white;
     border-bottom: 0.2rem solid white;
     margin-left: 1rem;
@@ -59,4 +60,26 @@
 .submit-name-btn:hover {
     background-color: var(--secondary-color);
     border: 0.3rem solid white;
+}
+
+.login-title-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+
+.login-title {
+    margin-right: 3vw;
+    letter-spacing: 3px;
+}
+
+.login-logo {
+    height: 10vh;
+    width: 6vw;
+    align-self: left;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
 }

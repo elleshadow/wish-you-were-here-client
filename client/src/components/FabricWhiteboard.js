@@ -128,7 +128,7 @@ const updateLocation = () => {
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
       </section>
-      <button onClick={downloadImage}>Download</button>
+      <button className='save-snap medium' onClick={downloadImage}>Download</button>
     </>
   );
 };

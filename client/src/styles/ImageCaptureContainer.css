@@ -18,20 +18,24 @@
   align-items: center;
 }
 
-video, .no-video {
-  border: 0.3rem solid black;
+video {
   border-radius: 0.5rem;
   width: 100%;
   max-width: 100%;
 }
 
+.no-video {
+  height: 65vh;
+}
+
 .cheese {
-  /* position: absolute; */
-  border: 0.5rem solid black;
+  cursor: pointer;
+  border: none; 
+  /* 0.5rem solid black; */
   bottom: 2rem;
   left: 50%;
   padding: 1.5rem 2.1rem;
-  opacity: 0.8;
+  opacity: 0.5;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
@@ -40,25 +44,49 @@ video, .no-video {
   background-size: cover;
   background-position: center center;
   margin: 3rem 5rem;
-  box-shadow: 0 0.4rem 0 rgba(0,0,0, 0.3);
+  box-shadow:
+     0 1px 1px hsl(0deg 0% 0% / 0.075),
+     0 2px 2px hsl(0deg 0% 0% / 0.075),
+     0 4px 4px hsl(0deg 0% 0% / 0.075),
+     0 8px 8px hsl(0deg 0% 0% / 0.075),
+     0 16px 16px hsl(0deg 0% 0% / 0.075)
 }
 
 .cheese:hover {
-  opacity: 1;
-  transition: 0.2s ease; 
+  opacity: 0.6;
+  transition: 0.3s ease; 
   transform: scale(0.98);
-  box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
+  transform: translateY(-6px);
+  box-shadow:
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 6px 6px hsl(0deg 0% 0% / 0.075),
+    0 12px 12px hsl(0deg 0% 0% / 0.075),
+    0 18px 18px hsl(0deg 0% 0% / 0.075)
+}
+
+.cheese:active {
+  opacity: 0.6;
+  transition: 0.3s ease; 
+  transform: scale(1);
+  transform: translateY(0px);
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075)
 }
 
 .btn-styled {
-  background-color: #77bcc2; 
+  background-color: var(--secondary-color); 
   border: none;
   color: white;
   padding: 2rem 4rem;
 }
 
 .btn-styled:hover {
-  background-color: #2d494c; 
+  background-color: var(--secondary-color); 
   transition: 0.2s ease; 
   transform: scale(0.98);
 }
@@ -76,7 +104,7 @@ video, .no-video {
 
 .controls {
   margin: 1rem 0.5rem;
-  background-color: #a0b2cbb4;
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;

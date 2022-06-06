@@ -50,10 +50,14 @@ input, button {
     font-size: 2rem;
 }
 
-.large {
-    font-size: 4rem;
+.mid-medium {
+    font-size: 3rem;
 }
 
-.x-large {
-    font-size: 6rem;
+.medium-large {
+    font-size: 3.5rem;
+}
+
+.large {
+    font-size: 4rem;
 }
