@@ -15,15 +15,21 @@ const FabricWhiteboard = (props) => {
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
   
   const initCanvas = () => {
-    return new fabric.Canvas('canv', {
+    const canvas2 = new fabric.Canvas('canv', {
       height: 1000,
       width: 1200,
-      backgroundColor: 'transparent',
     });
+    fabric.Image.fromURL('../../turing-classroom.jpg', function(img) {
+         canvas2.setBackgroundImage('../../turing-classroom.jpg', canvas2.renderAll.bind(canvas2), {
+            scaleX: canvas2.width / img.width,
+            scaleY: canvas2.height / img.height
+         });
+      }, { crossOrigin: 'Anonymous' });
+    return canvas2
   };
     
   useEffect(() => {
-    setCanvas(initCanvas());
+     setCanvas(initCanvas());
   }, []);
 
   useEffect(() => {
@@ -61,6 +67,24 @@ const FabricWhiteboard = (props) => {
     setCanvas(initCanvas());
   }, [props.connectedUsers]);
 
+  const downloadImage = () => {
+    console.log("attempting DL")
+    const me = props.connectedUsers.find(connectedUser => {
+      return connectedUser.id === props.myID
+    })
+    console.log(me)
+    const {
+      id,
+      photoLocation,
+      photoURL
+    } = me
+
+      addImage(photoURL, photoLocation);
+      const dataURL = canvas.toDataURL();
+      console.log(dataURL);
+      return dataURL;
+  }
+
   const addImage = (URL, location) => {
 
      const {
@@ -73,7 +97,7 @@ const FabricWhiteboard = (props) => {
       var oImg = img.set({ left: left, top: top}).scale(scale);
       canvas.add(oImg);
       canvas.renderAll()
-    });
+    }, { crossOrigin: 'Anonymous' });
   };
     useEffect(() => {
       props.sendPhotoLocation(location)
@@ -101,10 +125,10 @@ const updateLocation = () => {
   return (
     <>
       <section onMouseUp={updateLocation} className="whiteboard-container">
-        <img className="whiteboard-bg" src="../../turing-classroom.jpg"/>
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
       </section>
+      <button onClick={downloadImage}>Download</button>
     </>
   );
 };
