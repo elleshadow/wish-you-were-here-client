@@ -1,7 +1,7 @@
 .whiteboard-container {
   position: relative;
-  height: 1000px;
-  width: 1200px;
+  height: 900px;
+  width: 1050px;
   margin-bottom: 10vh;
   margin-top: 10vh;
   left: 3.5vw;
@@ -9,38 +9,45 @@
 
 .whiteboard-bg {
   position: absolute;
-  height: 1000px;
-  width: 1200px;
+  height: 900px;
+  width: 1050px;
+  border-radius: 4px;
 }
 
 #canv {
   position: absolute;
-  height: 1000px;
-  width: 1200px;
-  outline: 6px black solid;
-  border-radius: 1px;
+  height: 900px;
+  width: 1050px;
+  border: 10px white solid;
+  border-radius: 4px;
+  box-shadow:
+     0 1px 1px hsl(0deg 0% 0% / 0.075),
+     0 2px 2px hsl(0deg 0% 0% / 0.075),
+     0 4px 4px hsl(0deg 0% 0% / 0.075),
+     0 8px 8px hsl(0deg 0% 0% / 0.075),
+     0 16px 16px hsl(0deg 0% 0% / 0.075)
 }
 
 .sample-canvas {
   position: absolute;
-  height: 1000px;
-  width: 1200px;
+  height: 900px;
+  width: 1050px;
   z-index: 1;
-  
+
 }
 
 .whiteboard {
   position: relative;
   font-family: sans-serif;
   text-align: center;
-  height: 1000px;
-  width: 1200px;
+  height: 900px;
+  width: 1050px;
 }
 
 .upper-canvas {
   position: absolute;
-  height: 1000px;
-  width: 1200px;
+  height: 900px;
+  width: 1050px;
 }
 
 .save-snap {
