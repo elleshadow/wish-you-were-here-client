@@ -9,16 +9,18 @@ const RoomChat = ({ userInfo, connectedUsers, messages }) => {
     const [chatInput, setChatInput] = useState('');
 
     const sendMessage = (dataStringUserInfo, message) => {
+      if (message) {
         const userInfoObject = JSON.parse(dataStringUserInfo);
         userInfoObject.timeStamp = new Date().toISOString();
         userInfoObject.message = message;
         socket.emit('send_message', userInfoObject);
+      }
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setChatInput('');
         sendMessage(userInfo, chatInput);
+        setChatInput('');
     }
 
     const handleChange = (event) => {

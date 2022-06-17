@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/UserList.css';
 
 const UsersList = ({ connectedUsers }) => {
 
@@ -10,10 +11,12 @@ const UsersList = ({ connectedUsers }) => {
 
     return (
         <>
-            <h3 className='medium-small'>{`${users.length} Connected Users:`}</h3>
-            <ul>
-                {users}
-            </ul>
+            {users.length > 1 ?
+              <h3 className='user-num medium-small'>{`${users.length} Active Users`}</h3>:
+              <h3 className='user-num medium-small'>Welcome! It looks like you're the first one here.</h3>}
+            {users.length > 1 ?
+              <ul className='user-list'>{users}</ul>:
+              <></>}
         </>
     );
 };

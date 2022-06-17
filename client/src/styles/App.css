@@ -5,12 +5,12 @@
     --third-color: #bcd4e6;
     --button-color: #281722;
 }
-  
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-} 
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -21,6 +21,7 @@ body {
 input, button {
     appearance: none;
     background: none;
+    cursor: pointer;
 }
 
 .App {

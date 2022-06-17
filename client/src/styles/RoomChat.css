@@ -15,6 +15,7 @@
     color: rgb(81, 78, 78);
     align-items: center;
     letter-spacing: 0.2rem;
+    margin-top: 2%;
 }
 
 form {
@@ -55,7 +56,6 @@ input +label {
 }
 
 .button-send {
-    cursor: pointer;
     display: block;
     width: 40%;
     background-color: var(--secondary-color);
