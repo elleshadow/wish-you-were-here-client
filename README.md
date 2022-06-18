@@ -2,7 +2,8 @@
 ![App Icon](https://user-images.githubusercontent.com/82775910/172031537-1dbab416-40d6-425c-b951-b4124215982f.png)
 
 #### Deployable
-[Heroku](https://wywh-ui.herokuapp.com/)
+- [Deploy Link](https://wywh-ui.herokuapp.com/)
+
 
 #### Getting Started
 1. Clone the repo from [github](https://github.com/elleshadow/wish-you-were-here-client/tree/main/client)
