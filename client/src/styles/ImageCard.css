@@ -5,7 +5,7 @@
     width: 35rem;
     padding: 2rem;
     box-shadow: 0 0.2rem 1rem rgba(0,0,0, 0.3);
-    transition: 0.4s ease; 
+    transition: 0.4s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,7 @@
 }
 
 .img-card:hover {
-    transition: 0.4s ease; 
+    transition: 0.4s ease;
     transform: scale(1.1);
     box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
 }
@@ -39,6 +39,15 @@
 
 .img-btns > *:hover {
     opacity: 1;
-    transition: 0.4s ease; 
+    transition: 0.4s ease;
     transform: scale(1.1);
+}
+
+.save-btn {
+  width: 7.5%;
+  padding-bottom: 4%;
+  background-image: url('../../public/download-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150%;
 }

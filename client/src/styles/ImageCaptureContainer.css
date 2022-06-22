@@ -38,15 +38,16 @@ video {
   bottom: 2rem;
   left: 50%;
   padding: 1.5rem 2.1rem;
-  opacity: 0.5;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
-  background-image: url('../../public/cheese.png');
-  background: 'no-repeat';
-  background-size: cover;
+  background-image: url('../../public/app-logo.png');
+  background-color: var(--secondary-color);
+  background-repeat: no-repeat;
+  background-size: 65%;
   background-position: center center;
   margin: 3rem 5rem;
+  filter: brightness(115%);
   box-shadow:
      0 1px 1px hsl(0deg 0% 0% / 0.075),
      0 2px 2px hsl(0deg 0% 0% / 0.075),
@@ -56,7 +57,6 @@ video {
 }
 
 .cheese:hover {
-  opacity: 0.6;
   transition: 0.3s ease;
   transform: scale(0.98);
   transform: translateY(-6px);
@@ -69,7 +69,6 @@ video {
 }
 
 .cheese:active {
-  opacity: 0.6;
   transition: 0.3s ease;
   transform: scale(1);
   transform: translateY(0px);
