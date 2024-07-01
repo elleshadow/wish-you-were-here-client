@@ -33,17 +33,50 @@ To get started with this app:
 - [Kal Al-Rajhi](https://github.com/kal-aalrajhi)
 
 ## Technologies Used
-- React
+
+### Languages
 - JavaScript
-- HTML
-- CSS
-- React Router
-- Cypress
-- Express
+
+### Frontend
+- React
+  - react-dom
+  - react-router-dom
 - Fabric.js
-- Socket.io
-- Canvas API
-- [Remove.bg API](https://www.remove.bg/)
+  - fabric
+  - fabricjs-react
+
+### Backend
+- Express.js
+
+### Realtime Communication
+- socket.io
+- socket.io-client
+
+### HTTP Clients
+- axios
+- form-data
+
+### Utilities
+- uuidv4
+
+### Middleware
+- cors
+
+### Testing
+- @testing-library/react
+- @testing-library/jest-dom
+- @testing-library/user-event
+- Cypress
+- Web Vitals
+
+### Build Tools
+- react-scripts
+
+### Others
+- ESLint
+- Browserslist
+- Node.js (v17.2.0)
+
 
 ## Instructions on Use
 Users begin by logging in and can then interact through a live chat, take and edit photos, and participate in creating a group photo.
