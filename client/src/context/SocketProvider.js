@@ -13,7 +13,7 @@ export function SocketProvider({ data, children }) {
 
   useEffect(() => {
     const newSocket = io(
-    'https://api-wish-you-were-here.herokuapp.com',
+    'wish-you-were-here-api.vercel.app',
       { query: socketData }
     );
     setSocket(newSocket);
