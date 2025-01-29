@@ -14,11 +14,11 @@ const FabricWhiteboard = (props) => {
   });
 
   const { selectedObjects, editor, onReady } = useFabricJSEditor();
-  
+
   const initCanvas = () => {
     const canvas2 = new fabric.Canvas('canv', {
-      height: 1000,
-      width: 1200,
+      height: 900,
+      width: 1050,
     });
     fabric.Image.fromURL('../../turing-classroom.jpg', function(img) {
          canvas2.setBackgroundImage('../../turing-classroom.jpg', canvas2.renderAll.bind(canvas2), {
@@ -28,7 +28,7 @@ const FabricWhiteboard = (props) => {
       }, { crossOrigin: 'Anonymous' });
     return canvas2
   };
-    
+
   useEffect(() => {
      setCanvas(initCanvas());
   }, []);
@@ -47,8 +47,8 @@ const FabricWhiteboard = (props) => {
       } = connectedUser
 
       const {
-        top, 
-        left, 
+        top,
+        left,
         scale
       } = photoLocation
 
@@ -58,7 +58,7 @@ const FabricWhiteboard = (props) => {
             return editor.canvas.add(oImg);
         });
         setMyPhoto(false)
-      } 
+      }
       if(photo && photoURL) {
          addImage(photoURL, photoLocation)
        };
@@ -99,8 +99,8 @@ const FabricWhiteboard = (props) => {
   const addImage = async (URL, location) => {
 
      const {
-        top, 
-        left, 
+        top,
+        left,
         scale
       } = location
 
@@ -123,7 +123,7 @@ const updateLocation = () => {
     const scale =  editor.canvas._objects[0].scaleX
     const left = editor.canvas._objects[0].left
     const top = editor.canvas._objects[0].top
-  
+
     const newLocation = {
       left,
       top,
@@ -139,7 +139,7 @@ const updateLocation = () => {
         <FabricJSCanvas className="sample-canvas" onReady={onReady} />
         <canvas id="canv" />
       </section>
-      <button className='save-snap medium' onClick={createDataURL}>Download</button>
+      <button className='save-snap medium' onClick={createDataURL}></button>
     </>
   );
 };

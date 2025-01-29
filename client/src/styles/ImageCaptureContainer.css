@@ -4,11 +4,16 @@
 
 /* LIVE PHOTO CONTAINER */
 .polaroid-cam {
-  border: 0.7rem solid rgba(0, 0, 0, 0.9);
-  border-radius: 0.5rem;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
   padding: 4rem;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.5rem 2rem rgba(0,0,0, 0.3);
+  box-shadow:
+     0 1px 1px hsl(0deg 0% 0% / 0.075),
+     0 2px 2px hsl(0deg 0% 0% / 0.075),
+     0 4px 4px hsl(0deg 0% 0% / 0.075),
+     0 8px 8px hsl(0deg 0% 0% / 0.075),
+     0 16px 16px hsl(0deg 0% 0% / 0.075)
 }
 
 .camera-display {
@@ -29,21 +34,20 @@ video {
 }
 
 .cheese {
-  cursor: pointer;
-  border: none; 
-  /* 0.5rem solid black; */
+  border: none;
   bottom: 2rem;
   left: 50%;
   padding: 1.5rem 2.1rem;
-  opacity: 0.5;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
-  background-image: url('../../public/cheese.png');
-  background: 'no-repeat';
-  background-size: cover;
+  background-image: url('../../public/app-logo.png');
+  background-color: var(--secondary-color);
+  background-repeat: no-repeat;
+  background-size: 65%;
   background-position: center center;
   margin: 3rem 5rem;
+  filter: brightness(115%);
   box-shadow:
      0 1px 1px hsl(0deg 0% 0% / 0.075),
      0 2px 2px hsl(0deg 0% 0% / 0.075),
@@ -53,8 +57,7 @@ video {
 }
 
 .cheese:hover {
-  opacity: 0.6;
-  transition: 0.3s ease; 
+  transition: 0.3s ease;
   transform: scale(0.98);
   transform: translateY(-6px);
   box-shadow:
@@ -66,8 +69,7 @@ video {
 }
 
 .cheese:active {
-  opacity: 0.6;
-  transition: 0.3s ease; 
+  transition: 0.3s ease;
   transform: scale(1);
   transform: translateY(0px);
   box-shadow:
@@ -79,20 +81,22 @@ video {
 }
 
 .btn-styled {
-  background-color: var(--secondary-color); 
+  background-color: var(--secondary-color);
   border: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   color: white;
   padding: 2rem 4rem;
 }
 
 .btn-styled:hover {
-  background-color: var(--secondary-color); 
-  transition: 0.2s ease; 
+  background-color: var(--secondary-color);
+  transition: 0.2s ease;
   transform: scale(0.98);
 }
 
 .preview {
-  margin: 2rem; 
+  margin: 2rem;
   height: 30rem;
 }
 

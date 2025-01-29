@@ -1,115 +1,122 @@
 # Wish You Were Here
 ![App Icon](https://user-images.githubusercontent.com/82775910/172031537-1dbab416-40d6-425c-b951-b4124215982f.png)
 
+## Deployable
+- [Deploy Link](https://wywh-ui.herokuapp.com/)
 
-#### Full Demo
-- Insert a video or GIF demo of general user flow
+## Getting Started
+To get started with this app:
 
-#### Deployable
-- Insert deployable link here
+1. Clone the repo from [GitHub](https://github.com/elleshadow/wish-you-were-here-client/tree/main/client).
+2. Cd into the directory from your terminal and install the project dependencies with `npm install`.
+3. To view the web app, run `npm start` in the terminal.
+4. Copy the local host address from your terminal into your web browser to view the app.
 
-#### Getting Started
-1. Clone the repo from [github](https://github.com/elleshadow/wish-you-were-here-client/tree/main/client)
-
-2. Cd into the directory from your terminal and install the project dependencies:
-- Run `npm install` or `npm i` in the terminal
-
-3. To see the web app:
-- Run `npm start` in the terminal
-- Press `ctrl/cmd + c` to exit
-
-4. Copy the local host address from your terminal and add to your web browser to see the web app
-
-### Table of Contents
+## Table of Contents
 - [About the Project](#about-the-project)
 - [Contributors](#contributors)
 - [Technologies Used](#technologies-used)
 - [Instructions on Use](#instructions-on-use)
-- [Demo of Features](#demo-of-features)
-- [Testing the app](#testing-the-app)
+- [Application in Action](#application-in-action)
+- [Testing the App](#testing-the-app)
 - [Challenges and Wins](#challenges-and-wins)
 - [Project Overview and Goals](#project-overview-and-goals)
 - [Future Additions](#future-additions)
 
-#### About the Project
-**Wish You Were Here** was a project inspired by the limitations of remote learning and the nostalgia of a class photo.
+## About the Project
+**Wish You Were Here** allows users to create a collective virtual photo reminiscent of a class photo, designed during a time when remote interaction was prevalent.
 
-This was part of Turing School of Software & Design module3 group project where we were encouraged to implement new technologies that we learned independently. This was meant to demonstrate our ability to self-teach new technologies in a short amount of time. It also showcases our ability to ask questions and struggle through new problems with other developers.
+## Contributors
+- [Zach Saile](https://github.com/zwsaile)
+- [Alex Bumpus](https://github.com/Abumpus1)
+- [Eli Davidson](https://github.com/elleshadow)
+- [Kal Al-Rajhi](https://github.com/kal-aalrajhi)
 
-#### Contributors
- - [Zach Saile](https://github.com/zwsaile)
- - [Alex Bumpus](https://github.com/Abumpus1)
- - [Eli Davidson](https://github.com/elleshadow)
- - [Kal Al-Rajhi](https://github.com/kal-aalrajhi)
+## Technologies Used
 
-#### Technologies Used
+### Languages
+- JavaScript
+
+### Frontend
 - React
-- Javascript
-- HTML
-- CSS
-- React Router
-- Cypress 
-- Express
-- Fabric-js
-- Socket.io
-- Canvas API
-- [RemoveBG Api](https://www.remove.bg/)
+  - react-dom
+  - react-router-dom
+- Fabric.js
+  - fabric
+  - fabricjs-react
 
-#### Instructions on Use
-**_Login_**
-The user is initially asked to login with a name, preferred pronouns, and email address. All but the name are optional.
+### Backend
+- Express.js
 
-**_Chat_**
-A live chat is available for users to see who's on and interact with each other.
+### Realtime Communication
+- socket.io
+- socket.io-client
 
-**_Photo_**
-Users are encouraged to take a photo by pressing the blue cheese button. Once pressed, the gallary will be immedietly populated with the photo. Multiple photos can be stored in the gallery. 
+### HTTP Clients
+- axios
+- form-data
 
-**_Delete Photo_**
-If a user doesn't like their photo, they can delete it from the gallery.
+### Utilities
+- uuidv4
 
-**_Insert Photo_**
-If a user is satisfied with a photo they've taken, they can insert it into the group photo stage.
+### Middleware
+- cors
 
-**_Drag, Drop, and Scale Photo_**
-Once the photo is in the group photo stage, users can drag, drop, and scale their images - live with other users.
+### Testing
+- @testing-library/react
+- @testing-library/jest-dom
+- @testing-library/user-event
+- Cypress
+- Web Vitals
 
-**_Download Group Photo_**
-Finally, if a user is satified with the group photo they can download it for keepsake.
+### Build Tools
+- react-scripts
 
-
-#### Demo of Features
-1. **Login Page**
-2. **Chat Page**
-3. **Insert Photo**
-4. **Delete Photo**
-5. **Drag and Drop**
-6. **Download Group Photo**
+### Others
+- ESLint
+- Browserslist
+- Node.js (v17.2.0)
 
 
-#### Testing the App
-`End-to-end` testing was implimented to test the application by using Cypress. `Stubbing` and `intercepting` was used to control the network response. The app was fully tested based on the user story from start to finish. 
+## Instructions on Use
+Users begin by logging in and can then interact through a live chat, take and edit photos, and participate in creating a group photo.
 
-#### Challenges and Wins
+## Application in Action
+**Login**
+![login](https://user-images.githubusercontent.com/97044701/172260425-8e98fb4f-c112-49d0-b3f4-fefb523fe7d3.gif)
 
-##### Challenges
-- Getting a live photo to render via canvas API.
-- Overcoming imposter syndrome when it comes to learning new technologies.
-- Finding documentation on the fabric.js react package
+**Live Chat**
+![chat_room](https://user-images.githubusercontent.com/97044701/172260441-f82f8a85-35e7-41d2-a3fa-92c324350a91.gif)
 
-##### Wins
-- The first time we got an image to appear on screen
-- Getting the chat function to work between clients
-- Implementing a divide & conquer approach to complete features asynchronously
-- Take a more modern approach to React by using hooks
+**Photo Interaction**
+![use_photo](https://user-images.githubusercontent.com/97044701/172260919-1196e24b-2531-4296-957f-8bb6b6f0e858.gif)
 
-#### Project Overview And Goals
-- Use OOP to drive the design of the application and the code
-- Gain further competency with React 
-- Build a robust test suite using Cypress for E2E testing
-- Implement asynchronous JavaScript
-- Learn a new technology: socket.io
+**Delete Photo**
+![delete_photo](https://user-images.githubusercontent.com/97044701/172260766-1c62ea9c-f84e-4f71-8155-7990ae0d8103.gif)
 
-#### Future Additions
-- Convert the app into a progressive web app (PWA)
-- Multiplatform responsive design
+**Download Group Photo**
+![download_photo](https://user-images.githubusercontent.com/97044701/172261320-6d927ec4-1b3e-4777-aab8-ec122513d08d.gif)
+
+**Logout**
+![logout](https://user-images.githubusercontent.com/97044701/172260569-482bb5fb-c5c1-49b9-938e-007822660bef.gif)
+
+## Testing the App
+Cypress was used for `end-to-end` testing, including `stubbing` and `intercepting` to control the network response.
+
+## Challenges and Wins
+### Challenges
+- Implementing live photo rendering with Canvas API.
+- Learning new technologies with minimal documentation available.
+
+### Wins
+- Real-time chat functionality.
+- Collaborative photo editing with live updates.
+
+## Project Overview and Goals
+- Embrace object-oriented programming and React component structure.
+- Develop robust Cypress tests for end-to-end coverage.
+- Practice asynchronous JavaScript and integrate new technologies such as socket.io.
+
+## Future Additions
+- Transition to a Progressive Web App for offline use.
+- Enhance responsive design across various devices.

@@ -18,13 +18,13 @@ const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
             <img id={id} src={url}  className={className} alt='snapshot image' />
             <section className='img-btns'>
                 <button className='btn medium' onClick={() => deletePhoto(id)}>❌</button>
-                <button 
-                className='btn medium' 
+                <button
+                className='save-btn btn medium'
                 disabled={buttonIsDisabled}
-                data-url={url} 
+                data-url={url}
                 onClick={(e) => {
                     sendPhotoToServer(e.target.dataset.url);
-                    }}>{buttonText}</button>
+                    }}></button>
             </section>
         </div>
     );
